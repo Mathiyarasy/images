@@ -1,8 +1,7 @@
-FROM continuumio/anaconda3 as upstream
+FROM --platform=linux/arm64 continuumio/anaconda3 as upstream
 
 # Verify OS version is expected one
-RUN . /etc/os-release && if [ "${VERSION_CODENAME}" != "bookworm" ]; then exit 1; fi
-
+RUN . /etc/os-release && if [ "${VERSION_CODENAME}" != "bookworm" ]; then echo "Error: OS version is ${VERSION_CODENAME}, but 'bookworm' is required." && exit 1; fi
 # Temporary: Upgrade python packages due to mentioned CVEs
 # They are installed by the base image (continuumio/anaconda3) which does not have the patch.
 COPY ./apply_security_patches.sh /tmp/apply_security_patches.sh
@@ -10,7 +9,7 @@ RUN chmod +x /tmp/apply_security_patches.sh
 RUN /tmp/apply_security_patches.sh
 
 # Reset and copy updated files with updated privs to keep image size down
-FROM mcr.microsoft.com/devcontainers/base:1-bookworm
+FROM --platform=linux/arm64 mcr.microsoft.com/devcontainers/base:1-bookworm
 
 ARG USERNAME=vscode
 
@@ -34,24 +33,24 @@ ENV LANG=C.UTF-8 \
 ARG USERNAME=vscode
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get install -y --no-install-recommends \
-        bzip2 \
-        ca-certificates \
-        libglib2.0-0 \
-        libsm6 \
-        libxcomposite1 \
-        libxcursor1 \
-        libxdamage1 \
-        libxext6 \
-        libxfixes3 \
-        libxi6 \
-        libxinerama1 \
-        libxrandr2 \
-        libxrender1 \
-        mercurial \
-        openssh-client \
-        procps \
-        subversion \
-        wget \
+    bzip2 \
+    ca-certificates \
+    libglib2.0-0 \
+    libsm6 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxi6 \
+    libxinerama1 \
+    libxrandr2 \
+    libxrender1 \
+    mercurial \
+    openssh-client \
+    procps \
+    subversion \
+    wget \
     && apt-get upgrade -y \
     && bash /tmp/library-scripts/add-notice.sh \
     && ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh \

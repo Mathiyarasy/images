@@ -1,4 +1,22 @@
 {
   "name": "universal",
-  "image": "mcr.microsoft.com/devcontainers/universal:2"
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": "."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "overrideCommand": true,
+  "postCreateCommand": "npm install -g @devcontainers/cli",
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mads-hartmann.bash-ide-vscode"
+      ]
+    }
+  }
 }

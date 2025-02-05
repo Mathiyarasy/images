@@ -2,15 +2,7 @@ name: Smoke test "universal" build
 
 on: 
   workflow_dispatch:
-  push:
-    branches:
-    - main
-  pull_request:
-    paths:
-      - src/universal/**
-      - .github/universal/smoke-universal.yaml
-      - .github/actions/**
-      - build/**
+  
 jobs:
   smoke-test:
     name: Smoke test
@@ -19,6 +11,15 @@ jobs:
     - name: Checkout
       id: checkout
       uses: actions/checkout@v3
+
+    - name: Get userUid from remote machine
+      id: get-useruid
+      run: |
+       USER_UID=$(id -u')
+       USER_GID=$(id -g')
+       echo "::set-output name=userUid::$USER_UID"
+       echo "::set-output name=userGid::$USER_GID"
+
     - name: Smoke test
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

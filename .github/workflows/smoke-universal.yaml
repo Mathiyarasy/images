@@ -18,8 +18,8 @@ jobs:
       run: |
        USER_UID=$(id -u)
        USER_GID=$(id -g)
-       echo "::set-output name=userUid::$USER_UID"
-       echo "::set-output name=userGid::$USER_GID"
+       echo "UserUid::$USER_UID"
+       echo "UserGid::$USER_GID"
 
     - name: Smoke test
       env:

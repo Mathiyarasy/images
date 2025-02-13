@@ -65,7 +65,8 @@
             "version": "latest"
         },
         "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
-            "version": "latest"
+            "version": "latest",
+            "helm" : "3.17.0"
         },
         "ghcr.io/devcontainers/features/go:1": {
             "version": "latest"

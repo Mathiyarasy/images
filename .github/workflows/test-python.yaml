@@ -27,7 +27,7 @@ jobs:
   ubuntunewbase:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/devcontainers/python:dev-3.10
+      image: python:3.12-slim
     steps:
       - uses: actions/setup-python@v5
         with:

@@ -24,6 +24,16 @@ jobs:
           python-version: "3.10"
       - run: python
 
+  ubuntunewbase:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.10-slim-bullseye
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: python
+
   withoutcontainerNew:
     runs-on: ubuntu-latest
     steps:

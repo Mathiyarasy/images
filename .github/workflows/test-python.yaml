@@ -27,7 +27,7 @@ jobs:
   ubuntunewbase:
     runs-on: ubuntu-latest
     container:
-      image: python:3.10-slim-bullseye
+      image: mcr.microsoft.com/devcontainers/python:dev-3.10
     steps:
       - uses: actions/setup-python@v5
         with:

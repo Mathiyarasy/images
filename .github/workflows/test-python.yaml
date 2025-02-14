@@ -27,7 +27,7 @@ jobs:
   ubuntunewbase:
     runs-on: ubuntu-latest
     container:
-      image: python:slim
+      image: python
     steps:
       - uses: actions/setup-python@v5
         with:

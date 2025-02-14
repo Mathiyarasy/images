@@ -13,3 +13,38 @@ jobs:
         with:
           python-version: "3.10"
       - run: python
+
+  ubuntunew:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.10-slim
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: python
+
+  withoutcontainerNew:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print LDD versions
+        run: |
+          echo "LDD VERSION..."
+          ldd --version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: python
+
+  withoutcontainerOld:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Print LDD versions
+        run: |
+          echo "LDD VERSION..."
+          ldd --version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: python
+

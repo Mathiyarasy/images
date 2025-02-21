@@ -1,5 +1,5 @@
 {
-	"image": "mcr.microsoft.com/devcontainers/javascript-node:latest",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:latest",
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}

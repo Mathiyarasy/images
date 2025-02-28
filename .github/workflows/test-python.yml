@@ -12,7 +12,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-      - run: python
+      
+      - name: Check glibc version
+        run: |
+          echo "Checking glibc version..."
+          ldd --version
+
+      - name: Check Python glibc dependencies
+        run: |
+          echo "Checking Python glibc dependencies..."
+          ldd $(which python)
+
+      - name: Run Python
+        run: python
 
   working:
     runs-on: ubuntu-22.04
@@ -22,7 +34,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-      - run: python
+       
+      - name: Check glibc version
+        run: |
+          echo "Checking glibc version..."
+          ldd --version
+
+      - name: Check Python glibc dependencies
+        run: |
+          echo "Checking Python glibc dependencies..."
+          ldd $(which python)
+
+      - name: Run Python
+        run: python
 
   Nworking:
     runs-on: ubuntu-24.04

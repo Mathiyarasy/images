@@ -9,9 +9,15 @@ jobs:
     container:
       image: python:3.10-slim
     steps:
+      - name: Make setup-puthon to use container binary
+        run: |
+         echo "PYTHON_BIN=$(which python)" >> $GITHUB_ENV
+         echo "PYTHON_HOME=$(dirname $(dirname $(which python3)))" >> $GITHUB_ENV
+         echo "PATH=$PYTHON_HOME/bin:$PATH" >> $GITHUB_ENV
+
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.10"
       
       - name: Check glibc version
         run: |

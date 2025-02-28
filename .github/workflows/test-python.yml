@@ -15,7 +15,7 @@ jobs:
       - run: python
 
   working:
-    runs-on: ubuntu-22
+    runs-on: ubuntu-22.04
     container:
       image: python:3.10-slim
     steps:

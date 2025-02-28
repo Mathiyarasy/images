@@ -32,6 +32,16 @@ jobs:
           python-version: "3.10"
       - run: python
 
+  Gworking:
+    runs-on: ubuntu-24.04
+    container:
+      image: python:3.9-slim
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - run: python
+
   check-glibc-version:
     runs-on: ${{ matrix.ubuntu-version }}
 

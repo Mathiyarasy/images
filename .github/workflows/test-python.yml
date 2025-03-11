@@ -1,95 +1,31 @@
-name: TEST PYTHON
+name: TEST Branch Creation
 on:
   workflow_dispatch:
-  push:
 
 jobs:
-  not_working:
-    runs-on: ubuntu-latest
-    container:
-      image: python:3.10-slim
-    steps:
-      - name: Make setup-puthon to use container binary
-        run: |
-         echo "PYTHON_BIN=$(which python)" >> $GITHUB_ENV
-         echo "PYTHON_HOME=$(dirname $(dirname $(which python3)))" >> $GITHUB_ENV
-         echo "PATH=$PYTHON_HOME/bin:$PATH" >> $GITHUB_ENV
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-      
-      - name: Check glibc version
-        run: |
-          echo "Checking glibc version..."
-          ldd --version
-
-      - name: Check Python glibc dependencies
-        run: |
-          echo "Checking Python glibc dependencies..."
-          ldd $(which python)
-
-      - name: Run Python
-        run: python
-
   working:
-    runs-on: ubuntu-22.04
-    container:
-      image: python:3.10-slim
+    runs-on: ubuntu-latest
+    environment: publishing
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-       
-      - name: Check glibc version
-        run: |
-          echo "Checking glibc version..."
-          ldd --version
-
-      - name: Check Python glibc dependencies
-        run: |
-          echo "Checking Python glibc dependencies..."
-          ldd $(which python)
-
-      - name: Run Python
-        run: python
-
-  Nworking:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-      - run: python
-
-  Gworking:
-    runs-on: ubuntu-24.04
-    container:
-      image: python:3.9-slim
-    steps:
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.9"
-      - run: python
-
-  check-glibc-version:
-    runs-on: ${{ matrix.ubuntu-version }}
-
-    strategy:
-      matrix:
-        ubuntu-version: [ubuntu-20.04, ubuntu-22.04, ubuntu-24.04]  # Ubuntu versions to check
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Print glibc version
-        run: |
-          echo "Checking glibc version on Ubuntu ${{ matrix.ubuntu-version }}"
-          ldd --version
-
-
-
+    - name: Checkout main branch
+      uses: actions/checkout@v4
+      with:
+       ref: main    
+       token: ${{ secrets.PAT }}
+    - name: Create New Branch
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      run: |
+        set -e
+        # Configure git and Push updates
+        git config --global user.email github-actions@github.com
+        git config --global user.name github-actions
+        branch=automated-update-for-image-history-$GITHUB_RUN_ID
+        git checkout -b $branch
+        git push origin $branch
 
 
 

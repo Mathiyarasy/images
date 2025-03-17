@@ -1,0 +1,1 @@
+{"version":3,"file":"logFile.js","sourceRoot":"","sources":["../../../../src/abstractions/browser/logFile.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,UAAU;IACtB,OAAO,2BAA2B,CAAC;AACvC,CAAC","sourcesContent":["export function logMessage() {\n    return 'Hello from vscode browser';\n}"]}

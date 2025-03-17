@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+</head>
+
+<body>
+    <h1>Test Page</h1>
+    <div id="output"></div>
+    <script src="../out/src/extension.js"> </script>
+    <script>
+        // Call the function and display its output
+        let output = callLogMessage();
+        document.getElementById('output').innerText = output;
+    </script>
+</body>
+
+</html>

@@ -7,9 +7,7 @@
 	"type": "module",
 	"imports": {
 		"#abstractions/logFile.js": "./out/src/abstractions/node/logFile.js",
-		"@vscode-abstractions/*": "./node_modules/@vs/vscode-command-framework/dist/src/abstractions/*"
-
-
+		"#vscode-abstractions/logFile.js": "./node_modules/@vs/vscode-command-framework/dist/src/abstractions/*"
 	},
 	"exports": {
 		"./aliases/log.js": "./node_modules/@vs/vscode-command-framework/dist/src/abstractions/node/logFile.js"

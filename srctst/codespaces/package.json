@@ -6,8 +6,8 @@
 	"publisher": "GitHub",
 	"type": "module",
 	"imports": {
-		"#abstractions/logFile.js": "./out/src/abstractions/node/logFile.js",
-		"#vscode-abstractions/logFile.js": "./node_modules/@vs/vscode-command-framework/dist/src/abstractions/*"
+		"#abstractions/logFile.js": "./out/src/abstractions/browser/logFile.js",
+		"#vscode-abstractions/logFile.js": "../../node_modules/@vs/vscode-command-framework/dist/src/abstractions/node/logFile.js"
 	},
 	"exports": {
 		"./aliases/log.js": "./node_modules/@vs/vscode-command-framework/dist/src/abstractions/node/logFile.js"

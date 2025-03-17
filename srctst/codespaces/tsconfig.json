@@ -22,7 +22,7 @@
 			"@abstractions/*": [
 				"src/abstractions/node/*"
 			],
-			"@vscode-abstractions/*": [
+			"#vscode-abstractions/*": [
 				"./node_modules/@vs/vscode-command-framework/dist/src/abstractions/browser/*"
 			]
 		}

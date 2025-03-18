@@ -4,14 +4,6 @@
 	"description": "%extension.codespaces.description%",
 	"version": "1.17.4",
 	"publisher": "GitHub",
-	"type": "module",
-	"imports": {
-		"#abstractions/logFile.js": "./out/src/abstractions/node/logFile.js",
-		"#vscode-abstractions/logFile.js": "../node_modules/@vs/vscode-command-framework/dist/src/abstractions/node/logFile.js"
-	},
-	"exports": {
-		"./aliases/log.js": "./node_modules/@vs/vscode-command-framework/dist/src/abstractions/node/logFile.js"
-	},
 	"extensionKind": [
 		"ui",
 		"workspace"
@@ -731,13 +723,8 @@
 	},
 	"scripts": {
 		"compile-test": "tsc -p ./",
-		"test-esmInternal": "node --loader esm-module-alias/loader --no-warnings ./out/src/extension.js",
-		"test-esmExternal": "node --loader esm-module-alias/loader --no-warnings ./out/src/extension2.js",
-		"test-tsconfig": "mocha --require tsconfig-paths/register --require source-map-support/register out/test/extension2.test.js --node-option no-experimental-fetch",
-		"test-importsInternal": "mocha --require source-map-support/register out/test/extension.test.js --node-option no-experimental-fetch",
-		"test-importsExternal": "mocha --require source-map-support/register out/test/extension2.test.js --node-option no-experimental-fetch",
-        "test-esmMochaInternal": "node --loader esm-module-alias/loader --no-warnings  ../node_modules/mocha/bin/mocha --require source-map-support/register ./out/test/extension.test.js",
-		"test-esmMochaExternal": "node --loader esm-module-alias/loader --no-warnings  ../node_modules/mocha/bin/mocha --require source-map-support/register ./out/test/extension2.test.js"
+		"test-modulealiasInternal": "mocha --file out/test/setupAlias.js --require source-map-support/register out/test/extension.test.js --node-option no-experimental-fetch",
+		"test-modulealiasExternal": "mocha --file out/test/setupAlias.js --require source-map-support/register out/test/extension2.test.js --node-option no-experimental-fetch"
 	},
 	"devDependencies": {
 		"@testdeck/mocha": "0.3.3",
@@ -794,6 +781,7 @@
 		"https-browserify": "^1.0.0",
 		"libsodium-wrappers": "^0.7.13",
 		"luxon": "^3.5.0",
+		"module-alias": "^2.2.3",
 		"moment": "2.30.1",
 		"node-fetch": "^2.7.0",
 		"node-rsa": "^1.1.1",
@@ -813,7 +801,7 @@
 		"vscode-jsonrpc": "^4.0.0",
 		"yazl": "^3.3.1"
 	},
-	"aliases": {
+	"_moduleAliases": {
 		"@vscode-abstractions": "../node_modules/@vs/vscode-command-framework/dist/src/abstractions/node",
 		"@abstractions": "./out/src/abstractions/node"
 	}

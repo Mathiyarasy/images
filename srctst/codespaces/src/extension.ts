@@ -1,5 +1,7 @@
 // Require throws issue
-import { logMessage } from '#abstractions/logFile.js';
+//import { logMessage } from '#abstractions/logFile.js';
+
+import { logMessage } from '@abstractions/logFile.js';
 
 export function callLogMessage() {
     return logMessage();

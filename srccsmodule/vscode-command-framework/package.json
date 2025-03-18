@@ -2,16 +2,7 @@
 	"name": "@vs/vscode-command-framework",
 	"version": "0.0.0-placeholder",
 	"description": "Commands framework for VSCode extensions",
-	"exports": {
-		".": "./dist/src/api.js",
-		"./abstractions/browser/logFile.js": "./dist/src/abstractions/browser/logFile.js",
-		"./abstractions/node/logFile.js": "./dist/src/abstractions/node/logFile.js"
-	},
-	"types": "dist/src/api.d.ts",
-	"type": "module",
-	"imports": {
-		"#vscode-abstractions/logFile.js": "./dist/src/abstractions/node/logFile.js"
-	},
+	"main": "dist/src/api.d.ts",
 	"scripts": {
 		"compile": "../node_modules/.bin/tsc -b ./"
 	},

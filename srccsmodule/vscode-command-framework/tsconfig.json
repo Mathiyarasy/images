@@ -1,0 +1,26 @@
+{
+	"extends": "../tsconfig.base.json",
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "es2017",
+		"composite": true,
+		"noUnusedParameters": false,
+		"outDir": "dist",
+		"declaration": true,
+		"resolveJsonModule": true,
+		"strictNullChecks": false,
+		"esModuleInterop": true,
+		"noUnusedLocals": false,
+		// "rootDir": ".",
+		"baseUrl": ".",
+		"paths": {
+			"#vscode-abstractions/*": [
+				"src/abstractions/node/*"
+			]
+		}
+	},
+	"exclude": [
+		"node_modules",
+		"dist"
+	]
+}

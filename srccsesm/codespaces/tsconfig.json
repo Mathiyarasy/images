@@ -1,0 +1,43 @@
+{
+	"compilerOptions": {
+		"module": "Node16",
+		"moduleResolution": "node16",
+		"target": "es2017",
+		"rootDir": ".",
+		"outDir": "out",
+		"lib": [
+			"es2017",
+			"dom"
+		],
+		"sourceMap": true,
+		"baseUrl": ".",
+		"experimentalDecorators": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"resolveJsonModule": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"paths": {
+			"@abstractions/*": [
+				"src/abstractions/node/*"
+			],
+			"@vscode-abstractions/*": [
+				"../node_modules/@vs/vscode-command-framework/dist/src/abstractions/browser/*"
+			],
+			"@vscodeT/*": [
+                "../node_modules/@vs/vscode-command-framework/dist/src/*"
+            ]
+		}
+	},
+	"exclude": [
+		"node_modules",
+		"out",
+		"uitest/testdata"
+	],
+	"references": [
+		/* 	{
+			"path": "../vscode-command-framework"
+		} */
+	]
+}

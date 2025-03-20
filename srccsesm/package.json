@@ -1,0 +1,86 @@
+{
+	"private": true,
+	"engines": {
+		"vscode": "^1.97.0"
+	},
+	"scripts": {
+		"test": "yarn workspaces run test",
+		"test:ci": "yarn workspaces run test --ci --reporters=\"jest-junit\"",
+		"import-plugin": "yarn plugin import workspace-tools",
+		"pack:logging": "cd logging && yarn build:pack",
+		"pack:performance": "cd performance && yarn build:pack",
+		"pack:telemetry": "cd telemetry && yarn build:pack",
+		"pack:rpc": "cd rpc && yarn build:pack",
+		"pack:http-client": "cd http-client && yarn build:pack",
+		"pack:grpc": "cd grpc && yarn build:pack",
+		"pack:workspace": "cd workspace && yarn build:pack",
+		"pack-publish:logging": "cd logging && yarn build:pack-publish",
+		"pack-publish:performance": "cd performance && yarn build:pack-publish",
+		"pack-publish:telemetry": "cd telemetry && yarn build:pack-publish",
+		"pack-publish:rpc": "cd rpc && yarn build:pack-publish",
+		"pack-publish:http-client": "cd http-client && yarn build:pack-publish",
+		"pack-publish:grpc": "cd grpc && yarn build:pack-publish",
+		"pack-publish:workspace": "cd workspace && yarn build:pack-publish",
+		"pack-publish:codespaces-internal": "cd codespaces-internal && yarn build:pack-publish",
+		"build:pack": "npm-run-all pack:*",
+		"build:pack-publish": "npm-run-all pack-publish:*",
+		"clean-all": "yarn clean:lib && yarn clean:npm-tarballs && yarn clean:node_modules",
+		"clean:node_modules": "rimraf ./*/node_modules/ node_modules/",
+		"clean:lib": "rimraf ./*/dist/ dist/",
+		"clean:npm-tarballs": "rimraf ./*/*.tgz *.tgz",
+		"build:lint:rpc": "cd rpc && yarn build:lint",
+		"build:lint:workspace": "cd workspace && yarn build:lint",
+		"build:lint:vscode-command-framework": "cd vscode-command-framework && yarn build:lint",
+		"build:lint": "npm-run-all build:lint:*",
+		"build:samples:workspace": "cd workspace/samples && yarn build:samples",
+		"build:samples": "npm-run-all build:samples:*",
+		"compile:vscode-command": "cd vscode-command && yarn compile",
+		"compile": "npm-run-all compile:*",
+		"format": "prettier --write \"**/*.ts\"",
+		"format:check": "prettier --check \"**/*.ts\"",
+		"format:commit": "prettier --check $(git diff --staged --name-only --relative --diff-filter=d | grep '.ts$')"
+	},
+	"devDependencies": {
+		"@types/jest": "^29.5.14",
+		"@types/module-alias": "^2.0.4",
+		"@types/ncp": "^2.0.6",
+		"jest": "^29.7.0",
+		"jest-cli": "^29.7.0",
+		"ncp": "^2.0.0",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^3.3.3",
+		"rimraf": "^5.0.5",
+		"ts-jest": "^29.1.2",
+		"ts-loader": "^9.2.8"
+	},
+	"workspaces": {
+		"packages": [
+			"./vscode-command-framework",
+			"./codespaces"
+		],
+		"nohoist": [
+			"**/vscode/**",
+			"**/vscode",
+			"**/jest/**",
+			"**/jest"
+		]
+	},
+	"dependencies": {
+		"@types/vscode": "^1.97.0",
+		"npm": "^10.3.0"
+	},
+	"resolutions": {
+		"**/ansi-regex": "^5.0.1",
+		"**/glob-stream/glob-parent": "^6.0.2",
+		"**/glob-watcher/chokidar": "^3.5.3",
+		"**/jackspeak": "2.0.3",
+		"**/postcss": "^8.4.31",
+		"**/set-value": "^4.0.1",
+		"**/webidl-conversions": "^6.1.0",
+		"**/xml2js": "^0.5.0",
+		"**/axios": "^1.7.9",
+		"**/path-to-regexp": "^0.1.10",
+		"**/cookie": "^0.7.0",
+		"**/cross-spawn": "^7.0.5"
+	}
+}

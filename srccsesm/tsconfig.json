@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+	  "composite": true,
+	  "noUnusedParameters": false,
+	  "declaration": true,
+	  "resolveJsonModule": true,
+	  "strictNullChecks": false,
+	  "esModuleInterop": false,
+	  "noUnusedLocals": false,
+	  "baseUrl": "."
+	}
+  }

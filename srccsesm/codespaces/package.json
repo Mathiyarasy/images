@@ -733,6 +733,7 @@
 		"compile-test": "tsc -p ./",
 		"test-esmInternal": "node --loader esm-module-alias/loader --no-warnings ./out/src/extension.js",
 		"test-esmExternal": "node --loader esm-module-alias/loader --no-warnings ./out/src/extension2.js",
+		"test-esmExternal2": "node --loader esm-module-alias/loader --no-warnings ./out/src/extension3.js",
 		"test-tsconfig": "mocha --require tsconfig-paths/register --require source-map-support/register out/test/extension2.test.js --node-option no-experimental-fetch",
 		"test-importsInternal": "mocha --require source-map-support/register out/test/extension.test.js --node-option no-experimental-fetch",
 		"test-importsExternal": "mocha --require source-map-support/register out/test/extension2.test.js --node-option no-experimental-fetch",
@@ -815,6 +816,7 @@
 	},
 	"aliases": {
 		"@vscode-abstractions": "../node_modules/@vs/vscode-command-framework/dist/src/abstractions/node",
-		"@abstractions": "./out/src/abstractions/node"
+		"@abstractions": "./out/src/abstractions/node",
+		"@vscodeT": "../node_modules/@vs/vscode-command-framework/dist/src"
 	}
 }

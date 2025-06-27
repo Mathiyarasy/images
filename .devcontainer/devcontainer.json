@@ -1,17 +1,111 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
-    "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-        "ghcr.io/devcontainers/features/azure-cli:1": {}
-    },
-    "postCreateCommand": "npm install -g @devcontainers/cli",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "mads-hartmann.bash-ide-vscode",
-                "dbaeumer.vscode-eslint",
-                "EditorConfig.EditorConfig"
-            ]
-        }
-    }
+	"image": "mcr.microsoft.com/devcontainers/universal:3",
+	// Runs once when generating the prebuild.
+	"onCreateCommand": ".devcontainer/onCreate.sh",
+	// Runs for the developer on *each* start.
+	"postStartCommand": ".devcontainer/postStart.sh",
+	// An empty postCreate Prevents 'oryx' from running (as is the default with the universal image)
+	"postCreateCommand": "",
+	"hostRequirements": {
+		"storage": "128gb",
+		"memory": "16gb"
+	},
+	"init": true,
+	"privileged": true,
+	"runArgs": [
+		"-v", "/lib/modules:/lib/modules",
+		"-v", "/dev:/dev"
+	],
+	// We use Dev Container lockfiles, hence, manually run 'devcontainer upgrade --workspace-folder /workspaces/codespaces-service' to reflect any changes to the Features.
+	"features": {
+		"ghcr.io/devcontainers/features/powershell:1.5.1": {},
+		"ghcr.io/devcontainers/features/azure-cli:1.2.7": {},
+		"ghcr.io/devcontainers/features/rust:1": {},
+		"./features/remove-outdated-apt-list": {},
+		"ghcr.io/microsoft/codespace-features/artifacts-helper:2.0.3": {
+			"targetFiles": "~/.ado-auth-helper.sh"
+		}
+	},
+	"overrideFeatureInstallOrder": [
+		"./features/remove-outdated-apt-list"
+	],
+	"customizations": {
+		"codespaces": {
+			"repositories": {
+				"github/provjobd": {
+					"permissions": {
+						"contents": "read"
+					}
+				},
+				"github/compute-abuse-sdk": {
+					"permissions": {
+						"contents": "write"
+					}
+				}
+			}
+		},
+		"vscode": {
+			"settings": {
+				"omnisharp.defaultLaunchSolution": "Codespaces.sln",
+				"omnisharp.useModernNet": true,
+				"omnisharp.projectLoadTimeout": 300,
+				"editor.formatOnSave": false,
+				"editor.bracketPairColorization.enabled": true,
+				"azureTerraform.terminal": "integrated",
+				"files.trimTrailingWhitespace": true
+			},
+			"extensions": [
+				"/workspaces/codespaces-service/tools/extension/cxc/cxc.vsix",
+				"ms-dotnettools.csharp",
+				"GitHub.copilot",
+				"fernandoescolar.vscode-solution-explorer",
+				"ryanluker.vscode-coverage-gutters",
+				"actboy168.tasks",
+				"rogalmic.bash-debug",
+				"k--kato.docomment",
+				"eamodio.gitlens",
+				"aaron-bond.better-comments",
+				"alefragnani.bookmarks",
+				"ibm.output-colorizer",
+				"redhat.vscode-yaml",
+				"ms-kubernetes-tools.vscode-kubernetes-tools",
+				"rosshamish.kuskus-kusto-syntax-highlighting",
+				"ki.ki",
+				"ms-azuretools.vscode-docker",
+				"ms-vscode.azurecli",
+				"dbaeumer.vscode-eslint",
+				"rust-lang.rust-analyzer",
+				"hdevalke.rust-test-lens",
+				"tamasfe.even-better-toml",
+				"serayuzgur.crates",
+				"ms-dotnettools.csdevkit",
+				"ms-azure-devops.azure-pipelines"
+			]
+		}
+	},
+	"containerEnv": {
+		// Enable detection of running in a container
+		"DOTNET_RUNNING_IN_CONTAINER": "true",
+		// Enable correct mode for dotnet watch (only mode supported in a container)
+		"DOTNET_USE_POLLING_FILE_WATCHER": "true",
+		// Skip extraction of XML docs - generally not useful within an image/container - helps perfomance
+		"NUGET_XMLDOC_MODE": "true"
+	},
+	"forwardPorts": [
+		5341
+	],
+	"portsAttributes": {
+		"59330": {
+			"label": "BackEndWebApi",
+			"onAutoForward": "ignore"
+		},
+		"53760": {
+			"label": "FrontEndWebApi",
+			"onAutoForward": "ignore"
+		},
+		"5341": {
+			"label": "Seq",
+			"onAutoForward": "notify"
+		}
+	}
 }

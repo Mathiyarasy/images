@@ -1,0 +1,24 @@
+{
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1.2.7": {
+      "version": "1.2.7",
+      "resolved": "ghcr.io/devcontainers/features/azure-cli@sha256:91ffef641dbe5045b9982921487d743f7a3047cc05efd9226345833f446c8bce",
+      "integrity": "sha256:91ffef641dbe5045b9982921487d743f7a3047cc05efd9226345833f446c8bce"
+    },
+    "ghcr.io/devcontainers/features/powershell:1.5.1": {
+      "version": "1.5.1",
+      "resolved": "ghcr.io/devcontainers/features/powershell@sha256:df7baa89598c93bfd15808641d9ec9eb03e0ccdf52e5de4cbbce9ab2d9755d18",
+      "integrity": "sha256:df7baa89598c93bfd15808641d9ec9eb03e0ccdf52e5de4cbbce9ab2d9755d18"
+    },
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "1.3.3",
+      "resolved": "ghcr.io/devcontainers/features/rust@sha256:2521a8eeb4911bfcb22557c8394870ea22eb790d8e52219ddc5182f62d388995",
+      "integrity": "sha256:2521a8eeb4911bfcb22557c8394870ea22eb790d8e52219ddc5182f62d388995"
+    },
+    "ghcr.io/microsoft/codespace-features/artifacts-helper:2.0.3": {
+      "version": "2.0.3",
+      "resolved": "ghcr.io/microsoft/codespace-features/artifacts-helper@sha256:7cb1eb400473fa87f08cb362a05657ed2e9ed9b69952943fe9f27853970bc7d3",
+      "integrity": "sha256:7cb1eb400473fa87f08cb362a05657ed2e9ed9b69952943fe9f27853970bc7d3"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerFeature.schema.json",
+    "id": "remove-outdated-apt-list",
+    "description": "Temporary mitigation to get around pinned image in this dev container",
+    "version": "0.0.1"
+}

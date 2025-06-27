@@ -21,10 +21,7 @@
 		"ghcr.io/devcontainers/features/powershell:1.5.1": {},
 		"ghcr.io/devcontainers/features/azure-cli:1.2.7": {},
 		"ghcr.io/devcontainers/features/rust:1": {},
-		"./features/remove-outdated-apt-list": {},
-		"ghcr.io/microsoft/codespace-features/artifacts-helper:2.0.3": {
-			"targetFiles": "~/.ado-auth-helper.sh"
-		}
+		"./features/remove-outdated-apt-list": {}
 	},
 	"overrideFeatureInstallOrder": [
 		"./features/remove-outdated-apt-list"

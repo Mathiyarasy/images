@@ -1,7 +1,8 @@
 #!/bin/bash
 
 set -e # If any command below fails, exit the script with an error and fail the prebuild.
-
+df -h
+exit 0
 # The root folder path of the repo in a Codespace
 ROOT_FOLDER="/workspaces/codespaces-service"
 

@@ -1,0 +1,230 @@
+======================================
+Vulnerability Scan Summary
+Generated: Wed Jan 14 08:44:38 AM UTC 2026
+Registry: mcr.microsoft.com/devcontainers
+======================================
+
+[base:alpine3.22-linux-amd64]
+  Status: ⚠️  10 vulnerabilities found
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:alpine3.22-linux-arm64]
+  Status: ⚠️  10 vulnerabilities found
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:alpine3.21-linux-amd64]
+  Status: ⚠️  16 vulnerabilities found
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-27423 (HIGH): unknown
+  - CVE-2025-27423 (HIGH): unknown
+  - CVE-2024-53427 (HIGH): unknown
+  - CVE-2024-53427 (HIGH): unknown
+  - CVE-2025-48060 (HIGH): unknown
+  - CVE-2025-48060 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:alpine3.21-linux-arm64]
+  Status: ⚠️  16 vulnerabilities found
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2024-53427 (HIGH): unknown
+  - CVE-2024-53427 (HIGH): unknown
+  - CVE-2025-48060 (HIGH): unknown
+  - CVE-2025-48060 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-27423 (HIGH): unknown
+  - CVE-2025-27423 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:alpine3.20-linux-amd64]
+  Status: ⚠️  24 vulnerabilities found
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-27423 (HIGH): unknown
+  - CVE-2025-27423 (HIGH): unknown
+  - CVE-2024-53427 (HIGH): unknown
+  - CVE-2024-53427 (HIGH): unknown
+  - CVE-2025-48060 (HIGH): unknown
+  - CVE-2025-48060 (HIGH): unknown
+  - CVE-2025-6021 (HIGH): unknown
+  - CVE-2025-6021 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2025-6965 (HIGH): unknown
+  - CVE-2025-6965 (HIGH): unknown
+  - CVE-2025-31498 (HIGH): unknown
+  - CVE-2025-31498 (HIGH): unknown
+  - CVE-2024-32487 (HIGH): unknown
+  - CVE-2024-32487 (HIGH): unknown
+
+[base:alpine3.20-linux-arm64]
+  Status: ⚠️  24 vulnerabilities found
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-27423 (HIGH): unknown
+  - CVE-2025-27423 (HIGH): unknown
+  - CVE-2024-53427 (HIGH): unknown
+  - CVE-2024-53427 (HIGH): unknown
+  - CVE-2025-48060 (HIGH): unknown
+  - CVE-2025-48060 (HIGH): unknown
+  - CVE-2025-6965 (HIGH): unknown
+  - CVE-2025-6965 (HIGH): unknown
+  - CVE-2025-31498 (HIGH): unknown
+  - CVE-2025-31498 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2024-32487 (HIGH): unknown
+  - CVE-2024-32487 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2025-6021 (HIGH): unknown
+  - CVE-2025-6021 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+
+[base:alpine-linux-amd64]
+  Status: ⚠️  10 vulnerabilities found
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+
+[base:alpine-linux-arm64]
+  Status: ⚠️  10 vulnerabilities found
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2026-22184 (CRITICAL): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2025-66476 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2008-0888 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+  - CVE-2025-13151 (HIGH): unknown
+
+[base:debian12-linux-amd64]
+  Status: ⚠️  4 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-6020 (HIGH): unknown
+  - CVE-2025-6020 (HIGH): unknown
+
+[base:debian12-linux-arm64]
+  Status: ⚠️  4 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-6020 (HIGH): unknown
+  - CVE-2025-6020 (HIGH): unknown
+
+[base:debian-linux-amd64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:debian-linux-arm64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:debian13-linux-amd64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:debian13-linux-arm64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:ubuntu-linux-amd64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:ubuntu-linux-arm64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:ubuntu24.04-linux-amd64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:ubuntu24.04-linux-arm64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:ubuntu22.04-linux-amd64]
+  Status: ⚠️  10 vulnerabilities found
+  - CVE-2025-38118 (HIGH): unknown
+  - CVE-2025-38118 (HIGH): unknown
+  - CVE-2025-21780 (HIGH): unknown
+  - CVE-2025-21780 (HIGH): unknown
+  - CVE-2024-53179 (HIGH): unknown
+  - CVE-2024-53179 (HIGH): unknown
+  - CVE-2024-35870 (HIGH): unknown
+  - CVE-2024-35870 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+
+[base:ubuntu22.04-linux-arm64]
+  Status: ⚠️  10 vulnerabilities found
+  - CVE-2025-38118 (HIGH): unknown
+  - CVE-2025-38118 (HIGH): unknown
+  - CVE-2025-21780 (HIGH): unknown
+  - CVE-2025-21780 (HIGH): unknown
+  - CVE-2024-53179 (HIGH): unknown
+  - CVE-2024-53179 (HIGH): unknown
+  - CVE-2024-35870 (HIGH): unknown
+  - CVE-2024-35870 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+  - CVE-2025-68973 (HIGH): unknown
+

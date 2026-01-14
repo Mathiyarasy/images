@@ -1,0 +1,17 @@
+======================================
+Vulnerability Scan Summary
+Generated: Wed Jan 14 07:50:51 AM UTC 2026
+======================================
+
+[anaconda:3-linux-amd64]
+  Status: ✓ No critical/high vulnerabilities
+
+[anaconda:3-linux-arm64]
+  Status: ✓ No critical/high vulnerabilities
+
+[miniconda:3-linux-amd64]
+  Status: ✓ No critical/high vulnerabilities
+
+[miniconda:3-linux-arm64]
+  Status: ✓ No critical/high vulnerabilities
+

@@ -1,0 +1,229 @@
+{
+  "scan_date": "2026-01-14T08:44:38Z",
+  "registry": "mcr.microsoft.com/devcontainers",
+  "images": [
+    {
+      "name": "base",
+      "variants": [
+        {
+          "variant": "alpine3.23",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.23",
+              "pull_status": "failed",
+              "vulnerabilities": []
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.23",
+              "pull_status": "failed",
+              "vulnerabilities": []
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "alpine3.22",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.22",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.22",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "alpine3.21",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.21",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-27423","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-27423","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53427","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53427","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-48060","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-48060","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.21",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2024-53427","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53427","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-48060","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-48060","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-27423","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-27423","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "alpine3.20",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.20",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-27423","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-27423","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53427","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53427","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-48060","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-48060","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6021","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6021","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6965","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6965","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-31498","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-31498","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-32487","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-32487","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.20",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-27423","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-27423","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53427","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53427","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-48060","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-48060","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6965","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6965","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-31498","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-31498","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-32487","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-32487","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6021","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6021","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "alpine",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2026-22184","package":"unknown","severity":"CRITICAL","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-66476","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2008-0888","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-13151","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+      ]
+    }
+    ,
+    {
+      "name": "base",
+      "variants": [
+        {
+          "variant": "debian12",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian12",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6020","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6020","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian12",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6020","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-6020","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "debian",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "debian13",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian13",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian13",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+      ]
+    }
+    ,
+    {
+      "name": "base",
+      "variants": [
+        {
+          "variant": "ubuntu",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "ubuntu24.04",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu24.04",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu24.04",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "ubuntu22.04",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu22.04",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-38118","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-38118","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-21780","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-21780","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53179","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53179","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-35870","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-35870","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu22.04",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-38118","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-38118","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-21780","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-21780","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53179","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-53179","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-35870","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2024-35870","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"},{"cve":"CVE-2025-68973","package":"unknown","severity":"HIGH","fixed_version":"not fixed"}]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

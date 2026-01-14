@@ -1,0 +1,52 @@
+{
+  "scan_date": "2026-01-14T07:50:51Z",
+  "images": [
+    {
+      "name": "anaconda",
+      "variants": [
+        {
+          "variant": "3",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "devcontainers/anaconda:3-linux-amd64-scan",
+              "build_status": "success",
+              "vulnerabilities": []
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "devcontainers/anaconda:3-linux-arm64-scan",
+              "build_status": "success",
+              "vulnerabilities": []
+            }
+          ]
+        }
+      ]
+    }
+    ,
+    {
+      "name": "miniconda",
+      "variants": [
+        {
+          "variant": "3",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "devcontainers/miniconda:3-linux-amd64-scan",
+              "build_status": "success",
+              "vulnerabilities": []
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "devcontainers/miniconda:3-linux-arm64-scan",
+              "build_status": "success",
+              "vulnerabilities": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

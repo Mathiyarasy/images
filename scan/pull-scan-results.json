@@ -1,0 +1,191 @@
+{
+  "scan_date": "2026-01-19T07:53:50Z",
+  "registry": "mcr.microsoft.com/devcontainers",
+  "images": [
+    {
+      "name": "base",
+      "variants": [
+        {
+          "variant": "alpine3.21",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.21",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-13151","severity":"HIGH","package":"libtasn1","version":"4.20.0-r0","fixed_version":"4.21.0-r0"},{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg","version":"2.4.7-r0","fixed_version":"2.4.9-r0"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.21",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-13151","severity":"HIGH","package":"libtasn1","version":"4.20.0-r0","fixed_version":"4.21.0-r0"},{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg","version":"2.4.7-r0","fixed_version":"2.4.9-r0"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "alpine3.20",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.20",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-13151","severity":"HIGH","package":"libtasn1","version":"4.20.0-r0","fixed_version":"4.21.0-r0"},{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg","version":"2.4.5-r0","fixed_version":"2.4.9-r0"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine3.20",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-13151","severity":"HIGH","package":"libtasn1","version":"4.20.0-r0","fixed_version":"4.21.0-r0"},{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg","version":"2.4.5-r0","fixed_version":"2.4.9-r0"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "alpine",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-13151","severity":"HIGH","package":"libtasn1","version":"4.20.0-r0","fixed_version":"4.21.0-r0"},{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg","version":"2.4.7-r0","fixed_version":"2.4.9-r0"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:alpine",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-13151","severity":"HIGH","package":"libtasn1","version":"4.20.0-r0","fixed_version":"4.21.0-r0"},{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg","version":"2.4.7-r0","fixed_version":"2.4.9-r0"}]
+            }
+          ]
+        }
+      ]
+    }
+    ,
+    {
+      "name": "base",
+      "variants": [
+        {
+          "variant": "debian12",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian12",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-6020","severity":"HIGH","package":"pam","version":"1.5.2-6%2Bdeb12u1","fixed_version":"1.5.2-6+deb12u2"},{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.2.40-1.1%2Bdeb12u1","fixed_version":"2.2.40-1.1+deb12u2"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian12",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-6020","severity":"HIGH","package":"pam","version":"1.5.2-6%2Bdeb12u1","fixed_version":"1.5.2-6+deb12u2"},{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.2.40-1.1%2Bdeb12u1","fixed_version":"2.2.40-1.1+deb12u2"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "debian",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.4.7-21","fixed_version":"2.4.7-21+deb13u1"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.4.7-21","fixed_version":"2.4.7-21+deb13u1"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "debian13",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian13",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.4.7-21","fixed_version":"2.4.7-21+deb13u1"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:debian13",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.4.7-21","fixed_version":"2.4.7-21+deb13u1"}]
+            }
+          ]
+        }
+      ]
+    }
+    ,
+    {
+      "name": "base",
+      "variants": [
+        {
+          "variant": "ubuntu",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.4.4-2ubuntu17.3","fixed_version":"2.4.4-2ubuntu17.4"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.4.4-2ubuntu17.3","fixed_version":"2.4.4-2ubuntu17.4"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "ubuntu24.04",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu24.04",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.4.4-2ubuntu17.3","fixed_version":"2.4.4-2ubuntu17.4"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu24.04",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.4.4-2ubuntu17.3","fixed_version":"2.4.4-2ubuntu17.4"}]
+            }
+          ]
+        }
+        ,
+        {
+          "variant": "ubuntu22.04",
+          "scans": [
+            {
+              "architecture": "linux/amd64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu22.04",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.2.27-3ubuntu2.4","fixed_version":"2.2.27-3ubuntu2.5"}]
+            }
+            ,
+            {
+              "architecture": "linux/arm64",
+              "tag": "mcr.microsoft.com/devcontainers/base:ubuntu22.04",
+              "pull_status": "success",
+              "vulnerabilities": [{"cve":"CVE-2025-68973","severity":"HIGH","package":"gnupg2","version":"2.2.27-3ubuntu2.4","fixed_version":"2.2.27-3ubuntu2.5"}]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

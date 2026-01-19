@@ -1,0 +1,86 @@
+======================================
+Vulnerability Scan Summary
+Generated: Mon Jan 19 07:53:50 AM UTC 2026
+Registry: mcr.microsoft.com/devcontainers
+======================================
+
+[base:alpine3.21-linux-amd64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-13151 (HIGH): libtasn1 4.20.0-r0 -> 4.21.0-r0
+  - CVE-2025-68973 (HIGH): gnupg 2.4.7-r0 -> 2.4.9-r0
+
+[base:alpine3.21-linux-arm64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-13151 (HIGH): libtasn1 4.20.0-r0 -> 4.21.0-r0
+  - CVE-2025-68973 (HIGH): gnupg 2.4.7-r0 -> 2.4.9-r0
+
+[base:alpine3.20-linux-amd64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-13151 (HIGH): libtasn1 4.20.0-r0 -> 4.21.0-r0
+  - CVE-2025-68973 (HIGH): gnupg 2.4.5-r0 -> 2.4.9-r0
+
+[base:alpine3.20-linux-arm64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-13151 (HIGH): libtasn1 4.20.0-r0 -> 4.21.0-r0
+  - CVE-2025-68973 (HIGH): gnupg 2.4.5-r0 -> 2.4.9-r0
+
+[base:alpine-linux-amd64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-13151 (HIGH): libtasn1 4.20.0-r0 -> 4.21.0-r0
+  - CVE-2025-68973 (HIGH): gnupg 2.4.7-r0 -> 2.4.9-r0
+
+[base:alpine-linux-arm64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-13151 (HIGH): libtasn1 4.20.0-r0 -> 4.21.0-r0
+  - CVE-2025-68973 (HIGH): gnupg 2.4.7-r0 -> 2.4.9-r0
+
+[base:debian12-linux-amd64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-6020 (HIGH): pam 1.5.2-6%2Bdeb12u1 -> 1.5.2-6+deb12u2
+  - CVE-2025-68973 (HIGH): gnupg2 2.2.40-1.1%2Bdeb12u1 -> 2.2.40-1.1+deb12u2
+
+[base:debian12-linux-arm64]
+  Status: ⚠️  2 vulnerabilities found
+  - CVE-2025-6020 (HIGH): pam 1.5.2-6%2Bdeb12u1 -> 1.5.2-6+deb12u2
+  - CVE-2025-68973 (HIGH): gnupg2 2.2.40-1.1%2Bdeb12u1 -> 2.2.40-1.1+deb12u2
+
+[base:debian-linux-amd64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.4.7-21 -> 2.4.7-21+deb13u1
+
+[base:debian-linux-arm64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.4.7-21 -> 2.4.7-21+deb13u1
+
+[base:debian13-linux-amd64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.4.7-21 -> 2.4.7-21+deb13u1
+
+[base:debian13-linux-arm64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.4.7-21 -> 2.4.7-21+deb13u1
+
+[base:ubuntu-linux-amd64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.4.4-2ubuntu17.3 -> 2.4.4-2ubuntu17.4
+
+[base:ubuntu-linux-arm64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.4.4-2ubuntu17.3 -> 2.4.4-2ubuntu17.4
+
+[base:ubuntu24.04-linux-amd64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.4.4-2ubuntu17.3 -> 2.4.4-2ubuntu17.4
+
+[base:ubuntu24.04-linux-arm64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.4.4-2ubuntu17.3 -> 2.4.4-2ubuntu17.4
+
+[base:ubuntu22.04-linux-amd64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.2.27-3ubuntu2.4 -> 2.2.27-3ubuntu2.5
+
+[base:ubuntu22.04-linux-arm64]
+  Status: ⚠️  1 vulnerabilities found
+  - CVE-2025-68973 (HIGH): gnupg2 2.2.27-3ubuntu2.4 -> 2.2.27-3ubuntu2.5
+

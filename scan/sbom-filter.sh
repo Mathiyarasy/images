@@ -626,6 +626,7 @@ main() {
                     "rust:latest"
                     "ruby:latest"
                     "php:latest"
+                    "universal:latest"
                 )
                 
                 for img in "${IMAGES[@]}"; do

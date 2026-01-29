@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/base:alpine",
+    "platform": "linux/amd64",
+    "scan_date": "2026-01-29T06:15:09Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 2,
+    "verified_cve_count": 2,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2008-0888",
+      "package": "unzip",
+      "detected_version": "6.0-r16",
+      "actual_version": "6.0-r16",
+      "fixed_version": "not fixed",
+      "severity": "HIGH",
+      "package_type": "apk",
+      "location": "unzip-6.0-r16 contains:,usr/bin/funzip,usr/bin/unzip,usr/bin/unzipsfx,usr/bin/zipgrep,usr/bin/zipinfo,",
+      "purl": "pkg:apk/alpine/unzip@6.0-r16?os_name=alpine&os_version=3.23",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-66476",
+      "package": "vim",
+      "detected_version": "9.1.1942-r0",
+      "actual_version": "9.1.1942-r0",
+      "fixed_version": "not fixed",
+      "severity": "HIGH",
+      "package_type": "apk",
+      "location": "vim-9.1.1942-r0 contains:,usr/bin/ex,usr/bin/rview,usr/bin/rvim,usr/bin/view,usr/bin/vim,",
+      "purl": "pkg:apk/alpine/vim@9.1.1942-r0?os_name=alpine&os_version=3.23",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "unzip",
+      "type": "apk",
+      "location": "unzip-6.0-r16 contains:,usr/bin/funzip,usr/bin/unzip,usr/bin/unzipsfx,usr/bin/zipgrep,usr/bin/zipinfo,",
+      "purl": "pkg:apk/alpine/unzip@6.0-r16?os_name=alpine&os_version=3.23"
+    },
+    {
+      "package": "vim",
+      "type": "apk",
+      "location": "vim-9.1.1942-r0 contains:,usr/bin/ex,usr/bin/rview,usr/bin/rvim,usr/bin/view,usr/bin/vim,",
+      "purl": "pkg:apk/alpine/vim@9.1.1942-r0?os_name=alpine&os_version=3.23"
+    }
+  ]
+}

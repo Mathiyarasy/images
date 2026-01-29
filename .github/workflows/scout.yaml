@@ -1,0 +1,39 @@
+# .github/workflows/docker-scout-scan.yml
+name: Docker Scout CVE Scan
+
+on:
+  push:
+    paths: ['src/**/Dockerfile', 'src/**/manifest.json']
+  workflow_dispatch:
+    inputs:
+      image:
+        description: 'Image to scan'
+        required: true
+      severity:
+        description: 'Min severity (critical, high, medium, low)'
+        default: 'high'
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Run Docker Scout
+        uses: docker/scout-action@v1
+        with:
+          command: cves
+          image: ${{ inputs.image }}
+          sarif-file: scout-results.sarif
+          only-severities: ${{ inputs.severity }}
+          
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: scout-results.sarif

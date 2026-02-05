@@ -68,7 +68,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Vulnerability    :CVE-2025-66476                                                 \nSeverity         :HIGH                                                           \nPackage          :pkg:apk/alpine/vim@9.1.1942-r0?os_name=alpine&os_version=3.23  \nAffected range   :<=9.1.1942-r0                                                  \nFixed version    :not fixed                                                      \nEPSS Score       :0.000140                                                       \nEPSS Percentile  :0.017950                                                       \n"
+            "text": "Vulnerability    :CVE-2025-66476                                                 \nSeverity         :HIGH                                                           \nPackage          :pkg:apk/alpine/vim@9.1.1942-r0?os_name=alpine&os_version=3.23  \nAffected range   :<=9.1.1942-r0                                                  \nFixed version    :not fixed                                                      \nEPSS Score       :0.000140                                                       \nEPSS Percentile  :0.019500                                                       \n"
           },
           "locations": [
             {
@@ -13715,7 +13715,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Vulnerability    :CVE-2008-0888                                                \nSeverity         :HIGH                                                         \nPackage          :pkg:apk/alpine/unzip@6.0-r16?os_name=alpine&os_version=3.23  \nAffected range   :<=6.0-r16                                                    \nFixed version    :not fixed                                                    \nEPSS Score       :0.190400                                                     \nEPSS Percentile  :0.951470                                                     \n"
+            "text": "Vulnerability    :CVE-2008-0888                                                \nSeverity         :HIGH                                                         \nPackage          :pkg:apk/alpine/unzip@6.0-r16?os_name=alpine&os_version=3.23  \nAffected range   :<=6.0-r16                                                    \nFixed version    :not fixed                                                    \nEPSS Score       :0.190400                                                     \nEPSS Percentile  :0.951910                                                     \n"
           },
           "locations": [
             {

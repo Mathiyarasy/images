@@ -2,7 +2,7 @@
   "metadata": {
     "image": "mcr.microsoft.com/devcontainers/base:alpine",
     "platform": "linux/amd64",
-    "scan_date": "2026-01-29T06:15:09Z",
+    "scan_date": "2026-02-05T03:02:39Z",
     "severity_filter": "critical,high",
     "sbom_based_filtering": true
   },

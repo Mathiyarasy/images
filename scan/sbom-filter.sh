@@ -74,8 +74,29 @@ check_prerequisites() {
         curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s --
         
         if ! docker scout version &>/dev/null; then
-            echo -e "${RED}Failed to install Docker Scout${NC}"
-            exit 1
+            echo -e "${YELLOW}Warning: Failed to install Docker Scout, will use Syft only${NC}"
+        fi
+    fi
+    
+    # Check Syft (fallback/alternative SBOM generator)
+    if ! command -v syft &>/dev/null; then
+        echo -e "${YELLOW}Syft not installed. Installing...${NC}"
+        curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sudo sh -s -- -b /usr/local/bin 2>/dev/null || \
+        curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ~/.local/bin 2>/dev/null
+        
+        if ! command -v syft &>/dev/null; then
+            echo -e "${YELLOW}Warning: Failed to install Syft${NC}"
+        fi
+    fi
+    
+    # Check Grype (fallback/alternative CVE scanner)
+    if ! command -v grype &>/dev/null; then
+        echo -e "${YELLOW}Grype not installed. Installing...${NC}"
+        curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sudo sh -s -- -b /usr/local/bin 2>/dev/null || \
+        curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b ~/.local/bin 2>/dev/null
+        
+        if ! command -v grype &>/dev/null; then
+            echo -e "${YELLOW}Warning: Failed to install Grype${NC}"
         fi
     fi
     
@@ -83,47 +104,101 @@ check_prerequisites() {
     echo ""
 }
 
-# Generate SBOM for an image
+# Generate SBOM for an image using Docker Scout or Syft fallback
 generate_sbom() {
     local image="$1"
     local output_file="$2"
+    local sbom_success=false
     
     echo -e "${BLUE}Generating SBOM for: $image${NC}"
     
-    # Generate JSON SBOM (spdx format requires different flag in newer versions)
-    if ! docker scout sbom "$image" \
-        --platform "$PLATFORM" \
-        --format json \
-        --output "$output_file" 2>&1; then
-        echo -e "${YELLOW}Warning: SBOM generation had issues, continuing...${NC}"
+    # Try Docker Scout first
+    if docker scout version &>/dev/null; then
+        echo -e "${BLUE}Trying Docker Scout...${NC}"
+        local temp_output=$(mktemp)
+        
+        # Run with timeout to catch memory exhaustion issues
+        if timeout 180 docker scout sbom "$image" \
+            --platform "$PLATFORM" \
+            --format json \
+            --output "$temp_output" 2>&1; then
+            
+            # Verify output has actual content (not just log messages)
+            if [ -f "$temp_output" ] && [ -s "$temp_output" ]; then
+                local has_artifacts=$(jq -e '.artifacts | length > 0' "$temp_output" 2>/dev/null || echo "false")
+                local has_source=$(jq -e '.source' "$temp_output" 2>/dev/null || echo "false")
+                
+                if [ "$has_artifacts" = "true" ] || [ "$has_source" != "false" ]; then
+                    mv "$temp_output" "$output_file"
+                    echo -e "${GREEN}✓ SBOM generated with Docker Scout: $output_file${NC}"
+                    sbom_success=true
+                fi
+            fi
+        fi
+        rm -f "$temp_output" 2>/dev/null
     fi
     
-    if [ -f "$output_file" ] && [ -s "$output_file" ]; then
-        echo -e "${GREEN}✓ SBOM generated: $output_file${NC}"
-        return 0
-    else
-        echo -e "${YELLOW}⚠ SBOM file empty or missing, creating placeholder${NC}"
-        echo '{"packages":[]}' > "$output_file"
-        return 0
+    # Fallback to Syft if Docker Scout failed
+    if [ "$sbom_success" = false ] && command -v syft &>/dev/null; then
+        echo -e "${YELLOW}Docker Scout failed or unavailable, using Syft fallback...${NC}"
+        
+        local temp_syft=$(mktemp)
+        if syft "$image" --platform "$PLATFORM" -o json > "$temp_syft" 2>&1; then
+            # Verify Syft output and pretty-print
+            if [ -f "$temp_syft" ] && [ -s "$temp_syft" ]; then
+                local artifact_count=$(jq '.artifacts | length' "$temp_syft" 2>/dev/null || echo "0")
+                if [ "$artifact_count" -gt 0 ]; then
+                    jq '.' "$temp_syft" > "$output_file"
+                    echo -e "${GREEN}✓ SBOM generated with Syft ($artifact_count packages): $output_file${NC}"
+                    sbom_success=true
+                fi
+            fi
+        fi
+        rm -f "$temp_syft" 2>/dev/null
     fi
+    
+    # Final fallback - create placeholder
+    if [ "$sbom_success" = false ]; then
+        echo -e "${YELLOW}⚠ SBOM generation failed, creating placeholder${NC}"
+        echo '{"artifacts":[],"source":{"type":"placeholder"}}' > "$output_file"
+    fi
+    
+    return 0
 }
 
 # Extract package information from SBOM with locations
+# Supports both Docker Scout and Syft SBOM formats
 extract_packages_with_locations() {
     local sbom_file="$1"
     
-    # Parse SPDX SBOM and extract package info with locations
-    jq '
-    [.packages[]? | select(.SPDXID != "SPDXRef-DOCUMENT") | {
-        name: .name,
-        version: .versionInfo,
-        purl: (.externalRefs[]? | select(.referenceType == "purl") | .referenceLocator),
-        supplier: .supplier,
-        download_location: .downloadLocation,
-        files_analyzed: .filesAnalyzed,
-        source_info: .sourceInfo,
-        annotations: .annotations
-    }]' "$sbom_file" 2>/dev/null || echo "[]"
+    # Check SBOM format (Syft uses .artifacts, Docker Scout uses .artifacts or .packages)
+    local has_artifacts=$(jq -e '.artifacts' "$sbom_file" 2>/dev/null && echo "true" || echo "false")
+    
+    if [ "$has_artifacts" = "true" ]; then
+        # Syft format - extract from .artifacts array
+        jq '
+        [.artifacts[]? | {
+            name: .name,
+            version: .version,
+            purl: .purl,
+            type: .type,
+            locations: [.locations[]?.path // "unknown"],
+            language: .language
+        }]' "$sbom_file" 2>/dev/null || echo "[]"
+    else
+        # Docker Scout SPDX format - extract from .packages array
+        jq '
+        [.packages[]? | select(.SPDXID != "SPDXRef-DOCUMENT") | {
+            name: .name,
+            version: .versionInfo,
+            purl: (.externalRefs[]? | select(.referenceType == "purl") | .referenceLocator),
+            supplier: .supplier,
+            download_location: .downloadLocation,
+            files_analyzed: .filesAnalyzed,
+            source_info: .sourceInfo,
+            annotations: .annotations
+        }]' "$sbom_file" 2>/dev/null || echo "[]"
+    fi
 }
 
 # Get actual installed version using multiple methods
@@ -276,49 +351,117 @@ is_in_allowlist() {
     [ -n "$match" ]
 }
 
-# Get CVEs for an image with detailed info
+# Get CVEs for an image with detailed info using Docker Scout or Grype fallback
 get_cves_with_details() {
     local image="$1"
     local output_file="$2"
+    local cve_success=false
     
     echo -e "${BLUE}Scanning for CVEs...${NC}"
     
-    # Get CVEs in SARIF format (supported format with detailed info)
-    if ! docker scout cves "$image" \
-        --platform "$PLATFORM" \
-        --only-severity "$SEVERITY_FILTER" \
-        --format sarif \
-        --output "$output_file" 2>&1; then
-        echo -e "${YELLOW}Warning: CVE scan had issues${NC}"
+    # Try Docker Scout first
+    if docker scout version &>/dev/null; then
+        echo -e "${BLUE}Trying Docker Scout CVE scan...${NC}"
+        local temp_output=$(mktemp)
+        
+        # Run with timeout to catch memory exhaustion issues
+        if timeout 180 docker scout cves "$image" \
+            --platform "$PLATFORM" \
+            --only-severity "$SEVERITY_FILTER" \
+            --format sarif \
+            --output "$temp_output" 2>&1; then
+            
+            # Verify output has actual CVE results (not just log messages)
+            if [ -f "$temp_output" ] && [ -s "$temp_output" ]; then
+                local has_runs=$(jq -e '.runs' "$temp_output" 2>/dev/null && echo "true" || echo "false")
+                if [ "$has_runs" = "true" ]; then
+                    mv "$temp_output" "$output_file"
+                    echo -e "${GREEN}✓ CVE scan completed with Docker Scout${NC}"
+                    cve_success=true
+                fi
+            fi
+        fi
+        rm -f "$temp_output" 2>/dev/null
     fi
     
-    # Check if output file exists and has content
-    if [ ! -f "$output_file" ] || [ ! -s "$output_file" ]; then
+    # Fallback to Grype if Docker Scout failed
+    if [ "$cve_success" = false ] && command -v grype &>/dev/null; then
+        echo -e "${YELLOW}Docker Scout failed or unavailable, using Grype fallback...${NC}"
+        
+        local temp_grype=$(mktemp)
+        # Convert severity filter for Grype (critical,high -> Critical High)
+        local grype_severities=$(echo "$SEVERITY_FILTER" | tr ',' ' ' | sed 's/critical/Critical/g; s/high/High/g; s/medium/Medium/g; s/low/Low/g')
+        
+        if grype "$image" --platform "$PLATFORM" -o json > "$temp_grype" 2>&1; then
+            # Filter by severity and convert to common format
+            if [ -f "$temp_grype" ] && [ -s "$temp_grype" ]; then
+                local match_count=$(jq '.matches | length' "$temp_grype" 2>/dev/null || echo "0")
+                if [ "$match_count" != "null" ] && [ "$match_count" != "0" ] || [ "$match_count" = "0" ]; then
+                    # Convert Grype format to our internal format and filter by severity
+                    jq --arg severities "$grype_severities" '
+                    {
+                        "format": "grype",
+                        "matches": [.matches[] | select(
+                            ($severities | split(" ")) as $sev_list |
+                            .vulnerability.severity as $sev |
+                            ($sev_list | index($sev)) != null
+                        )]
+                    }' "$temp_grype" > "$output_file" 2>/dev/null
+                    
+                    local filtered_count=$(jq '.matches | length' "$output_file" 2>/dev/null || echo "0")
+                    echo -e "${GREEN}✓ CVE scan completed with Grype ($filtered_count matches for $SEVERITY_FILTER)${NC}"
+                    cve_success=true
+                fi
+            fi
+        fi
+        rm -f "$temp_grype" 2>/dev/null
+    fi
+    
+    # Final fallback - create empty placeholder
+    if [ "$cve_success" = false ]; then
+        echo -e "${YELLOW}⚠ CVE scan failed, creating empty placeholder${NC}"
         echo '{"runs":[{"results":[],"tool":{"driver":{"rules":[]}}}]}' > "$output_file"
     fi
-    
-    echo -e "${GREEN}✓ CVE scan complete${NC}"
 }
 
-# Parse SARIF format to extract vulnerabilities
-parse_sarif_vulnerabilities() {
-    local sarif_file="$1"
+# Parse vulnerability scan results (supports both SARIF and Grype formats)
+parse_vulnerabilities() {
+    local vuln_file="$1"
     
-    jq '
-    .runs[0] as $run |
-    [($run.results // [])[] | . as $result |
-        (($run.tool.driver.rules // [])[] | select(.id == $result.ruleId)) as $rule |
-        {
-            cve: $result.ruleId,
-            severity: ($rule.properties.cvssV3_severity // $rule.properties.severity // "unknown"),
-            cvss_score: ($rule.properties."security-severity" // "0"),
-            package: (($rule.properties.purls[0] // "") | split("@")[0] | split("/")[-1]),
-            version: (($rule.properties.purls[0] // "@unknown") | split("@")[1] | split("?")[0]),
-            fixed_version: ($rule.properties.fixed_version // "none"),
-            purl: ($rule.properties.purls[0] // ""),
-            description: (($rule.help.text // "") | split("\n")[0])
-        }
-    ] | unique_by(.cve + .package)' "$sarif_file" 2>/dev/null || echo "[]"
+    # Detect format
+    local format=$(jq -r '.format // "sarif"' "$vuln_file" 2>/dev/null)
+    
+    if [ "$format" = "grype" ]; then
+        # Parse Grype format
+        jq '
+        [.matches[]? | {
+            cve: .vulnerability.id,
+            severity: .vulnerability.severity,
+            cvss_score: (.vulnerability.cvss // [] | .[0].metrics.baseScore // 0 | tostring),
+            package: .artifact.name,
+            version: .artifact.version,
+            fixed_version: ((.vulnerability.fix.versions // []) | if length > 0 then .[0] else "none" end),
+            purl: .artifact.purl,
+            description: .vulnerability.description
+        }] | unique_by(.cve + .package)' "$vuln_file" 2>/dev/null || echo "[]"
+    else
+        # Parse SARIF format (Docker Scout)
+        jq '
+        .runs[0] as $run |
+        [($run.results // [])[] | . as $result |
+            (($run.tool.driver.rules // [])[] | select(.id == $result.ruleId)) as $rule |
+            {
+                cve: $result.ruleId,
+                severity: ($rule.properties.cvssV3_severity // $rule.properties.severity // "unknown"),
+                cvss_score: ($rule.properties."security-severity" // "0"),
+                package: (($rule.properties.purls[0] // "") | split("@")[0] | split("/")[-1]),
+                version: (($rule.properties.purls[0] // "@unknown") | split("@")[1] | split("?")[0]),
+                fixed_version: ($rule.properties.fixed_version // "none"),
+                purl: ($rule.properties.purls[0] // ""),
+                description: (($rule.help.text // "") | split("\n")[0])
+            }
+        ] | unique_by(.cve + .package)' "$vuln_file" 2>/dev/null || echo "[]"
+    fi
 }
 
 # Main filtering function
@@ -359,8 +502,8 @@ filter_vulnerabilities() {
     local allowlisted="[]"
     local location_info="[]"
     
-    # Parse vulnerabilities from SARIF format
-    local parsed_vulns=$(parse_sarif_vulnerabilities "$cves_file")
+    # Parse vulnerabilities (supports both SARIF and Grype formats)
+    local parsed_vulns=$(parse_vulnerabilities "$cves_file")
     local vuln_count=$(echo "$parsed_vulns" | jq 'length' 2>/dev/null || echo "0")
     
     if [ "$vuln_count" -gt 0 ]; then

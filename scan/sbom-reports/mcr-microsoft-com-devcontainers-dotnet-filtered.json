@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/dotnet",
+    "platform": "linux/amd64",
+    "scan_date": "2026-02-06T05:14:02Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 0,
+    "verified_cve_count": 0,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": []
+}

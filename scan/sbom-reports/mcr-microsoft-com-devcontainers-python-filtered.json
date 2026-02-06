@@ -1,0 +1,1174 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/python",
+    "platform": "linux/amd64",
+    "scan_date": "2026-02-06T05:50:19Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 64,
+    "verified_cve_count": 64,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2023-44431",
+      "package": "libbluetooth-dev",
+      "detected_version": "5.82-1.1",
+      "actual_version": "5.82-1.1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/bluetooth,/usr/include/bluetooth/bluetooth.h,/usr/include/bluetooth/bnep.h,/usr/include/bluetooth/cmtp.h,/usr/include/bluetooth/hci.h,/usr/include/bluetooth/hci_lib.h,/usr/include/bluetooth/hidp.h,/usr/include/bluetooth/l2cap.h,/usr/include/bluetooth/rfcomm.h,/usr/include/bluetooth/sco.h,/usr/include/bluetooth/sdp.h,/usr/include/bluetooth/sdp_lib.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libbluetooth.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/bluez.pc",
+      "purl": "pkg:deb/debian/libbluetooth-dev@5.82-1.1?arch=amd64&distro=debian-13&upstream=bluez",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2023-44431",
+      "package": "libbluetooth3",
+      "detected_version": "5.82-1.1",
+      "actual_version": "5.82-1.1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libbluetooth.so.3.19.15,/usr/share,/usr/share/doc,/usr/share/doc/libbluetooth3,/usr/share/doc/libbluetooth3/README.Debian.gz,/usr/share/doc/libbluetooth3/changelog.Debian.gz,/usr/share/doc/libbluetooth3/changelog.gz,/usr/share/doc/libbluetooth3/copyright,/usr/lib/x86_64-linux-gnu/libbluetooth.so.3",
+      "purl": "pkg:deb/debian/libbluetooth3@5.82-1.1?arch=amd64&distro=debian-13&upstream=bluez",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2023-51596",
+      "package": "libbluetooth-dev",
+      "detected_version": "5.82-1.1",
+      "actual_version": "5.82-1.1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/bluetooth,/usr/include/bluetooth/bluetooth.h,/usr/include/bluetooth/bnep.h,/usr/include/bluetooth/cmtp.h,/usr/include/bluetooth/hci.h,/usr/include/bluetooth/hci_lib.h,/usr/include/bluetooth/hidp.h,/usr/include/bluetooth/l2cap.h,/usr/include/bluetooth/rfcomm.h,/usr/include/bluetooth/sco.h,/usr/include/bluetooth/sdp.h,/usr/include/bluetooth/sdp_lib.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libbluetooth.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/bluez.pc",
+      "purl": "pkg:deb/debian/libbluetooth-dev@5.82-1.1?arch=amd64&distro=debian-13&upstream=bluez",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2023-51596",
+      "package": "libbluetooth3",
+      "detected_version": "5.82-1.1",
+      "actual_version": "5.82-1.1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libbluetooth.so.3.19.15,/usr/share,/usr/share/doc,/usr/share/doc/libbluetooth3,/usr/share/doc/libbluetooth3/README.Debian.gz,/usr/share/doc/libbluetooth3/changelog.Debian.gz,/usr/share/doc/libbluetooth3/changelog.gz,/usr/share/doc/libbluetooth3/copyright,/usr/lib/x86_64-linux-gnu/libbluetooth.so.3",
+      "purl": "pkg:deb/debian/libbluetooth3@5.82-1.1?arch=amd64&distro=debian-13&upstream=bluez",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-12495",
+      "package": "libopenexr-3-1-30",
+      "detected_version": "3.1.13-2",
+      "actual_version": "3.1.13-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30.13.1,/usr/share,/usr/share/doc,/usr/share/doc/libopenexr-3-1-30,/usr/share/doc/libopenexr-3-1-30/changelog.Debian.gz,/usr/share/doc/libopenexr-3-1-30/changelog.gz,/usr/share/doc/libopenexr-3-1-30/copyright,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30",
+      "purl": "pkg:deb/debian/libopenexr-3-1-30@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-12495",
+      "package": "libopenexr-dev",
+      "detected_version": "3.1.13-2",
+      "actual_version": "3.1.13-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/OpenEXR,/usr/include/OpenEXR/Iex.h,/usr/include/OpenEXR/IexBaseExc.h,/usr/include/OpenEXR/IexConfig.h,/usr/include/OpenEXR/IexErrnoExc.h,/usr/include/OpenEXR/IexExport.h,/usr/include/OpenEXR/IexForward.h,/usr/include/OpenEXR/IexMacros.h,/usr/include/OpenEXR/IexMathExc.h,/usr/include/OpenEXR/IexMathFloatExc.h,/usr/include/OpenEXR/IexMathIeeeExc.h,/usr/include/OpenEXR/IexNamespace.h,/usr/include/OpenEXR/IexThrowErrnoExc.h,/usr/include/OpenEXR/IlmThread.h,/usr/include/OpenEXR/IlmThreadConfig.h,/usr/include/OpenEXR/IlmThreadExport.h,/usr/include/OpenEXR/IlmThreadForward.h",
+      "purl": "pkg:deb/debian/libopenexr-dev@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-12839",
+      "package": "libopenexr-3-1-30",
+      "detected_version": "3.1.13-2",
+      "actual_version": "3.1.13-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30.13.1,/usr/share,/usr/share/doc,/usr/share/doc/libopenexr-3-1-30,/usr/share/doc/libopenexr-3-1-30/changelog.Debian.gz,/usr/share/doc/libopenexr-3-1-30/changelog.gz,/usr/share/doc/libopenexr-3-1-30/copyright,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30",
+      "purl": "pkg:deb/debian/libopenexr-3-1-30@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-12839",
+      "package": "libopenexr-dev",
+      "detected_version": "3.1.13-2",
+      "actual_version": "3.1.13-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/OpenEXR,/usr/include/OpenEXR/Iex.h,/usr/include/OpenEXR/IexBaseExc.h,/usr/include/OpenEXR/IexConfig.h,/usr/include/OpenEXR/IexErrnoExc.h,/usr/include/OpenEXR/IexExport.h,/usr/include/OpenEXR/IexForward.h,/usr/include/OpenEXR/IexMacros.h,/usr/include/OpenEXR/IexMathExc.h,/usr/include/OpenEXR/IexMathFloatExc.h,/usr/include/OpenEXR/IexMathIeeeExc.h,/usr/include/OpenEXR/IexNamespace.h,/usr/include/OpenEXR/IexThrowErrnoExc.h,/usr/include/OpenEXR/IlmThread.h,/usr/include/OpenEXR/IlmThreadConfig.h,/usr/include/OpenEXR/IlmThreadExport.h,/usr/include/OpenEXR/IlmThreadForward.h",
+      "purl": "pkg:deb/debian/libopenexr-dev@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-12840",
+      "package": "libopenexr-3-1-30",
+      "detected_version": "3.1.13-2",
+      "actual_version": "3.1.13-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30.13.1,/usr/share,/usr/share/doc,/usr/share/doc/libopenexr-3-1-30,/usr/share/doc/libopenexr-3-1-30/changelog.Debian.gz,/usr/share/doc/libopenexr-3-1-30/changelog.gz,/usr/share/doc/libopenexr-3-1-30/copyright,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30",
+      "purl": "pkg:deb/debian/libopenexr-3-1-30@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-12840",
+      "package": "libopenexr-dev",
+      "detected_version": "3.1.13-2",
+      "actual_version": "3.1.13-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/OpenEXR,/usr/include/OpenEXR/Iex.h,/usr/include/OpenEXR/IexBaseExc.h,/usr/include/OpenEXR/IexConfig.h,/usr/include/OpenEXR/IexErrnoExc.h,/usr/include/OpenEXR/IexExport.h,/usr/include/OpenEXR/IexForward.h,/usr/include/OpenEXR/IexMacros.h,/usr/include/OpenEXR/IexMathExc.h,/usr/include/OpenEXR/IexMathFloatExc.h,/usr/include/OpenEXR/IexMathIeeeExc.h,/usr/include/OpenEXR/IexNamespace.h,/usr/include/OpenEXR/IexThrowErrnoExc.h,/usr/include/OpenEXR/IlmThread.h,/usr/include/OpenEXR/IlmThreadConfig.h,/usr/include/OpenEXR/IlmThreadExport.h,/usr/include/OpenEXR/IlmThreadForward.h",
+      "purl": "pkg:deb/debian/libopenexr-dev@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13151",
+      "package": "libtasn1-6",
+      "detected_version": "4.20.0-2",
+      "actual_version": "4.20.0-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libtasn1.so.6.6.4,/usr/share,/usr/share/doc,/usr/share/doc/libtasn1-6,/usr/share/doc/libtasn1-6/AUTHORS,/usr/share/doc/libtasn1-6/README.md,/usr/share/doc/libtasn1-6/THANKS,/usr/share/doc/libtasn1-6/changelog.Debian.gz,/usr/share/doc/libtasn1-6/changelog.gz,/usr/share/doc/libtasn1-6/copyright,/usr/lib/x86_64-linux-gnu/libtasn1.so.6",
+      "purl": "pkg:deb/debian/libtasn1-6@4.20.0-2?arch=amd64&distro=debian-13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13151",
+      "package": "libtasn1-6-dev",
+      "detected_version": "4.20.0-2",
+      "actual_version": "4.20.0-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/libtasn1.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libtasn1.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/libtasn1.pc,/usr/share,/usr/share/doc,/usr/share/doc/libtasn1-6-dev,/usr/share/doc/libtasn1-6-dev/changelog.Debian.gz,/usr/share/doc/libtasn1-6-dev/changelog.gz,/usr/share/doc/libtasn1-6-dev/copyright,/usr/share/doc/libtasn1-6-dev/examples,/usr/share/doc/libtasn1-6-dev/examples/asn1Coding.c,/usr/share/doc/libtasn1-6-dev/examples/asn1Decoding.c,/usr/share/doc/libtasn1-6-dev/examples/asn1Parser.c,/usr/share/doc/libtasn1-6-dev/examples/benchmark.c",
+      "purl": "pkg:deb/debian/libtasn1-6-dev@4.20.0-2?arch=amd64&distro=debian-13&upstream=libtasn1-6",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13699",
+      "package": "libmariadb-dev",
+      "detected_version": "1:11.8.3-0+deb13u1",
+      "actual_version": "1:11.8.3-0+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/mariadb_config,/usr/include,/usr/include/mariadb,/usr/include/mariadb/errmsg.h,/usr/include/mariadb/ma_list.h,/usr/include/mariadb/ma_pvio.h,/usr/include/mariadb/ma_tls.h,/usr/include/mariadb/mariadb,/usr/include/mariadb/mariadb/ma_io.h,/usr/include/mariadb/mariadb_com.h,/usr/include/mariadb/mariadb_ctype.h,/usr/include/mariadb/mariadb_dyncol.h,/usr/include/mariadb/mariadb_rpl.h,/usr/include/mariadb/mariadb_stmt.h,/usr/include/mariadb/mariadb_version.h,/usr/include/mariadb/my_alloca.h,/usr/include/mariadb/my_config.h",
+      "purl": "pkg:deb/debian/libmariadb-dev@1%3A11.8.3-0%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=mariadb",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13699",
+      "package": "libmariadb-dev-compat",
+      "detected_version": "1:11.8.3-0+deb13u1",
+      "actual_version": "1:11.8.3-0+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/include,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/share,/usr/share/doc,/usr/share/doc/libmariadb-dev-compat,/usr/share/doc/libmariadb-dev-compat/changelog.Debian.gz,/usr/share/doc/libmariadb-dev-compat/copyright,/usr/bin/mysql_config,/usr/include/mysql,/usr/lib/x86_64-linux-gnu/libmysqlclient.a,/usr/lib/x86_64-linux-gnu/libmysqlclient.so,/usr/lib/x86_64-linux-gnu/libmysqlclient_r.a,/usr/lib/x86_64-linux-gnu/libmysqlclient_r.so,/usr/lib/x86_64-linux-gnu/pkgconfig/mysqlclient.pc",
+      "purl": "pkg:deb/debian/libmariadb-dev-compat@1%3A11.8.3-0%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=mariadb",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13699",
+      "package": "libmariadb3",
+      "detected_version": "1:11.8.3-0+deb13u1",
+      "actual_version": "1:11.8.3-0+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libmariadb.so.3,/usr/lib/x86_64-linux-gnu/libmariadb3,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/caching_sha2_password.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/client_ed25519.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/dialog.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/mysql_clear_password.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/parsec.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/sha256_password.so,/usr/share,/usr/share/doc,/usr/share/doc/libmariadb3,/usr/share/doc/libmariadb3/changelog.Debian.gz,/usr/share/doc/libmariadb3/copyright,/usr/share/lintian,/usr/share/lintian/overrides",
+      "purl": "pkg:deb/debian/libmariadb3@1%3A11.8.3-0%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=mariadb",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13699",
+      "package": "mariadb-common",
+      "detected_version": "1:11.8.3-0+deb13u1",
+      "actual_version": "1:11.8.3-0+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/mysql,/etc/mysql/mariadb.cnf,/etc/mysql/mariadb.conf.d,/usr,/usr/share,/usr/share/doc,/usr/share/doc/mariadb-common,/usr/share/doc/mariadb-common/changelog.Debian.gz,/usr/share/doc/mariadb-common/copyright",
+      "purl": "pkg:deb/debian/mariadb-common@1%3A11.8.3-0%2Bdeb13u1?arch=all&distro=debian-13&upstream=mariadb",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13836",
+      "package": "libpython3.13-minimal",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "none",
+      "severity": "Critical",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/python3.13,/etc/python3.13/sitecustomize.py,/usr,/usr/lib,/usr/lib/python3.13,/usr/lib/python3.13/__future__.py,/usr/lib/python3.13/_collections_abc.py,/usr/lib/python3.13/_colorize.py,/usr/lib/python3.13/_compat_pickle.py,/usr/lib/python3.13/_opcode_metadata.py,/usr/lib/python3.13/_py_abc.py,/usr/lib/python3.13/_sitebuiltins.py,/usr/lib/python3.13/_strptime.py,/usr/lib/python3.13/_sysconfigdata__linux_x86_64-linux-gnu.py,/usr/lib/python3.13/_threading_local.py,/usr/lib/python3.13/_weakrefset.py,/usr/lib/python3.13/abc.py,/usr/lib/python3.13/argparse.py",
+      "purl": "pkg:deb/debian/libpython3.13-minimal@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13836",
+      "package": "libpython3.13-stdlib",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "none",
+      "severity": "Critical",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/python3.13,/usr/lib/python3.13/EXTERNALLY-MANAGED,/usr/lib/python3.13/LICENSE.txt,/usr/lib/python3.13/__hello__.py,/usr/lib/python3.13/__phello__,/usr/lib/python3.13/__phello__/__init__.py,/usr/lib/python3.13/__phello__/spam.py,/usr/lib/python3.13/_aix_support.py,/usr/lib/python3.13/_android_support.py,/usr/lib/python3.13/_apple_support.py,/usr/lib/python3.13/_compression.py,/usr/lib/python3.13/_distutils_system_mod.py,/usr/lib/python3.13/_ios_support.py,/usr/lib/python3.13/_markupbase.py,/usr/lib/python3.13/_osx_support.py,/usr/lib/python3.13/_pydatetime.py,/usr/lib/python3.13/_pydecimal.py",
+      "purl": "pkg:deb/debian/libpython3.13-stdlib@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13836",
+      "package": "python3.13",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "none",
+      "severity": "Critical",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pydoc3.13,/usr/bin/pygettext3.13,/usr/lib,/usr/lib/python3,/usr/lib/python3/dist-packages,/usr/lib/python3.13,/usr/lib/python3.13/lib-dynload,/usr/share,/usr/share/applications,/usr/share/applications/python3.13.desktop,/usr/share/doc,/usr/share/doc/python3.13,/usr/share/doc/python3.13/ACKS.gz,/usr/share/doc/python3.13/NEWS.gz,/usr/share/doc/python3.13/README.Debian,/usr/share/doc/python3.13/README.rst.gz,/usr/share/doc/python3.13/README.venv",
+      "purl": "pkg:deb/debian/python3.13@3.13.5-2?arch=amd64&distro=debian-13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-13836",
+      "package": "python3.13-minimal",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "none",
+      "severity": "Critical",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/python3.13,/usr/lib,/usr/lib/binfmt.d,/usr/lib/binfmt.d/python3.13.conf,/usr/share,/usr/share/binfmts,/usr/share/binfmts/python3.13,/usr/share/doc,/usr/share/doc/python3.13-minimal,/usr/share/doc/python3.13-minimal/README.Debian.gz,/usr/share/doc/python3.13-minimal/changelog.Debian.gz,/usr/share/doc/python3.13-minimal/copyright,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/python3.13-minimal,/usr/share/man,/usr/share/man/man1",
+      "purl": "pkg:deb/debian/python3.13-minimal@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-15281",
+      "package": "libc-bin",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/libc-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-15281",
+      "package": "libc-dev-bin",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gencat,/usr/share,/usr/share/doc,/usr/share/doc/libc-dev-bin,/usr/share/doc/libc-dev-bin/changelog.Debian.gz,/usr/share/doc/libc-dev-bin/changelog.gz,/usr/share/doc/libc-dev-bin/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/gencat.1.gz",
+      "purl": "pkg:deb/debian/libc-dev-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-15281",
+      "package": "libc-l10n",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/libc-l10n,/usr/share/doc/libc-l10n/changelog.Debian.gz,/usr/share/doc/libc-l10n/changelog.gz,/usr/share/doc/libc-l10n/copyright,/usr/share/locale,/usr/share/locale/be,/usr/share/locale/be/LC_MESSAGES,/usr/share/locale/be/LC_MESSAGES/libc.mo,/usr/share/locale/bg,/usr/share/locale/bg/LC_MESSAGES,/usr/share/locale/bg/LC_MESSAGES/libc.mo,/usr/share/locale/ca,/usr/share/locale/ca/LC_MESSAGES,/usr/share/locale/ca/LC_MESSAGES/libc.mo,/usr/share/locale/cs,/usr/share/locale/cs/LC_MESSAGES",
+      "purl": "pkg:deb/debian/libc-l10n@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-15281",
+      "package": "libc6",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/ld.so.conf.d,/etc/ld.so.conf.d/x86_64-linux-gnu.conf,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/gconv,/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so,/usr/lib/x86_64-linux-gnu/gconv/ARMSCII-8.so,/usr/lib/x86_64-linux-gnu/gconv/ASMO_449.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5HKSCS.so,/usr/lib/x86_64-linux-gnu/gconv/BRF.so,/usr/lib/x86_64-linux-gnu/gconv/CP10007.so,/usr/lib/x86_64-linux-gnu/gconv/CP1125.so,/usr/lib/x86_64-linux-gnu/gconv/CP1250.so,/usr/lib/x86_64-linux-gnu/gconv/CP1251.so,/usr/lib/x86_64-linux-gnu/gconv/CP1252.so,/usr/lib/x86_64-linux-gnu/gconv/CP1253.so",
+      "purl": "pkg:deb/debian/libc6@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-15281",
+      "package": "libc6-dev",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/aio.h,/usr/include/aliases.h,/usr/include/alloca.h,/usr/include/ar.h,/usr/include/argp.h,/usr/include/argz.h,/usr/include/arpa,/usr/include/arpa/ftp.h,/usr/include/arpa/inet.h,/usr/include/arpa/nameser.h,/usr/include/arpa/nameser_compat.h,/usr/include/arpa/telnet.h,/usr/include/arpa/tftp.h,/usr/include/assert.h,/usr/include/byteswap.h,/usr/include/complex.h,/usr/include/cpio.h",
+      "purl": "pkg:deb/debian/libc6-dev@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-15281",
+      "package": "locales",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/locale.alias,/usr,/usr/lib,/usr/lib/locale,/usr/sbin,/usr/sbin/locale-gen,/usr/sbin/update-locale,/usr/sbin/validlocale,/usr/share,/usr/share/doc,/usr/share/doc/locales,/usr/share/doc/locales/NEWS.Debian.gz,/usr/share/doc/locales/README.Debian,/usr/share/doc/locales/changelog.Debian.gz,/usr/share/doc/locales/changelog.gz,/usr/share/doc/locales/copyright,/usr/share/i18n,/usr/share/i18n/SUPPORTED",
+      "purl": "pkg:deb/debian/locales@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-59375",
+      "package": "libexpat1",
+      "detected_version": "2.7.1-2",
+      "actual_version": "2.7.1-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libexpat.so.1.10.2,/usr/lib/x86_64-linux-gnu/libexpatw.so.1.10.2,/usr/share,/usr/share/doc,/usr/share/doc/libexpat1,/usr/share/doc/libexpat1/AUTHORS,/usr/share/doc/libexpat1/changelog.Debian.gz,/usr/share/doc/libexpat1/changelog.gz,/usr/share/doc/libexpat1/copyright,/usr/lib/x86_64-linux-gnu/libexpat.so.1,/usr/lib/x86_64-linux-gnu/libexpatw.so.1",
+      "purl": "pkg:deb/debian/libexpat1@2.7.1-2?arch=amd64&distro=debian-13&upstream=expat",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-59375",
+      "package": "libexpat1-dev",
+      "detected_version": "2.7.1-2",
+      "actual_version": "2.7.1-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/expat.h,/usr/include/expat_external.h,/usr/include/x86_64-linux-gnu,/usr/include/x86_64-linux-gnu/expat_config.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-config-version.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-config.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-noconfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat.cmake,/usr/lib/x86_64-linux-gnu/libexpat.a,/usr/lib/x86_64-linux-gnu/libexpatw.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/expat.pc,/usr/share",
+      "purl": "pkg:deb/debian/libexpat1-dev@2.7.1-2?arch=amd64&distro=debian-13&upstream=expat",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-64181",
+      "package": "libopenexr-3-1-30",
+      "detected_version": "3.1.13-2",
+      "actual_version": "3.1.13-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30.13.1,/usr/share,/usr/share/doc,/usr/share/doc/libopenexr-3-1-30,/usr/share/doc/libopenexr-3-1-30/changelog.Debian.gz,/usr/share/doc/libopenexr-3-1-30/changelog.gz,/usr/share/doc/libopenexr-3-1-30/copyright,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30",
+      "purl": "pkg:deb/debian/libopenexr-3-1-30@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-64181",
+      "package": "libopenexr-dev",
+      "detected_version": "3.1.13-2",
+      "actual_version": "3.1.13-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/OpenEXR,/usr/include/OpenEXR/Iex.h,/usr/include/OpenEXR/IexBaseExc.h,/usr/include/OpenEXR/IexConfig.h,/usr/include/OpenEXR/IexErrnoExc.h,/usr/include/OpenEXR/IexExport.h,/usr/include/OpenEXR/IexForward.h,/usr/include/OpenEXR/IexMacros.h,/usr/include/OpenEXR/IexMathExc.h,/usr/include/OpenEXR/IexMathFloatExc.h,/usr/include/OpenEXR/IexMathIeeeExc.h,/usr/include/OpenEXR/IexNamespace.h,/usr/include/OpenEXR/IexThrowErrnoExc.h,/usr/include/OpenEXR/IlmThread.h,/usr/include/OpenEXR/IlmThreadConfig.h,/usr/include/OpenEXR/IlmThreadExport.h,/usr/include/OpenEXR/IlmThreadForward.h",
+      "purl": "pkg:deb/debian/libopenexr-dev@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-7425",
+      "package": "libxslt1-dev",
+      "detected_version": "1.1.35-1.2+deb13u2",
+      "actual_version": "1.1.35-1.2+deb13u2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/xslt-config,/usr/include,/usr/include/libexslt,/usr/include/libexslt/exslt.h,/usr/include/libexslt/exsltconfig.h,/usr/include/libexslt/exsltexports.h,/usr/include/libxslt,/usr/include/libxslt/attributes.h,/usr/include/libxslt/documents.h,/usr/include/libxslt/extensions.h,/usr/include/libxslt/extra.h,/usr/include/libxslt/functions.h,/usr/include/libxslt/imports.h,/usr/include/libxslt/keys.h,/usr/include/libxslt/namespaces.h,/usr/include/libxslt/numbersInternals.h,/usr/include/libxslt/pattern.h",
+      "purl": "pkg:deb/debian/libxslt1-dev@1.1.35-1.2%2Bdeb13u2?arch=amd64&distro=debian-13&upstream=libxslt",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-7425",
+      "package": "libxslt1.1",
+      "detected_version": "1.1.35-1.2+deb13u2",
+      "actual_version": "1.1.35-1.2+deb13u2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libexslt.so.0.8.20,/usr/lib/x86_64-linux-gnu/libxslt.so.1.1.35,/usr/share,/usr/share/doc,/usr/share/doc/libxslt1.1,/usr/share/doc/libxslt1.1/AUTHORS,/usr/share/doc/libxslt1.1/FEATURES.gz,/usr/share/doc/libxslt1.1/NEWS.gz,/usr/share/doc/libxslt1.1/README,/usr/share/doc/libxslt1.1/README.Debian,/usr/share/doc/libxslt1.1/TODO,/usr/share/doc/libxslt1.1/changelog.Debian.gz,/usr/share/doc/libxslt1.1/changelog.gz,/usr/share/doc/libxslt1.1/copyright,/usr/share/lintian,/usr/share/lintian/overrides",
+      "purl": "pkg:deb/debian/libxslt1.1@1.1.35-1.2%2Bdeb13u2?arch=amd64&distro=debian-13&upstream=libxslt",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-8194",
+      "package": "libpython3.13-minimal",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/python3.13,/etc/python3.13/sitecustomize.py,/usr,/usr/lib,/usr/lib/python3.13,/usr/lib/python3.13/__future__.py,/usr/lib/python3.13/_collections_abc.py,/usr/lib/python3.13/_colorize.py,/usr/lib/python3.13/_compat_pickle.py,/usr/lib/python3.13/_opcode_metadata.py,/usr/lib/python3.13/_py_abc.py,/usr/lib/python3.13/_sitebuiltins.py,/usr/lib/python3.13/_strptime.py,/usr/lib/python3.13/_sysconfigdata__linux_x86_64-linux-gnu.py,/usr/lib/python3.13/_threading_local.py,/usr/lib/python3.13/_weakrefset.py,/usr/lib/python3.13/abc.py,/usr/lib/python3.13/argparse.py",
+      "purl": "pkg:deb/debian/libpython3.13-minimal@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-8194",
+      "package": "libpython3.13-stdlib",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/python3.13,/usr/lib/python3.13/EXTERNALLY-MANAGED,/usr/lib/python3.13/LICENSE.txt,/usr/lib/python3.13/__hello__.py,/usr/lib/python3.13/__phello__,/usr/lib/python3.13/__phello__/__init__.py,/usr/lib/python3.13/__phello__/spam.py,/usr/lib/python3.13/_aix_support.py,/usr/lib/python3.13/_android_support.py,/usr/lib/python3.13/_apple_support.py,/usr/lib/python3.13/_compression.py,/usr/lib/python3.13/_distutils_system_mod.py,/usr/lib/python3.13/_ios_support.py,/usr/lib/python3.13/_markupbase.py,/usr/lib/python3.13/_osx_support.py,/usr/lib/python3.13/_pydatetime.py,/usr/lib/python3.13/_pydecimal.py",
+      "purl": "pkg:deb/debian/libpython3.13-stdlib@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-8194",
+      "package": "python3.13",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pydoc3.13,/usr/bin/pygettext3.13,/usr/lib,/usr/lib/python3,/usr/lib/python3/dist-packages,/usr/lib/python3.13,/usr/lib/python3.13/lib-dynload,/usr/share,/usr/share/applications,/usr/share/applications/python3.13.desktop,/usr/share/doc,/usr/share/doc/python3.13,/usr/share/doc/python3.13/ACKS.gz,/usr/share/doc/python3.13/NEWS.gz,/usr/share/doc/python3.13/README.Debian,/usr/share/doc/python3.13/README.rst.gz,/usr/share/doc/python3.13/README.venv",
+      "purl": "pkg:deb/debian/python3.13@3.13.5-2?arch=amd64&distro=debian-13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2025-8194",
+      "package": "python3.13-minimal",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/python3.13,/usr/lib,/usr/lib/binfmt.d,/usr/lib/binfmt.d/python3.13.conf,/usr/share,/usr/share/binfmts,/usr/share/binfmts/python3.13,/usr/share/doc,/usr/share/doc/python3.13-minimal,/usr/share/doc/python3.13-minimal/README.Debian.gz,/usr/share/doc/python3.13-minimal/changelog.Debian.gz,/usr/share/doc/python3.13-minimal/copyright,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/python3.13-minimal,/usr/share/man,/usr/share/man/man1",
+      "purl": "pkg:deb/debian/python3.13-minimal@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0861",
+      "package": "libc-bin",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/libc-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0861",
+      "package": "libc-dev-bin",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gencat,/usr/share,/usr/share/doc,/usr/share/doc/libc-dev-bin,/usr/share/doc/libc-dev-bin/changelog.Debian.gz,/usr/share/doc/libc-dev-bin/changelog.gz,/usr/share/doc/libc-dev-bin/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/gencat.1.gz",
+      "purl": "pkg:deb/debian/libc-dev-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0861",
+      "package": "libc-l10n",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/libc-l10n,/usr/share/doc/libc-l10n/changelog.Debian.gz,/usr/share/doc/libc-l10n/changelog.gz,/usr/share/doc/libc-l10n/copyright,/usr/share/locale,/usr/share/locale/be,/usr/share/locale/be/LC_MESSAGES,/usr/share/locale/be/LC_MESSAGES/libc.mo,/usr/share/locale/bg,/usr/share/locale/bg/LC_MESSAGES,/usr/share/locale/bg/LC_MESSAGES/libc.mo,/usr/share/locale/ca,/usr/share/locale/ca/LC_MESSAGES,/usr/share/locale/ca/LC_MESSAGES/libc.mo,/usr/share/locale/cs,/usr/share/locale/cs/LC_MESSAGES",
+      "purl": "pkg:deb/debian/libc-l10n@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0861",
+      "package": "libc6",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/ld.so.conf.d,/etc/ld.so.conf.d/x86_64-linux-gnu.conf,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/gconv,/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so,/usr/lib/x86_64-linux-gnu/gconv/ARMSCII-8.so,/usr/lib/x86_64-linux-gnu/gconv/ASMO_449.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5HKSCS.so,/usr/lib/x86_64-linux-gnu/gconv/BRF.so,/usr/lib/x86_64-linux-gnu/gconv/CP10007.so,/usr/lib/x86_64-linux-gnu/gconv/CP1125.so,/usr/lib/x86_64-linux-gnu/gconv/CP1250.so,/usr/lib/x86_64-linux-gnu/gconv/CP1251.so,/usr/lib/x86_64-linux-gnu/gconv/CP1252.so,/usr/lib/x86_64-linux-gnu/gconv/CP1253.so",
+      "purl": "pkg:deb/debian/libc6@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0861",
+      "package": "libc6-dev",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/aio.h,/usr/include/aliases.h,/usr/include/alloca.h,/usr/include/ar.h,/usr/include/argp.h,/usr/include/argz.h,/usr/include/arpa,/usr/include/arpa/ftp.h,/usr/include/arpa/inet.h,/usr/include/arpa/nameser.h,/usr/include/arpa/nameser_compat.h,/usr/include/arpa/telnet.h,/usr/include/arpa/tftp.h,/usr/include/assert.h,/usr/include/byteswap.h,/usr/include/complex.h,/usr/include/cpio.h",
+      "purl": "pkg:deb/debian/libc6-dev@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0861",
+      "package": "locales",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/locale.alias,/usr,/usr/lib,/usr/lib/locale,/usr/sbin,/usr/sbin/locale-gen,/usr/sbin/update-locale,/usr/sbin/validlocale,/usr/share,/usr/share/doc,/usr/share/doc/locales,/usr/share/doc/locales/NEWS.Debian.gz,/usr/share/doc/locales/README.Debian,/usr/share/doc/locales/changelog.Debian.gz,/usr/share/doc/locales/changelog.gz,/usr/share/doc/locales/copyright,/usr/share/i18n,/usr/share/i18n/SUPPORTED",
+      "purl": "pkg:deb/debian/locales@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0915",
+      "package": "libc-bin",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/libc-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0915",
+      "package": "libc-dev-bin",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gencat,/usr/share,/usr/share/doc,/usr/share/doc/libc-dev-bin,/usr/share/doc/libc-dev-bin/changelog.Debian.gz,/usr/share/doc/libc-dev-bin/changelog.gz,/usr/share/doc/libc-dev-bin/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/gencat.1.gz",
+      "purl": "pkg:deb/debian/libc-dev-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0915",
+      "package": "libc-l10n",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/libc-l10n,/usr/share/doc/libc-l10n/changelog.Debian.gz,/usr/share/doc/libc-l10n/changelog.gz,/usr/share/doc/libc-l10n/copyright,/usr/share/locale,/usr/share/locale/be,/usr/share/locale/be/LC_MESSAGES,/usr/share/locale/be/LC_MESSAGES/libc.mo,/usr/share/locale/bg,/usr/share/locale/bg/LC_MESSAGES,/usr/share/locale/bg/LC_MESSAGES/libc.mo,/usr/share/locale/ca,/usr/share/locale/ca/LC_MESSAGES,/usr/share/locale/ca/LC_MESSAGES/libc.mo,/usr/share/locale/cs,/usr/share/locale/cs/LC_MESSAGES",
+      "purl": "pkg:deb/debian/libc-l10n@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0915",
+      "package": "libc6",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/ld.so.conf.d,/etc/ld.so.conf.d/x86_64-linux-gnu.conf,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/gconv,/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so,/usr/lib/x86_64-linux-gnu/gconv/ARMSCII-8.so,/usr/lib/x86_64-linux-gnu/gconv/ASMO_449.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5HKSCS.so,/usr/lib/x86_64-linux-gnu/gconv/BRF.so,/usr/lib/x86_64-linux-gnu/gconv/CP10007.so,/usr/lib/x86_64-linux-gnu/gconv/CP1125.so,/usr/lib/x86_64-linux-gnu/gconv/CP1250.so,/usr/lib/x86_64-linux-gnu/gconv/CP1251.so,/usr/lib/x86_64-linux-gnu/gconv/CP1252.so,/usr/lib/x86_64-linux-gnu/gconv/CP1253.so",
+      "purl": "pkg:deb/debian/libc6@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0915",
+      "package": "libc6-dev",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/aio.h,/usr/include/aliases.h,/usr/include/alloca.h,/usr/include/ar.h,/usr/include/argp.h,/usr/include/argz.h,/usr/include/arpa,/usr/include/arpa/ftp.h,/usr/include/arpa/inet.h,/usr/include/arpa/nameser.h,/usr/include/arpa/nameser_compat.h,/usr/include/arpa/telnet.h,/usr/include/arpa/tftp.h,/usr/include/assert.h,/usr/include/byteswap.h,/usr/include/complex.h,/usr/include/cpio.h",
+      "purl": "pkg:deb/debian/libc6-dev@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0915",
+      "package": "locales",
+      "detected_version": "2.41-12+deb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/locale.alias,/usr,/usr/lib,/usr/lib/locale,/usr/sbin,/usr/sbin/locale-gen,/usr/sbin/update-locale,/usr/sbin/validlocale,/usr/share,/usr/share/doc,/usr/share/doc/locales,/usr/share/doc/locales/NEWS.Debian.gz,/usr/share/doc/locales/README.Debian,/usr/share/doc/locales/changelog.Debian.gz,/usr/share/doc/locales/changelog.gz,/usr/share/doc/locales/copyright,/usr/share/i18n,/usr/share/i18n/SUPPORTED",
+      "purl": "pkg:deb/debian/locales@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-22695",
+      "package": "libpng-dev",
+      "detected_version": "1.6.48-1+deb13u1",
+      "actual_version": "1.6.48-1+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/libpng16-config,/usr/include,/usr/include/libpng16,/usr/include/libpng16/png.h,/usr/include/libpng16/pngconf.h,/usr/include/libpng16/pnglibconf.h,/usr/include/png.h,/usr/include/pngconf.h,/usr/include/pnglibconf.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfigVersion.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets-none.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets.cmake",
+      "purl": "pkg:deb/debian/libpng-dev@1.6.48-1%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=libpng1.6",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-22695",
+      "package": "libpng16-16t64",
+      "detected_version": "1.6.48-1+deb13u1",
+      "actual_version": "1.6.48-1+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libpng16.so.16.48.0,/usr/share,/usr/share/doc,/usr/share/doc/libpng16-16t64,/usr/share/doc/libpng16-16t64/ANNOUNCE,/usr/share/doc/libpng16-16t64/README.gz,/usr/share/doc/libpng16-16t64/TODO,/usr/share/doc/libpng16-16t64/changelog.Debian.gz,/usr/share/doc/libpng16-16t64/changelog.gz,/usr/share/doc/libpng16-16t64/copyright,/usr/share/doc/libpng16-16t64/libpng-manual.txt.gz,/usr/share/doc-base,/usr/share/doc-base/libpng16-16t64.libpng16,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/libpng16-16t64",
+      "purl": "pkg:deb/debian/libpng16-16t64@1.6.48-1%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=libpng1.6",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-22801",
+      "package": "libpng-dev",
+      "detected_version": "1.6.48-1+deb13u1",
+      "actual_version": "1.6.48-1+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/libpng16-config,/usr/include,/usr/include/libpng16,/usr/include/libpng16/png.h,/usr/include/libpng16/pngconf.h,/usr/include/libpng16/pnglibconf.h,/usr/include/png.h,/usr/include/pngconf.h,/usr/include/pnglibconf.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfigVersion.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets-none.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets.cmake",
+      "purl": "pkg:deb/debian/libpng-dev@1.6.48-1%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=libpng1.6",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-22801",
+      "package": "libpng16-16t64",
+      "detected_version": "1.6.48-1+deb13u1",
+      "actual_version": "1.6.48-1+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libpng16.so.16.48.0,/usr/share,/usr/share/doc,/usr/share/doc/libpng16-16t64,/usr/share/doc/libpng16-16t64/ANNOUNCE,/usr/share/doc/libpng16-16t64/README.gz,/usr/share/doc/libpng16-16t64/TODO,/usr/share/doc/libpng16-16t64/changelog.Debian.gz,/usr/share/doc/libpng16-16t64/changelog.gz,/usr/share/doc/libpng16-16t64/copyright,/usr/share/doc/libpng16-16t64/libpng-manual.txt.gz,/usr/share/doc-base,/usr/share/doc-base/libpng16-16t64.libpng16,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/libpng16-16t64",
+      "purl": "pkg:deb/debian/libpng16-16t64@1.6.48-1%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=libpng1.6",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24515",
+      "package": "libexpat1",
+      "detected_version": "2.7.1-2",
+      "actual_version": "2.7.1-2",
+      "fixed_version": "none",
+      "severity": "Critical",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libexpat.so.1.10.2,/usr/lib/x86_64-linux-gnu/libexpatw.so.1.10.2,/usr/share,/usr/share/doc,/usr/share/doc/libexpat1,/usr/share/doc/libexpat1/AUTHORS,/usr/share/doc/libexpat1/changelog.Debian.gz,/usr/share/doc/libexpat1/changelog.gz,/usr/share/doc/libexpat1/copyright,/usr/lib/x86_64-linux-gnu/libexpat.so.1,/usr/lib/x86_64-linux-gnu/libexpatw.so.1",
+      "purl": "pkg:deb/debian/libexpat1@2.7.1-2?arch=amd64&distro=debian-13&upstream=expat",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24515",
+      "package": "libexpat1-dev",
+      "detected_version": "2.7.1-2",
+      "actual_version": "2.7.1-2",
+      "fixed_version": "none",
+      "severity": "Critical",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/expat.h,/usr/include/expat_external.h,/usr/include/x86_64-linux-gnu,/usr/include/x86_64-linux-gnu/expat_config.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-config-version.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-config.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-noconfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat.cmake,/usr/lib/x86_64-linux-gnu/libexpat.a,/usr/lib/x86_64-linux-gnu/libexpatw.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/expat.pc,/usr/share",
+      "purl": "pkg:deb/debian/libexpat1-dev@2.7.1-2?arch=amd64&distro=debian-13&upstream=expat",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24882",
+      "package": "dirmngr",
+      "detected_version": "2.4.7-21+deb13u1+b1",
+      "actual_version": "2.4.7-21+deb13u1+b1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/dirmngr,/usr/bin/dirmngr-client,/usr/lib,/usr/lib/gnupg,/usr/lib/gnupg/dirmngr_ldap,/usr/lib/systemd,/usr/lib/systemd/user,/usr/lib/systemd/user/dirmngr.service,/usr/lib/systemd/user/dirmngr.socket,/usr/share,/usr/share/doc,/usr/share/doc/dirmngr,/usr/share/doc/dirmngr/AUTHORS.gz,/usr/share/doc/dirmngr/KEYSERVER,/usr/share/doc/dirmngr/NEWS.Debian.gz,/usr/share/doc/dirmngr/NEWS.gz,/usr/share/doc/dirmngr/README.Debian",
+      "purl": "pkg:deb/debian/dirmngr@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24882",
+      "package": "gnupg",
+      "detected_version": "2.4.7-21+deb13u1",
+      "actual_version": "2.4.7-21+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/gnupg,/usr/share/doc/gnupg/DCO,/usr/share/doc/gnupg/DETAILS.gz,/usr/share/doc/gnupg/FAQ,/usr/share/doc/gnupg/HACKING.gz,/usr/share/doc/gnupg/KEYSERVER,/usr/share/doc/gnupg/NEWS.Debian.gz,/usr/share/doc/gnupg/NEWS.gz,/usr/share/doc/gnupg/OpenPGP.gz,/usr/share/doc/gnupg/README.Debian,/usr/share/doc/gnupg/README.gz,/usr/share/doc/gnupg/THANKS.gz,/usr/share/doc/gnupg/TODO,/usr/share/doc/gnupg/TRANSLATE,/usr/share/doc/gnupg/changelog.Debian.gz,/usr/share/doc/gnupg/changelog.gz",
+      "purl": "pkg:deb/debian/gnupg@2.4.7-21%2Bdeb13u1?arch=all&distro=debian-13&upstream=gnupg2",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24882",
+      "package": "gnupg-l10n",
+      "detected_version": "2.4.7-21+deb13u1",
+      "actual_version": "2.4.7-21+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/gnupg-l10n,/usr/share/doc/gnupg-l10n/NEWS.Debian.gz,/usr/share/doc/gnupg-l10n/changelog.Debian.gz,/usr/share/doc/gnupg-l10n/changelog.gz,/usr/share/doc/gnupg-l10n/copyright,/usr/share/gnupg,/usr/share/gnupg/help.be.txt,/usr/share/gnupg/help.ca.txt,/usr/share/gnupg/help.cs.txt,/usr/share/gnupg/help.da.txt,/usr/share/gnupg/help.de.txt,/usr/share/gnupg/help.el.txt,/usr/share/gnupg/help.eo.txt,/usr/share/gnupg/help.es.txt,/usr/share/gnupg/help.et.txt,/usr/share/gnupg/help.fi.txt",
+      "purl": "pkg:deb/debian/gnupg-l10n@2.4.7-21%2Bdeb13u1?arch=all&distro=debian-13&upstream=gnupg2",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24882",
+      "package": "gnupg2",
+      "detected_version": "2.4.7-21+deb13u1",
+      "actual_version": "2.4.7-21+deb13u1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/share,/usr/share/doc,/usr/share/doc/gnupg2,/usr/share/doc/gnupg2/NEWS.Debian.gz,/usr/share/doc/gnupg2/changelog.Debian.gz,/usr/share/doc/gnupg2/changelog.gz,/usr/share/doc/gnupg2/copyright,/usr/share/man,/usr/share/man/man1,/usr/bin/gpg2,/usr/share/man/man1/gpg2.1.gz",
+      "purl": "pkg:deb/debian/gnupg2@2.4.7-21%2Bdeb13u1?arch=all&distro=debian-13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24882",
+      "package": "gpg",
+      "detected_version": "2.4.7-21+deb13u1+b1",
+      "actual_version": "2.4.7-21+deb13u1+b1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gpg,/usr/lib,/usr/lib/gnupg,/usr/lib/gnupg/keyboxd,/usr/lib/systemd,/usr/lib/systemd/user,/usr/lib/systemd/user/keyboxd.service,/usr/lib/systemd/user/keyboxd.socket,/usr/share,/usr/share/doc,/usr/share/doc/gpg,/usr/share/doc/gpg/NEWS.Debian.gz,/usr/share/doc/gpg/README.Debian,/usr/share/doc/gpg/changelog.Debian.amd64.gz,/usr/share/doc/gpg/changelog.Debian.gz,/usr/share/doc/gpg/changelog.gz,/usr/share/doc/gpg/copyright",
+      "purl": "pkg:deb/debian/gpg@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24882",
+      "package": "gpg-agent",
+      "detected_version": "2.4.7-21+deb13u1+b1",
+      "actual_version": "2.4.7-21+deb13u1+b1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/X11,/etc/X11/Xsession.d,/etc/X11/Xsession.d/90gpg-agent,/etc/logcheck,/etc/logcheck/ignore.d.server,/etc/logcheck/ignore.d.server/gpg-agent,/usr,/usr/bin,/usr/bin/gpg-agent,/usr/lib,/usr/lib/gnupg,/usr/lib/gnupg/gpg-check-pattern,/usr/lib/gnupg/gpg-preset-passphrase,/usr/lib/gnupg/gpg-protect-tool,/usr/lib/gnupg2,/usr/lib/systemd,/usr/lib/systemd/user,/usr/lib/systemd/user/gpg-agent-browser.socket",
+      "purl": "pkg:deb/debian/gpg-agent@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24882",
+      "package": "gpgconf",
+      "detected_version": "2.4.7-21+deb13u1+b1",
+      "actual_version": "2.4.7-21+deb13u1+b1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gpg-connect-agent,/usr/bin/gpgconf,/usr/share,/usr/share/doc,/usr/share/doc/gpgconf,/usr/share/doc/gpgconf/NEWS.Debian.gz,/usr/share/doc/gpgconf/changelog.Debian.amd64.gz,/usr/share/doc/gpgconf/changelog.Debian.gz,/usr/share/doc/gpgconf/changelog.gz,/usr/share/doc/gpgconf/copyright,/usr/share/doc/gpgconf/examples,/usr/share/doc/gpgconf/examples/gpgconf.conf,/usr/share/gnupg,/usr/share/gnupg/distsigkey.gpg,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/gpgconf",
+      "purl": "pkg:deb/debian/gpgconf@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24882",
+      "package": "gpgsm",
+      "detected_version": "2.4.7-21+deb13u1+b1",
+      "actual_version": "2.4.7-21+deb13u1+b1",
+      "fixed_version": "none",
+      "severity": "High",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gpgsm,/usr/share,/usr/share/doc,/usr/share/doc/gpgsm,/usr/share/doc/gpgsm/NEWS.Debian.gz,/usr/share/doc/gpgsm/changelog.Debian.amd64.gz,/usr/share/doc/gpgsm/changelog.Debian.gz,/usr/share/doc/gpgsm/changelog.gz,/usr/share/doc/gpgsm/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/gpgsm.1.gz",
+      "purl": "pkg:deb/debian/gpgsm@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1",
+      "false_positive": false
+    },
+    {
+      "cve": "GHSA-58pv-8j8x-9vj2",
+      "package": "jaraco-context",
+      "detected_version": "5.3.0",
+      "actual_version": "unknown",
+      "fixed_version": "6.1.0",
+      "severity": "High",
+      "package_type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/jaraco-context@5.3.0",
+      "false_positive": false
+    },
+    {
+      "cve": "GHSA-8rrh-rw8j-w5fx",
+      "package": "wheel",
+      "detected_version": "0.45.1",
+      "actual_version": "unknown",
+      "fixed_version": "0.46.2",
+      "severity": "High",
+      "package_type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/wheel@0.45.1",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "libbluetooth-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/bluetooth,/usr/include/bluetooth/bluetooth.h,/usr/include/bluetooth/bnep.h,/usr/include/bluetooth/cmtp.h,/usr/include/bluetooth/hci.h,/usr/include/bluetooth/hci_lib.h,/usr/include/bluetooth/hidp.h,/usr/include/bluetooth/l2cap.h,/usr/include/bluetooth/rfcomm.h,/usr/include/bluetooth/sco.h,/usr/include/bluetooth/sdp.h,/usr/include/bluetooth/sdp_lib.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libbluetooth.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/bluez.pc",
+      "purl": "pkg:deb/debian/libbluetooth-dev@5.82-1.1?arch=amd64&distro=debian-13&upstream=bluez"
+    },
+    {
+      "package": "libbluetooth3",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libbluetooth.so.3.19.15,/usr/share,/usr/share/doc,/usr/share/doc/libbluetooth3,/usr/share/doc/libbluetooth3/README.Debian.gz,/usr/share/doc/libbluetooth3/changelog.Debian.gz,/usr/share/doc/libbluetooth3/changelog.gz,/usr/share/doc/libbluetooth3/copyright,/usr/lib/x86_64-linux-gnu/libbluetooth.so.3",
+      "purl": "pkg:deb/debian/libbluetooth3@5.82-1.1?arch=amd64&distro=debian-13&upstream=bluez"
+    },
+    {
+      "package": "libbluetooth-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/bluetooth,/usr/include/bluetooth/bluetooth.h,/usr/include/bluetooth/bnep.h,/usr/include/bluetooth/cmtp.h,/usr/include/bluetooth/hci.h,/usr/include/bluetooth/hci_lib.h,/usr/include/bluetooth/hidp.h,/usr/include/bluetooth/l2cap.h,/usr/include/bluetooth/rfcomm.h,/usr/include/bluetooth/sco.h,/usr/include/bluetooth/sdp.h,/usr/include/bluetooth/sdp_lib.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libbluetooth.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/bluez.pc",
+      "purl": "pkg:deb/debian/libbluetooth-dev@5.82-1.1?arch=amd64&distro=debian-13&upstream=bluez"
+    },
+    {
+      "package": "libbluetooth3",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libbluetooth.so.3.19.15,/usr/share,/usr/share/doc,/usr/share/doc/libbluetooth3,/usr/share/doc/libbluetooth3/README.Debian.gz,/usr/share/doc/libbluetooth3/changelog.Debian.gz,/usr/share/doc/libbluetooth3/changelog.gz,/usr/share/doc/libbluetooth3/copyright,/usr/lib/x86_64-linux-gnu/libbluetooth.so.3",
+      "purl": "pkg:deb/debian/libbluetooth3@5.82-1.1?arch=amd64&distro=debian-13&upstream=bluez"
+    },
+    {
+      "package": "libopenexr-3-1-30",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30.13.1,/usr/share,/usr/share/doc,/usr/share/doc/libopenexr-3-1-30,/usr/share/doc/libopenexr-3-1-30/changelog.Debian.gz,/usr/share/doc/libopenexr-3-1-30/changelog.gz,/usr/share/doc/libopenexr-3-1-30/copyright,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30",
+      "purl": "pkg:deb/debian/libopenexr-3-1-30@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr"
+    },
+    {
+      "package": "libopenexr-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/OpenEXR,/usr/include/OpenEXR/Iex.h,/usr/include/OpenEXR/IexBaseExc.h,/usr/include/OpenEXR/IexConfig.h,/usr/include/OpenEXR/IexErrnoExc.h,/usr/include/OpenEXR/IexExport.h,/usr/include/OpenEXR/IexForward.h,/usr/include/OpenEXR/IexMacros.h,/usr/include/OpenEXR/IexMathExc.h,/usr/include/OpenEXR/IexMathFloatExc.h,/usr/include/OpenEXR/IexMathIeeeExc.h,/usr/include/OpenEXR/IexNamespace.h,/usr/include/OpenEXR/IexThrowErrnoExc.h,/usr/include/OpenEXR/IlmThread.h,/usr/include/OpenEXR/IlmThreadConfig.h,/usr/include/OpenEXR/IlmThreadExport.h,/usr/include/OpenEXR/IlmThreadForward.h",
+      "purl": "pkg:deb/debian/libopenexr-dev@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr"
+    },
+    {
+      "package": "libopenexr-3-1-30",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30.13.1,/usr/share,/usr/share/doc,/usr/share/doc/libopenexr-3-1-30,/usr/share/doc/libopenexr-3-1-30/changelog.Debian.gz,/usr/share/doc/libopenexr-3-1-30/changelog.gz,/usr/share/doc/libopenexr-3-1-30/copyright,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30",
+      "purl": "pkg:deb/debian/libopenexr-3-1-30@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr"
+    },
+    {
+      "package": "libopenexr-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/OpenEXR,/usr/include/OpenEXR/Iex.h,/usr/include/OpenEXR/IexBaseExc.h,/usr/include/OpenEXR/IexConfig.h,/usr/include/OpenEXR/IexErrnoExc.h,/usr/include/OpenEXR/IexExport.h,/usr/include/OpenEXR/IexForward.h,/usr/include/OpenEXR/IexMacros.h,/usr/include/OpenEXR/IexMathExc.h,/usr/include/OpenEXR/IexMathFloatExc.h,/usr/include/OpenEXR/IexMathIeeeExc.h,/usr/include/OpenEXR/IexNamespace.h,/usr/include/OpenEXR/IexThrowErrnoExc.h,/usr/include/OpenEXR/IlmThread.h,/usr/include/OpenEXR/IlmThreadConfig.h,/usr/include/OpenEXR/IlmThreadExport.h,/usr/include/OpenEXR/IlmThreadForward.h",
+      "purl": "pkg:deb/debian/libopenexr-dev@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr"
+    },
+    {
+      "package": "libopenexr-3-1-30",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30.13.1,/usr/share,/usr/share/doc,/usr/share/doc/libopenexr-3-1-30,/usr/share/doc/libopenexr-3-1-30/changelog.Debian.gz,/usr/share/doc/libopenexr-3-1-30/changelog.gz,/usr/share/doc/libopenexr-3-1-30/copyright,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30",
+      "purl": "pkg:deb/debian/libopenexr-3-1-30@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr"
+    },
+    {
+      "package": "libopenexr-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/OpenEXR,/usr/include/OpenEXR/Iex.h,/usr/include/OpenEXR/IexBaseExc.h,/usr/include/OpenEXR/IexConfig.h,/usr/include/OpenEXR/IexErrnoExc.h,/usr/include/OpenEXR/IexExport.h,/usr/include/OpenEXR/IexForward.h,/usr/include/OpenEXR/IexMacros.h,/usr/include/OpenEXR/IexMathExc.h,/usr/include/OpenEXR/IexMathFloatExc.h,/usr/include/OpenEXR/IexMathIeeeExc.h,/usr/include/OpenEXR/IexNamespace.h,/usr/include/OpenEXR/IexThrowErrnoExc.h,/usr/include/OpenEXR/IlmThread.h,/usr/include/OpenEXR/IlmThreadConfig.h,/usr/include/OpenEXR/IlmThreadExport.h,/usr/include/OpenEXR/IlmThreadForward.h",
+      "purl": "pkg:deb/debian/libopenexr-dev@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr"
+    },
+    {
+      "package": "libtasn1-6",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libtasn1.so.6.6.4,/usr/share,/usr/share/doc,/usr/share/doc/libtasn1-6,/usr/share/doc/libtasn1-6/AUTHORS,/usr/share/doc/libtasn1-6/README.md,/usr/share/doc/libtasn1-6/THANKS,/usr/share/doc/libtasn1-6/changelog.Debian.gz,/usr/share/doc/libtasn1-6/changelog.gz,/usr/share/doc/libtasn1-6/copyright,/usr/lib/x86_64-linux-gnu/libtasn1.so.6",
+      "purl": "pkg:deb/debian/libtasn1-6@4.20.0-2?arch=amd64&distro=debian-13"
+    },
+    {
+      "package": "libtasn1-6-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/libtasn1.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libtasn1.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/libtasn1.pc,/usr/share,/usr/share/doc,/usr/share/doc/libtasn1-6-dev,/usr/share/doc/libtasn1-6-dev/changelog.Debian.gz,/usr/share/doc/libtasn1-6-dev/changelog.gz,/usr/share/doc/libtasn1-6-dev/copyright,/usr/share/doc/libtasn1-6-dev/examples,/usr/share/doc/libtasn1-6-dev/examples/asn1Coding.c,/usr/share/doc/libtasn1-6-dev/examples/asn1Decoding.c,/usr/share/doc/libtasn1-6-dev/examples/asn1Parser.c,/usr/share/doc/libtasn1-6-dev/examples/benchmark.c",
+      "purl": "pkg:deb/debian/libtasn1-6-dev@4.20.0-2?arch=amd64&distro=debian-13&upstream=libtasn1-6"
+    },
+    {
+      "package": "libmariadb-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/mariadb_config,/usr/include,/usr/include/mariadb,/usr/include/mariadb/errmsg.h,/usr/include/mariadb/ma_list.h,/usr/include/mariadb/ma_pvio.h,/usr/include/mariadb/ma_tls.h,/usr/include/mariadb/mariadb,/usr/include/mariadb/mariadb/ma_io.h,/usr/include/mariadb/mariadb_com.h,/usr/include/mariadb/mariadb_ctype.h,/usr/include/mariadb/mariadb_dyncol.h,/usr/include/mariadb/mariadb_rpl.h,/usr/include/mariadb/mariadb_stmt.h,/usr/include/mariadb/mariadb_version.h,/usr/include/mariadb/my_alloca.h,/usr/include/mariadb/my_config.h",
+      "purl": "pkg:deb/debian/libmariadb-dev@1%3A11.8.3-0%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=mariadb"
+    },
+    {
+      "package": "libmariadb-dev-compat",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/include,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/share,/usr/share/doc,/usr/share/doc/libmariadb-dev-compat,/usr/share/doc/libmariadb-dev-compat/changelog.Debian.gz,/usr/share/doc/libmariadb-dev-compat/copyright,/usr/bin/mysql_config,/usr/include/mysql,/usr/lib/x86_64-linux-gnu/libmysqlclient.a,/usr/lib/x86_64-linux-gnu/libmysqlclient.so,/usr/lib/x86_64-linux-gnu/libmysqlclient_r.a,/usr/lib/x86_64-linux-gnu/libmysqlclient_r.so,/usr/lib/x86_64-linux-gnu/pkgconfig/mysqlclient.pc",
+      "purl": "pkg:deb/debian/libmariadb-dev-compat@1%3A11.8.3-0%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=mariadb"
+    },
+    {
+      "package": "libmariadb3",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libmariadb.so.3,/usr/lib/x86_64-linux-gnu/libmariadb3,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/caching_sha2_password.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/client_ed25519.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/dialog.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/mysql_clear_password.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/parsec.so,/usr/lib/x86_64-linux-gnu/libmariadb3/plugin/sha256_password.so,/usr/share,/usr/share/doc,/usr/share/doc/libmariadb3,/usr/share/doc/libmariadb3/changelog.Debian.gz,/usr/share/doc/libmariadb3/copyright,/usr/share/lintian,/usr/share/lintian/overrides",
+      "purl": "pkg:deb/debian/libmariadb3@1%3A11.8.3-0%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=mariadb"
+    },
+    {
+      "package": "mariadb-common",
+      "type": "deb",
+      "location": "/.,/etc,/etc/mysql,/etc/mysql/mariadb.cnf,/etc/mysql/mariadb.conf.d,/usr,/usr/share,/usr/share/doc,/usr/share/doc/mariadb-common,/usr/share/doc/mariadb-common/changelog.Debian.gz,/usr/share/doc/mariadb-common/copyright",
+      "purl": "pkg:deb/debian/mariadb-common@1%3A11.8.3-0%2Bdeb13u1?arch=all&distro=debian-13&upstream=mariadb"
+    },
+    {
+      "package": "libpython3.13-minimal",
+      "type": "deb",
+      "location": "/.,/etc,/etc/python3.13,/etc/python3.13/sitecustomize.py,/usr,/usr/lib,/usr/lib/python3.13,/usr/lib/python3.13/__future__.py,/usr/lib/python3.13/_collections_abc.py,/usr/lib/python3.13/_colorize.py,/usr/lib/python3.13/_compat_pickle.py,/usr/lib/python3.13/_opcode_metadata.py,/usr/lib/python3.13/_py_abc.py,/usr/lib/python3.13/_sitebuiltins.py,/usr/lib/python3.13/_strptime.py,/usr/lib/python3.13/_sysconfigdata__linux_x86_64-linux-gnu.py,/usr/lib/python3.13/_threading_local.py,/usr/lib/python3.13/_weakrefset.py,/usr/lib/python3.13/abc.py,/usr/lib/python3.13/argparse.py",
+      "purl": "pkg:deb/debian/libpython3.13-minimal@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13"
+    },
+    {
+      "package": "libpython3.13-stdlib",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/python3.13,/usr/lib/python3.13/EXTERNALLY-MANAGED,/usr/lib/python3.13/LICENSE.txt,/usr/lib/python3.13/__hello__.py,/usr/lib/python3.13/__phello__,/usr/lib/python3.13/__phello__/__init__.py,/usr/lib/python3.13/__phello__/spam.py,/usr/lib/python3.13/_aix_support.py,/usr/lib/python3.13/_android_support.py,/usr/lib/python3.13/_apple_support.py,/usr/lib/python3.13/_compression.py,/usr/lib/python3.13/_distutils_system_mod.py,/usr/lib/python3.13/_ios_support.py,/usr/lib/python3.13/_markupbase.py,/usr/lib/python3.13/_osx_support.py,/usr/lib/python3.13/_pydatetime.py,/usr/lib/python3.13/_pydecimal.py",
+      "purl": "pkg:deb/debian/libpython3.13-stdlib@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13"
+    },
+    {
+      "package": "python3.13",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pydoc3.13,/usr/bin/pygettext3.13,/usr/lib,/usr/lib/python3,/usr/lib/python3/dist-packages,/usr/lib/python3.13,/usr/lib/python3.13/lib-dynload,/usr/share,/usr/share/applications,/usr/share/applications/python3.13.desktop,/usr/share/doc,/usr/share/doc/python3.13,/usr/share/doc/python3.13/ACKS.gz,/usr/share/doc/python3.13/NEWS.gz,/usr/share/doc/python3.13/README.Debian,/usr/share/doc/python3.13/README.rst.gz,/usr/share/doc/python3.13/README.venv",
+      "purl": "pkg:deb/debian/python3.13@3.13.5-2?arch=amd64&distro=debian-13"
+    },
+    {
+      "package": "python3.13-minimal",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/python3.13,/usr/lib,/usr/lib/binfmt.d,/usr/lib/binfmt.d/python3.13.conf,/usr/share,/usr/share/binfmts,/usr/share/binfmts/python3.13,/usr/share/doc,/usr/share/doc/python3.13-minimal,/usr/share/doc/python3.13-minimal/README.Debian.gz,/usr/share/doc/python3.13-minimal/changelog.Debian.gz,/usr/share/doc/python3.13-minimal/copyright,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/python3.13-minimal,/usr/share/man,/usr/share/man/man1",
+      "purl": "pkg:deb/debian/python3.13-minimal@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13"
+    },
+    {
+      "package": "libc-bin",
+      "type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/libc-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc-dev-bin",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gencat,/usr/share,/usr/share/doc,/usr/share/doc/libc-dev-bin,/usr/share/doc/libc-dev-bin/changelog.Debian.gz,/usr/share/doc/libc-dev-bin/changelog.gz,/usr/share/doc/libc-dev-bin/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/gencat.1.gz",
+      "purl": "pkg:deb/debian/libc-dev-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc-l10n",
+      "type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/libc-l10n,/usr/share/doc/libc-l10n/changelog.Debian.gz,/usr/share/doc/libc-l10n/changelog.gz,/usr/share/doc/libc-l10n/copyright,/usr/share/locale,/usr/share/locale/be,/usr/share/locale/be/LC_MESSAGES,/usr/share/locale/be/LC_MESSAGES/libc.mo,/usr/share/locale/bg,/usr/share/locale/bg/LC_MESSAGES,/usr/share/locale/bg/LC_MESSAGES/libc.mo,/usr/share/locale/ca,/usr/share/locale/ca/LC_MESSAGES,/usr/share/locale/ca/LC_MESSAGES/libc.mo,/usr/share/locale/cs,/usr/share/locale/cs/LC_MESSAGES",
+      "purl": "pkg:deb/debian/libc-l10n@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc6",
+      "type": "deb",
+      "location": "/.,/etc,/etc/ld.so.conf.d,/etc/ld.so.conf.d/x86_64-linux-gnu.conf,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/gconv,/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so,/usr/lib/x86_64-linux-gnu/gconv/ARMSCII-8.so,/usr/lib/x86_64-linux-gnu/gconv/ASMO_449.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5HKSCS.so,/usr/lib/x86_64-linux-gnu/gconv/BRF.so,/usr/lib/x86_64-linux-gnu/gconv/CP10007.so,/usr/lib/x86_64-linux-gnu/gconv/CP1125.so,/usr/lib/x86_64-linux-gnu/gconv/CP1250.so,/usr/lib/x86_64-linux-gnu/gconv/CP1251.so,/usr/lib/x86_64-linux-gnu/gconv/CP1252.so,/usr/lib/x86_64-linux-gnu/gconv/CP1253.so",
+      "purl": "pkg:deb/debian/libc6@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc6-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/aio.h,/usr/include/aliases.h,/usr/include/alloca.h,/usr/include/ar.h,/usr/include/argp.h,/usr/include/argz.h,/usr/include/arpa,/usr/include/arpa/ftp.h,/usr/include/arpa/inet.h,/usr/include/arpa/nameser.h,/usr/include/arpa/nameser_compat.h,/usr/include/arpa/telnet.h,/usr/include/arpa/tftp.h,/usr/include/assert.h,/usr/include/byteswap.h,/usr/include/complex.h,/usr/include/cpio.h",
+      "purl": "pkg:deb/debian/libc6-dev@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "locales",
+      "type": "deb",
+      "location": "/.,/etc,/etc/locale.alias,/usr,/usr/lib,/usr/lib/locale,/usr/sbin,/usr/sbin/locale-gen,/usr/sbin/update-locale,/usr/sbin/validlocale,/usr/share,/usr/share/doc,/usr/share/doc/locales,/usr/share/doc/locales/NEWS.Debian.gz,/usr/share/doc/locales/README.Debian,/usr/share/doc/locales/changelog.Debian.gz,/usr/share/doc/locales/changelog.gz,/usr/share/doc/locales/copyright,/usr/share/i18n,/usr/share/i18n/SUPPORTED",
+      "purl": "pkg:deb/debian/locales@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libexpat1",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libexpat.so.1.10.2,/usr/lib/x86_64-linux-gnu/libexpatw.so.1.10.2,/usr/share,/usr/share/doc,/usr/share/doc/libexpat1,/usr/share/doc/libexpat1/AUTHORS,/usr/share/doc/libexpat1/changelog.Debian.gz,/usr/share/doc/libexpat1/changelog.gz,/usr/share/doc/libexpat1/copyright,/usr/lib/x86_64-linux-gnu/libexpat.so.1,/usr/lib/x86_64-linux-gnu/libexpatw.so.1",
+      "purl": "pkg:deb/debian/libexpat1@2.7.1-2?arch=amd64&distro=debian-13&upstream=expat"
+    },
+    {
+      "package": "libexpat1-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/expat.h,/usr/include/expat_external.h,/usr/include/x86_64-linux-gnu,/usr/include/x86_64-linux-gnu/expat_config.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-config-version.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-config.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-noconfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat.cmake,/usr/lib/x86_64-linux-gnu/libexpat.a,/usr/lib/x86_64-linux-gnu/libexpatw.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/expat.pc,/usr/share",
+      "purl": "pkg:deb/debian/libexpat1-dev@2.7.1-2?arch=amd64&distro=debian-13&upstream=expat"
+    },
+    {
+      "package": "libopenexr-3-1-30",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30.13.1,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30.13.1,/usr/share,/usr/share/doc,/usr/share/doc/libopenexr-3-1-30,/usr/share/doc/libopenexr-3-1-30/changelog.Debian.gz,/usr/share/doc/libopenexr-3-1-30/changelog.gz,/usr/share/doc/libopenexr-3-1-30/copyright,/usr/lib/x86_64-linux-gnu/libIex-3_1.so.30,/usr/lib/x86_64-linux-gnu/libIlmThread-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXR-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRCore-3_1.so.30,/usr/lib/x86_64-linux-gnu/libOpenEXRUtil-3_1.so.30",
+      "purl": "pkg:deb/debian/libopenexr-3-1-30@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr"
+    },
+    {
+      "package": "libopenexr-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/OpenEXR,/usr/include/OpenEXR/Iex.h,/usr/include/OpenEXR/IexBaseExc.h,/usr/include/OpenEXR/IexConfig.h,/usr/include/OpenEXR/IexErrnoExc.h,/usr/include/OpenEXR/IexExport.h,/usr/include/OpenEXR/IexForward.h,/usr/include/OpenEXR/IexMacros.h,/usr/include/OpenEXR/IexMathExc.h,/usr/include/OpenEXR/IexMathFloatExc.h,/usr/include/OpenEXR/IexMathIeeeExc.h,/usr/include/OpenEXR/IexNamespace.h,/usr/include/OpenEXR/IexThrowErrnoExc.h,/usr/include/OpenEXR/IlmThread.h,/usr/include/OpenEXR/IlmThreadConfig.h,/usr/include/OpenEXR/IlmThreadExport.h,/usr/include/OpenEXR/IlmThreadForward.h",
+      "purl": "pkg:deb/debian/libopenexr-dev@3.1.13-2?arch=amd64&distro=debian-13&upstream=openexr"
+    },
+    {
+      "package": "libxslt1-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/xslt-config,/usr/include,/usr/include/libexslt,/usr/include/libexslt/exslt.h,/usr/include/libexslt/exsltconfig.h,/usr/include/libexslt/exsltexports.h,/usr/include/libxslt,/usr/include/libxslt/attributes.h,/usr/include/libxslt/documents.h,/usr/include/libxslt/extensions.h,/usr/include/libxslt/extra.h,/usr/include/libxslt/functions.h,/usr/include/libxslt/imports.h,/usr/include/libxslt/keys.h,/usr/include/libxslt/namespaces.h,/usr/include/libxslt/numbersInternals.h,/usr/include/libxslt/pattern.h",
+      "purl": "pkg:deb/debian/libxslt1-dev@1.1.35-1.2%2Bdeb13u2?arch=amd64&distro=debian-13&upstream=libxslt"
+    },
+    {
+      "package": "libxslt1.1",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libexslt.so.0.8.20,/usr/lib/x86_64-linux-gnu/libxslt.so.1.1.35,/usr/share,/usr/share/doc,/usr/share/doc/libxslt1.1,/usr/share/doc/libxslt1.1/AUTHORS,/usr/share/doc/libxslt1.1/FEATURES.gz,/usr/share/doc/libxslt1.1/NEWS.gz,/usr/share/doc/libxslt1.1/README,/usr/share/doc/libxslt1.1/README.Debian,/usr/share/doc/libxslt1.1/TODO,/usr/share/doc/libxslt1.1/changelog.Debian.gz,/usr/share/doc/libxslt1.1/changelog.gz,/usr/share/doc/libxslt1.1/copyright,/usr/share/lintian,/usr/share/lintian/overrides",
+      "purl": "pkg:deb/debian/libxslt1.1@1.1.35-1.2%2Bdeb13u2?arch=amd64&distro=debian-13&upstream=libxslt"
+    },
+    {
+      "package": "libpython3.13-minimal",
+      "type": "deb",
+      "location": "/.,/etc,/etc/python3.13,/etc/python3.13/sitecustomize.py,/usr,/usr/lib,/usr/lib/python3.13,/usr/lib/python3.13/__future__.py,/usr/lib/python3.13/_collections_abc.py,/usr/lib/python3.13/_colorize.py,/usr/lib/python3.13/_compat_pickle.py,/usr/lib/python3.13/_opcode_metadata.py,/usr/lib/python3.13/_py_abc.py,/usr/lib/python3.13/_sitebuiltins.py,/usr/lib/python3.13/_strptime.py,/usr/lib/python3.13/_sysconfigdata__linux_x86_64-linux-gnu.py,/usr/lib/python3.13/_threading_local.py,/usr/lib/python3.13/_weakrefset.py,/usr/lib/python3.13/abc.py,/usr/lib/python3.13/argparse.py",
+      "purl": "pkg:deb/debian/libpython3.13-minimal@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13"
+    },
+    {
+      "package": "libpython3.13-stdlib",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/python3.13,/usr/lib/python3.13/EXTERNALLY-MANAGED,/usr/lib/python3.13/LICENSE.txt,/usr/lib/python3.13/__hello__.py,/usr/lib/python3.13/__phello__,/usr/lib/python3.13/__phello__/__init__.py,/usr/lib/python3.13/__phello__/spam.py,/usr/lib/python3.13/_aix_support.py,/usr/lib/python3.13/_android_support.py,/usr/lib/python3.13/_apple_support.py,/usr/lib/python3.13/_compression.py,/usr/lib/python3.13/_distutils_system_mod.py,/usr/lib/python3.13/_ios_support.py,/usr/lib/python3.13/_markupbase.py,/usr/lib/python3.13/_osx_support.py,/usr/lib/python3.13/_pydatetime.py,/usr/lib/python3.13/_pydecimal.py",
+      "purl": "pkg:deb/debian/libpython3.13-stdlib@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13"
+    },
+    {
+      "package": "python3.13",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pydoc3.13,/usr/bin/pygettext3.13,/usr/lib,/usr/lib/python3,/usr/lib/python3/dist-packages,/usr/lib/python3.13,/usr/lib/python3.13/lib-dynload,/usr/share,/usr/share/applications,/usr/share/applications/python3.13.desktop,/usr/share/doc,/usr/share/doc/python3.13,/usr/share/doc/python3.13/ACKS.gz,/usr/share/doc/python3.13/NEWS.gz,/usr/share/doc/python3.13/README.Debian,/usr/share/doc/python3.13/README.rst.gz,/usr/share/doc/python3.13/README.venv",
+      "purl": "pkg:deb/debian/python3.13@3.13.5-2?arch=amd64&distro=debian-13"
+    },
+    {
+      "package": "python3.13-minimal",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/python3.13,/usr/lib,/usr/lib/binfmt.d,/usr/lib/binfmt.d/python3.13.conf,/usr/share,/usr/share/binfmts,/usr/share/binfmts/python3.13,/usr/share/doc,/usr/share/doc/python3.13-minimal,/usr/share/doc/python3.13-minimal/README.Debian.gz,/usr/share/doc/python3.13-minimal/changelog.Debian.gz,/usr/share/doc/python3.13-minimal/copyright,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/python3.13-minimal,/usr/share/man,/usr/share/man/man1",
+      "purl": "pkg:deb/debian/python3.13-minimal@3.13.5-2?arch=amd64&distro=debian-13&upstream=python3.13"
+    },
+    {
+      "package": "libc-bin",
+      "type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/libc-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc-dev-bin",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gencat,/usr/share,/usr/share/doc,/usr/share/doc/libc-dev-bin,/usr/share/doc/libc-dev-bin/changelog.Debian.gz,/usr/share/doc/libc-dev-bin/changelog.gz,/usr/share/doc/libc-dev-bin/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/gencat.1.gz",
+      "purl": "pkg:deb/debian/libc-dev-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc-l10n",
+      "type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/libc-l10n,/usr/share/doc/libc-l10n/changelog.Debian.gz,/usr/share/doc/libc-l10n/changelog.gz,/usr/share/doc/libc-l10n/copyright,/usr/share/locale,/usr/share/locale/be,/usr/share/locale/be/LC_MESSAGES,/usr/share/locale/be/LC_MESSAGES/libc.mo,/usr/share/locale/bg,/usr/share/locale/bg/LC_MESSAGES,/usr/share/locale/bg/LC_MESSAGES/libc.mo,/usr/share/locale/ca,/usr/share/locale/ca/LC_MESSAGES,/usr/share/locale/ca/LC_MESSAGES/libc.mo,/usr/share/locale/cs,/usr/share/locale/cs/LC_MESSAGES",
+      "purl": "pkg:deb/debian/libc-l10n@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc6",
+      "type": "deb",
+      "location": "/.,/etc,/etc/ld.so.conf.d,/etc/ld.so.conf.d/x86_64-linux-gnu.conf,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/gconv,/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so,/usr/lib/x86_64-linux-gnu/gconv/ARMSCII-8.so,/usr/lib/x86_64-linux-gnu/gconv/ASMO_449.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5HKSCS.so,/usr/lib/x86_64-linux-gnu/gconv/BRF.so,/usr/lib/x86_64-linux-gnu/gconv/CP10007.so,/usr/lib/x86_64-linux-gnu/gconv/CP1125.so,/usr/lib/x86_64-linux-gnu/gconv/CP1250.so,/usr/lib/x86_64-linux-gnu/gconv/CP1251.so,/usr/lib/x86_64-linux-gnu/gconv/CP1252.so,/usr/lib/x86_64-linux-gnu/gconv/CP1253.so",
+      "purl": "pkg:deb/debian/libc6@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc6-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/aio.h,/usr/include/aliases.h,/usr/include/alloca.h,/usr/include/ar.h,/usr/include/argp.h,/usr/include/argz.h,/usr/include/arpa,/usr/include/arpa/ftp.h,/usr/include/arpa/inet.h,/usr/include/arpa/nameser.h,/usr/include/arpa/nameser_compat.h,/usr/include/arpa/telnet.h,/usr/include/arpa/tftp.h,/usr/include/assert.h,/usr/include/byteswap.h,/usr/include/complex.h,/usr/include/cpio.h",
+      "purl": "pkg:deb/debian/libc6-dev@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "locales",
+      "type": "deb",
+      "location": "/.,/etc,/etc/locale.alias,/usr,/usr/lib,/usr/lib/locale,/usr/sbin,/usr/sbin/locale-gen,/usr/sbin/update-locale,/usr/sbin/validlocale,/usr/share,/usr/share/doc,/usr/share/doc/locales,/usr/share/doc/locales/NEWS.Debian.gz,/usr/share/doc/locales/README.Debian,/usr/share/doc/locales/changelog.Debian.gz,/usr/share/doc/locales/changelog.gz,/usr/share/doc/locales/copyright,/usr/share/i18n,/usr/share/i18n/SUPPORTED",
+      "purl": "pkg:deb/debian/locales@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc-bin",
+      "type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/libc-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc-dev-bin",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gencat,/usr/share,/usr/share/doc,/usr/share/doc/libc-dev-bin,/usr/share/doc/libc-dev-bin/changelog.Debian.gz,/usr/share/doc/libc-dev-bin/changelog.gz,/usr/share/doc/libc-dev-bin/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/gencat.1.gz",
+      "purl": "pkg:deb/debian/libc-dev-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc-l10n",
+      "type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/libc-l10n,/usr/share/doc/libc-l10n/changelog.Debian.gz,/usr/share/doc/libc-l10n/changelog.gz,/usr/share/doc/libc-l10n/copyright,/usr/share/locale,/usr/share/locale/be,/usr/share/locale/be/LC_MESSAGES,/usr/share/locale/be/LC_MESSAGES/libc.mo,/usr/share/locale/bg,/usr/share/locale/bg/LC_MESSAGES,/usr/share/locale/bg/LC_MESSAGES/libc.mo,/usr/share/locale/ca,/usr/share/locale/ca/LC_MESSAGES,/usr/share/locale/ca/LC_MESSAGES/libc.mo,/usr/share/locale/cs,/usr/share/locale/cs/LC_MESSAGES",
+      "purl": "pkg:deb/debian/libc-l10n@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc6",
+      "type": "deb",
+      "location": "/.,/etc,/etc/ld.so.conf.d,/etc/ld.so.conf.d/x86_64-linux-gnu.conf,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/gconv,/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so,/usr/lib/x86_64-linux-gnu/gconv/ARMSCII-8.so,/usr/lib/x86_64-linux-gnu/gconv/ASMO_449.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5.so,/usr/lib/x86_64-linux-gnu/gconv/BIG5HKSCS.so,/usr/lib/x86_64-linux-gnu/gconv/BRF.so,/usr/lib/x86_64-linux-gnu/gconv/CP10007.so,/usr/lib/x86_64-linux-gnu/gconv/CP1125.so,/usr/lib/x86_64-linux-gnu/gconv/CP1250.so,/usr/lib/x86_64-linux-gnu/gconv/CP1251.so,/usr/lib/x86_64-linux-gnu/gconv/CP1252.so,/usr/lib/x86_64-linux-gnu/gconv/CP1253.so",
+      "purl": "pkg:deb/debian/libc6@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libc6-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/aio.h,/usr/include/aliases.h,/usr/include/alloca.h,/usr/include/ar.h,/usr/include/argp.h,/usr/include/argz.h,/usr/include/arpa,/usr/include/arpa/ftp.h,/usr/include/arpa/inet.h,/usr/include/arpa/nameser.h,/usr/include/arpa/nameser_compat.h,/usr/include/arpa/telnet.h,/usr/include/arpa/tftp.h,/usr/include/assert.h,/usr/include/byteswap.h,/usr/include/complex.h,/usr/include/cpio.h",
+      "purl": "pkg:deb/debian/libc6-dev@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "locales",
+      "type": "deb",
+      "location": "/.,/etc,/etc/locale.alias,/usr,/usr/lib,/usr/lib/locale,/usr/sbin,/usr/sbin/locale-gen,/usr/sbin/update-locale,/usr/sbin/validlocale,/usr/share,/usr/share/doc,/usr/share/doc/locales,/usr/share/doc/locales/NEWS.Debian.gz,/usr/share/doc/locales/README.Debian,/usr/share/doc/locales/changelog.Debian.gz,/usr/share/doc/locales/changelog.gz,/usr/share/doc/locales/copyright,/usr/share/i18n,/usr/share/i18n/SUPPORTED",
+      "purl": "pkg:deb/debian/locales@2.41-12%2Bdeb13u1?arch=all&distro=debian-13&upstream=glibc"
+    },
+    {
+      "package": "libpng-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/libpng16-config,/usr/include,/usr/include/libpng16,/usr/include/libpng16/png.h,/usr/include/libpng16/pngconf.h,/usr/include/libpng16/pnglibconf.h,/usr/include/png.h,/usr/include/pngconf.h,/usr/include/pnglibconf.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfigVersion.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets-none.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets.cmake",
+      "purl": "pkg:deb/debian/libpng-dev@1.6.48-1%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=libpng1.6"
+    },
+    {
+      "package": "libpng16-16t64",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libpng16.so.16.48.0,/usr/share,/usr/share/doc,/usr/share/doc/libpng16-16t64,/usr/share/doc/libpng16-16t64/ANNOUNCE,/usr/share/doc/libpng16-16t64/README.gz,/usr/share/doc/libpng16-16t64/TODO,/usr/share/doc/libpng16-16t64/changelog.Debian.gz,/usr/share/doc/libpng16-16t64/changelog.gz,/usr/share/doc/libpng16-16t64/copyright,/usr/share/doc/libpng16-16t64/libpng-manual.txt.gz,/usr/share/doc-base,/usr/share/doc-base/libpng16-16t64.libpng16,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/libpng16-16t64",
+      "purl": "pkg:deb/debian/libpng16-16t64@1.6.48-1%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=libpng1.6"
+    },
+    {
+      "package": "libpng-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/libpng16-config,/usr/include,/usr/include/libpng16,/usr/include/libpng16/png.h,/usr/include/libpng16/pngconf.h,/usr/include/libpng16/pnglibconf.h,/usr/include/png.h,/usr/include/pngconf.h,/usr/include/pnglibconf.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfigVersion.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets-none.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets.cmake",
+      "purl": "pkg:deb/debian/libpng-dev@1.6.48-1%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=libpng1.6"
+    },
+    {
+      "package": "libpng16-16t64",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libpng16.so.16.48.0,/usr/share,/usr/share/doc,/usr/share/doc/libpng16-16t64,/usr/share/doc/libpng16-16t64/ANNOUNCE,/usr/share/doc/libpng16-16t64/README.gz,/usr/share/doc/libpng16-16t64/TODO,/usr/share/doc/libpng16-16t64/changelog.Debian.gz,/usr/share/doc/libpng16-16t64/changelog.gz,/usr/share/doc/libpng16-16t64/copyright,/usr/share/doc/libpng16-16t64/libpng-manual.txt.gz,/usr/share/doc-base,/usr/share/doc-base/libpng16-16t64.libpng16,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/libpng16-16t64",
+      "purl": "pkg:deb/debian/libpng16-16t64@1.6.48-1%2Bdeb13u1?arch=amd64&distro=debian-13&upstream=libpng1.6"
+    },
+    {
+      "package": "libexpat1",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libexpat.so.1.10.2,/usr/lib/x86_64-linux-gnu/libexpatw.so.1.10.2,/usr/share,/usr/share/doc,/usr/share/doc/libexpat1,/usr/share/doc/libexpat1/AUTHORS,/usr/share/doc/libexpat1/changelog.Debian.gz,/usr/share/doc/libexpat1/changelog.gz,/usr/share/doc/libexpat1/copyright,/usr/lib/x86_64-linux-gnu/libexpat.so.1,/usr/lib/x86_64-linux-gnu/libexpatw.so.1",
+      "purl": "pkg:deb/debian/libexpat1@2.7.1-2?arch=amd64&distro=debian-13&upstream=expat"
+    },
+    {
+      "package": "libexpat1-dev",
+      "type": "deb",
+      "location": "/.,/usr,/usr/include,/usr/include/expat.h,/usr/include/expat_external.h,/usr/include/x86_64-linux-gnu,/usr/include/x86_64-linux-gnu/expat_config.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-config-version.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-config.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat-noconfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/expat-2.7.1/expat.cmake,/usr/lib/x86_64-linux-gnu/libexpat.a,/usr/lib/x86_64-linux-gnu/libexpatw.a,/usr/lib/x86_64-linux-gnu/pkgconfig,/usr/lib/x86_64-linux-gnu/pkgconfig/expat.pc,/usr/share",
+      "purl": "pkg:deb/debian/libexpat1-dev@2.7.1-2?arch=amd64&distro=debian-13&upstream=expat"
+    },
+    {
+      "package": "dirmngr",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/dirmngr,/usr/bin/dirmngr-client,/usr/lib,/usr/lib/gnupg,/usr/lib/gnupg/dirmngr_ldap,/usr/lib/systemd,/usr/lib/systemd/user,/usr/lib/systemd/user/dirmngr.service,/usr/lib/systemd/user/dirmngr.socket,/usr/share,/usr/share/doc,/usr/share/doc/dirmngr,/usr/share/doc/dirmngr/AUTHORS.gz,/usr/share/doc/dirmngr/KEYSERVER,/usr/share/doc/dirmngr/NEWS.Debian.gz,/usr/share/doc/dirmngr/NEWS.gz,/usr/share/doc/dirmngr/README.Debian",
+      "purl": "pkg:deb/debian/dirmngr@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1"
+    },
+    {
+      "package": "gnupg",
+      "type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/gnupg,/usr/share/doc/gnupg/DCO,/usr/share/doc/gnupg/DETAILS.gz,/usr/share/doc/gnupg/FAQ,/usr/share/doc/gnupg/HACKING.gz,/usr/share/doc/gnupg/KEYSERVER,/usr/share/doc/gnupg/NEWS.Debian.gz,/usr/share/doc/gnupg/NEWS.gz,/usr/share/doc/gnupg/OpenPGP.gz,/usr/share/doc/gnupg/README.Debian,/usr/share/doc/gnupg/README.gz,/usr/share/doc/gnupg/THANKS.gz,/usr/share/doc/gnupg/TODO,/usr/share/doc/gnupg/TRANSLATE,/usr/share/doc/gnupg/changelog.Debian.gz,/usr/share/doc/gnupg/changelog.gz",
+      "purl": "pkg:deb/debian/gnupg@2.4.7-21%2Bdeb13u1?arch=all&distro=debian-13&upstream=gnupg2"
+    },
+    {
+      "package": "gnupg-l10n",
+      "type": "deb",
+      "location": "/.,/usr,/usr/share,/usr/share/doc,/usr/share/doc/gnupg-l10n,/usr/share/doc/gnupg-l10n/NEWS.Debian.gz,/usr/share/doc/gnupg-l10n/changelog.Debian.gz,/usr/share/doc/gnupg-l10n/changelog.gz,/usr/share/doc/gnupg-l10n/copyright,/usr/share/gnupg,/usr/share/gnupg/help.be.txt,/usr/share/gnupg/help.ca.txt,/usr/share/gnupg/help.cs.txt,/usr/share/gnupg/help.da.txt,/usr/share/gnupg/help.de.txt,/usr/share/gnupg/help.el.txt,/usr/share/gnupg/help.eo.txt,/usr/share/gnupg/help.es.txt,/usr/share/gnupg/help.et.txt,/usr/share/gnupg/help.fi.txt",
+      "purl": "pkg:deb/debian/gnupg-l10n@2.4.7-21%2Bdeb13u1?arch=all&distro=debian-13&upstream=gnupg2"
+    },
+    {
+      "package": "gnupg2",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/share,/usr/share/doc,/usr/share/doc/gnupg2,/usr/share/doc/gnupg2/NEWS.Debian.gz,/usr/share/doc/gnupg2/changelog.Debian.gz,/usr/share/doc/gnupg2/changelog.gz,/usr/share/doc/gnupg2/copyright,/usr/share/man,/usr/share/man/man1,/usr/bin/gpg2,/usr/share/man/man1/gpg2.1.gz",
+      "purl": "pkg:deb/debian/gnupg2@2.4.7-21%2Bdeb13u1?arch=all&distro=debian-13"
+    },
+    {
+      "package": "gpg",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gpg,/usr/lib,/usr/lib/gnupg,/usr/lib/gnupg/keyboxd,/usr/lib/systemd,/usr/lib/systemd/user,/usr/lib/systemd/user/keyboxd.service,/usr/lib/systemd/user/keyboxd.socket,/usr/share,/usr/share/doc,/usr/share/doc/gpg,/usr/share/doc/gpg/NEWS.Debian.gz,/usr/share/doc/gpg/README.Debian,/usr/share/doc/gpg/changelog.Debian.amd64.gz,/usr/share/doc/gpg/changelog.Debian.gz,/usr/share/doc/gpg/changelog.gz,/usr/share/doc/gpg/copyright",
+      "purl": "pkg:deb/debian/gpg@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1"
+    },
+    {
+      "package": "gpg-agent",
+      "type": "deb",
+      "location": "/.,/etc,/etc/X11,/etc/X11/Xsession.d,/etc/X11/Xsession.d/90gpg-agent,/etc/logcheck,/etc/logcheck/ignore.d.server,/etc/logcheck/ignore.d.server/gpg-agent,/usr,/usr/bin,/usr/bin/gpg-agent,/usr/lib,/usr/lib/gnupg,/usr/lib/gnupg/gpg-check-pattern,/usr/lib/gnupg/gpg-preset-passphrase,/usr/lib/gnupg/gpg-protect-tool,/usr/lib/gnupg2,/usr/lib/systemd,/usr/lib/systemd/user,/usr/lib/systemd/user/gpg-agent-browser.socket",
+      "purl": "pkg:deb/debian/gpg-agent@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1"
+    },
+    {
+      "package": "gpgconf",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gpg-connect-agent,/usr/bin/gpgconf,/usr/share,/usr/share/doc,/usr/share/doc/gpgconf,/usr/share/doc/gpgconf/NEWS.Debian.gz,/usr/share/doc/gpgconf/changelog.Debian.amd64.gz,/usr/share/doc/gpgconf/changelog.Debian.gz,/usr/share/doc/gpgconf/changelog.gz,/usr/share/doc/gpgconf/copyright,/usr/share/doc/gpgconf/examples,/usr/share/doc/gpgconf/examples/gpgconf.conf,/usr/share/gnupg,/usr/share/gnupg/distsigkey.gpg,/usr/share/lintian,/usr/share/lintian/overrides,/usr/share/lintian/overrides/gpgconf",
+      "purl": "pkg:deb/debian/gpgconf@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1"
+    },
+    {
+      "package": "gpgsm",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/gpgsm,/usr/share,/usr/share/doc,/usr/share/doc/gpgsm,/usr/share/doc/gpgsm/NEWS.Debian.gz,/usr/share/doc/gpgsm/changelog.Debian.amd64.gz,/usr/share/doc/gpgsm/changelog.Debian.gz,/usr/share/doc/gpgsm/changelog.gz,/usr/share/doc/gpgsm/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/gpgsm.1.gz",
+      "purl": "pkg:deb/debian/gpgsm@2.4.7-21%2Bdeb13u1%2Bb1?arch=amd64&distro=debian-13&upstream=gnupg2%402.4.7-21%2Bdeb13u1"
+    },
+    {
+      "package": "jaraco-context",
+      "type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/jaraco-context@5.3.0"
+    },
+    {
+      "package": "wheel",
+      "type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/wheel@0.45.1"
+    }
+  ]
+}

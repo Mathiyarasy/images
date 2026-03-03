@@ -1,0 +1,17 @@
+{
+  "description": "Allowlist for known false positives in Docker Scout vulnerability scans",
+  "last_updated": "2026-01-29",
+  "entries": [
+    {
+      "cve": "EXAMPLE-CVE-2024-0001",
+      "package": "example-package",
+      "reason": "False positive - package is not actually installed or version mismatch",
+      "expires": "2026-12-31",
+      "added_by": "auto-generated"
+    }
+  ],
+  "global_ignores": {
+    "packages": [],
+    "cve_patterns": []
+  }
+}

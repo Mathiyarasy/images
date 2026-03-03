@@ -196,6 +196,8 @@ get_actual_installed_version() {
     local image="$1"
     local package="$2"
     local pkg_type="$3"
+    local detected_version="$4"
+    local purl="$5"
     
     local version=""
     
@@ -203,6 +205,14 @@ get_actual_installed_version() {
         "deb"|"debian")
             version=$(docker run --rm --platform "$PLATFORM" "$image" \
                 dpkg-query -W -f='${Version}' "$package" 2>/dev/null || echo "")
+
+            if [ -z "$version" ]; then
+                version=$(docker run --rm --platform "$PLATFORM" "$image" sh -lc '
+                    pkg="$1"
+                    dpkg-query -W -f="\${source:Package} \${Version}\n" 2>/dev/null \
+                        | awk -v p="$pkg" "\$1 == p { print \$2; exit }"
+                ' sh "$package" 2>/dev/null || echo "")
+            fi
             ;;
         "rpm"|"redhat")
             version=$(docker run --rm --platform "$PLATFORM" "$image" \
@@ -214,12 +224,139 @@ get_actual_installed_version() {
                 apk list -I "$package" 2>/dev/null | head -1 | awk '{print $1}' | sed "s/^${package}-//" || echo "")
             ;;
         "npm"|"node")
+            local npm_package="$package"
+            if [[ "$purl" == pkg:npm/* ]]; then
+                npm_package=$(echo "${purl#pkg:npm/}" | sed 's/@[^@]*$//' | sed 's/%40/@/g; s/%2[Ff]/\//g')
+            fi
+
             version=$(docker run --rm --platform "$PLATFORM" "$image" \
-                npm list -g "$package" --depth=0 2>/dev/null | grep "$package@" | sed 's/.*@//' || echo "")
+                npm list -g "$npm_package" --depth=0 2>/dev/null | grep "$npm_package@" | awk -F'@' '{print $NF}' || echo "")
+
+            if [ -z "$version" ]; then
+                version=$(docker run --rm --platform "$PLATFORM" "$image" node -e '
+                    const cp = require("child_process");
+                    const fs = require("fs");
+                    const path = require("path");
+
+                    const wanted = process.argv[1] || "";
+                    const detected = process.argv[2] || "";
+
+                    function unique(values) {
+                        return [...new Set(values.filter(Boolean))];
+                    }
+
+                    const roots = [
+                        "/usr/local/lib/node_modules",
+                        "/usr/lib/node_modules"
+                    ];
+
+                    try {
+                        const npmRoot = cp.execSync("npm root -g", { stdio: ["ignore", "pipe", "ignore"] }).toString().trim();
+                        if (npmRoot) {
+                            roots.push(npmRoot);
+                        }
+                    } catch (_) {}
+
+                    const scanRoots = unique(roots).filter((dir) => {
+                        try {
+                            return fs.statSync(dir).isDirectory();
+                        } catch (_) {
+                            return false;
+                        }
+                    });
+
+                    const seenDirs = new Set();
+                    const foundVersions = [];
+
+                    for (const root of scanRoots) {
+                        const stack = [root];
+                        while (stack.length > 0) {
+                            const current = stack.pop();
+                            if (seenDirs.has(current)) {
+                                continue;
+                            }
+                            seenDirs.add(current);
+
+                            let entries = [];
+                            try {
+                                entries = fs.readdirSync(current, { withFileTypes: true });
+                            } catch (_) {
+                                continue;
+                            }
+
+                            for (const entry of entries) {
+                                const full = path.join(current, entry.name);
+                                if (entry.isDirectory()) {
+                                    stack.push(full);
+                                    continue;
+                                }
+
+                                if (!entry.isFile() || entry.name !== "package.json") {
+                                    continue;
+                                }
+
+                                try {
+                                    const parsed = JSON.parse(fs.readFileSync(full, "utf8"));
+                                    if ((parsed.name || "") === wanted && parsed.version) {
+                                        foundVersions.push(parsed.version);
+                                    }
+                                } catch (_) {}
+                            }
+                        }
+                    }
+
+                    const uniqueVersions = unique(foundVersions);
+
+                    if (detected && detected !== "unknown" && uniqueVersions.includes(detected)) {
+                        console.log(detected);
+                        process.exit(0);
+                    }
+
+                    if (uniqueVersions.length === 1) {
+                        console.log(uniqueVersions[0]);
+                    }
+                ' "$npm_package" "$detected_version" 2>/dev/null | head -1 || echo "")
+            fi
             ;;
         "pip"|"pypi"|"python")
             version=$(docker run --rm --platform "$PLATFORM" "$image" \
                 pip show "$package" 2>/dev/null | grep "^Version:" | awk '{print $2}' || echo "")
+
+            if [ -z "$version" ]; then
+                version=$(docker run --rm --platform "$PLATFORM" "$image" bash -lc '
+                    pkg="$1"
+                    detected="$2"
+
+                    normalize_name() {
+                        echo "$1" | tr "[:upper:]_" "[:lower:]-"
+                    }
+
+                    pkg_norm=$(normalize_name "$pkg")
+                    best=""
+
+                    while IFS= read -r whl; do
+                        base=$(basename "$whl")
+                        name_part=$(echo "$base" | cut -d- -f1)
+                        ver_part=$(echo "$base" | cut -d- -f2)
+                        name_norm=$(normalize_name "$name_part")
+
+                        if [ "$name_norm" = "$pkg_norm" ]; then
+                            if [ -n "$detected" ] && [ "$detected" != "unknown" ] && [ "$ver_part" = "$detected" ]; then
+                                echo "$ver_part"
+                                exit 0
+                            fi
+
+                            if [ -z "$best" ] && [ -n "$ver_part" ]; then
+                                best="$ver_part"
+                            fi
+                        fi
+                    done < <(find /usr/local /opt /home -type f -name "*.whl" 2>/dev/null)
+
+                    if [ -n "$best" ]; then
+                        echo "$best"
+                    fi
+                ' bash "$package" "$detected_version" 2>/dev/null | head -1 || echo "")
+            fi
             ;;
         "gem"|"ruby")
             version=$(docker run --rm --platform "$PLATFORM" "$image" \
@@ -261,6 +398,17 @@ find_package_location() {
         "deb"|"debian")
             locations=$(docker run --rm --platform "$PLATFORM" "$image" \
                 dpkg -L "$package" 2>/dev/null | head -20 | tr '\n' ',' | sed 's/,$//' || echo "")
+
+            if [ -z "$locations" ]; then
+                locations=$(docker run --rm --platform "$PLATFORM" "$image" sh -lc '
+                    pkg="$1"
+                    bin_pkg=$(dpkg-query -W -f="\${Package} \${source:Package}\n" 2>/dev/null \
+                        | awk -v p="$pkg" "\$2 == p { print \$1; exit }")
+                    if [ -n "$bin_pkg" ]; then
+                        dpkg -L "$bin_pkg" 2>/dev/null | head -20 | tr "\n" "," | sed "s/,$//"
+                    fi
+                ' sh "$package" 2>/dev/null || echo "")
+            fi
             ;;
         "rpm"|"redhat")
             locations=$(docker run --rm --platform "$PLATFORM" "$image" \
@@ -278,6 +426,31 @@ find_package_location() {
         "pip"|"pypi"|"python")
             locations=$(docker run --rm --platform "$PLATFORM" "$image" \
                 pip show "$package" 2>/dev/null | grep "^Location:" | awk '{print $2}' || echo "")
+
+            if [ -z "$locations" ]; then
+                locations=$(docker run --rm --platform "$PLATFORM" "$image" sh -lc '
+                    pkg="$1"
+
+                    normalize_name() {
+                        echo "$1" | tr "[:upper:]_" "[:lower:]-"
+                    }
+
+                    pkg_norm=$(normalize_name "$pkg")
+
+                    find /usr/local /opt /home -type f -name "*.whl" 2>/dev/null \
+                        | while IFS= read -r whl; do
+                            base=$(basename "$whl")
+                            name_part=$(echo "$base" | cut -d- -f1)
+                            name_norm=$(normalize_name "$name_part")
+                            if [ "$name_norm" = "$pkg_norm" ]; then
+                                echo "$whl"
+                            fi
+                        done \
+                        | head -20 \
+                        | tr "\n" "," \
+                        | sed "s/,$//"
+                ' sh "$package" 2>/dev/null || echo "")
+            fi
             ;;
         *)
             # Try to find using locate or find
@@ -412,14 +585,18 @@ parse_vulnerabilities() {
     .runs[0] as $run |
     [($run.results // [])[] | . as $result |
         (($run.tool.driver.rules // [])[] | select(.id == $result.ruleId)) as $rule |
+        ($rule.properties.purls[0] // "") as $purl |
         {
             cve: $result.ruleId,
             severity: ($rule.properties.cvssV3_severity // $rule.properties.severity // "unknown"),
             cvss_score: ($rule.properties."security-severity" // "0"),
-            package: (($rule.properties.purls[0] // "") | split("@")[0] | split("/")[-1]),
-            version: (($rule.properties.purls[0] // "@unknown") | split("@")[1] | split("?")[0]),
+            package: (if ($purl | startswith("pkg:npm/"))
+                then ($purl | sub("^pkg:npm/"; "") | split("@")[0] | gsub("%40"; "@") | gsub("%2[Ff]"; "/"))
+                else ($purl | split("@")[0] | split("/")[-1])
+                end),
+            version: (($purl // "@unknown") | split("@")[1] | split("?")[0]),
             fixed_version: ($rule.properties.fixed_version // "none"),
-            purl: ($rule.properties.purls[0] // ""),
+            purl: $purl,
             description: (($rule.help.text // "") | split("\n")[0])
         }
     ] | unique_by(.cve + .package)' "$vuln_file" 2>/dev/null || echo "[]"
@@ -497,7 +674,7 @@ filter_vulnerabilities() {
             fi
             
             # Get actual installed version
-            local actual_version=$(get_actual_installed_version "$image" "$package" "$pkg_type")
+            local actual_version=$(get_actual_installed_version "$image" "$package" "$pkg_type" "$detected_version" "$purl")
             
             # Get package location
             local pkg_location=$(find_package_location "$image" "$package" "$pkg_type")
@@ -609,6 +786,14 @@ filter_vulnerabilities() {
     echo -e "Allowlisted:       ${BLUE}$allowlist_count${NC}"
     echo ""
     echo -e "Report saved: ${BLUE}$filtered_file${NC}"
+
+    # Remove scanned image to reduce disk usage (best-effort)
+    echo "Removing scanned image..."
+    if docker rmi "$image" > /dev/null 2>&1; then
+        echo -e "${GREEN}✓ Removed image: $image${NC}"
+    else
+        echo -e "${YELLOW}Could not remove image (it may be in use): $image${NC}"
+    fi
     
     return 0
 }

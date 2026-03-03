@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/go:latest",
+    "platform": "linux/amd64",
+    "scan_date": "2026-03-03T12:05:36Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 3,
+    "verified_cve_count": 1,
+    "false_positive_count": 2,
+    "allowlisted_count": 0,
+    "reduction_percentage": 66
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2025-68121",
+      "package": "stdlib",
+      "detected_version": "1.25.5",
+      "actual_version": "1.25.6",
+      "fixed_version": "1.25.7",
+      "severity": "CRITICAL",
+      "package_type": "go",
+      "location": "/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h,/usr/include/x86_64-linux-gnu/bits/stdlib-ldbl.h,/usr/include/x86_64-linux-gnu/bits/stdlib-float.h,/usr/include/x86_64-linux-gnu/bits/stdlib.h,/usr/include/c++/14/cstdlib,/usr/include/c++/14/tr1/cstdlib,/usr/include/c++/14/tr1/stdlib.h,/usr/include/c++/14/stdlib.h,/usr/include/stdlib.h,/usr/share/lintian/overrides/libpython3.13-stdlib",
+      "purl": "pkg:golang/stdlib@1.25.5",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [
+    {
+      "cve": "CVE-2025-61726",
+      "package": "stdlib",
+      "detected_version": "1.25.5",
+      "actual_version": "1.25.6",
+      "fixed_version": "1.25.6",
+      "severity": "HIGH",
+      "package_type": "go",
+      "location": "/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h,/usr/include/x86_64-linux-gnu/bits/stdlib-ldbl.h,/usr/include/x86_64-linux-gnu/bits/stdlib-float.h,/usr/include/x86_64-linux-gnu/bits/stdlib.h,/usr/include/c++/14/cstdlib,/usr/include/c++/14/tr1/cstdlib,/usr/include/c++/14/tr1/stdlib.h,/usr/include/c++/14/stdlib.h,/usr/include/stdlib.h,/usr/share/lintian/overrides/libpython3.13-stdlib",
+      "purl": "pkg:golang/stdlib@1.25.5",
+      "false_positive": true,
+      "reason": "Actual version (1.25.6) >= fixed version (1.25.6)"
+    },
+    {
+      "cve": "CVE-2026-27896",
+      "package": "go-sdk",
+      "detected_version": "0.8.0",
+      "actual_version": "1.25.6",
+      "fixed_version": "1.3.1",
+      "severity": "HIGH",
+      "package_type": "go",
+      "location": "unknown",
+      "purl": "pkg:golang/github.com/modelcontextprotocol/go-sdk@0.8.0",
+      "false_positive": true,
+      "reason": "Actual version (1.25.6) >= fixed version (1.3.1)"
+    }
+  ],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "stdlib",
+      "type": "go",
+      "location": "/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h,/usr/include/x86_64-linux-gnu/bits/stdlib-ldbl.h,/usr/include/x86_64-linux-gnu/bits/stdlib-float.h,/usr/include/x86_64-linux-gnu/bits/stdlib.h,/usr/include/c++/14/cstdlib,/usr/include/c++/14/tr1/cstdlib,/usr/include/c++/14/tr1/stdlib.h,/usr/include/c++/14/stdlib.h,/usr/include/stdlib.h,/usr/share/lintian/overrides/libpython3.13-stdlib",
+      "purl": "pkg:golang/stdlib@1.25.5"
+    },
+    {
+      "package": "stdlib",
+      "type": "go",
+      "location": "/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h,/usr/include/x86_64-linux-gnu/bits/stdlib-ldbl.h,/usr/include/x86_64-linux-gnu/bits/stdlib-float.h,/usr/include/x86_64-linux-gnu/bits/stdlib.h,/usr/include/c++/14/cstdlib,/usr/include/c++/14/tr1/cstdlib,/usr/include/c++/14/tr1/stdlib.h,/usr/include/c++/14/stdlib.h,/usr/include/stdlib.h,/usr/share/lintian/overrides/libpython3.13-stdlib",
+      "purl": "pkg:golang/stdlib@1.25.5"
+    },
+    {
+      "package": "go-sdk",
+      "type": "go",
+      "location": "unknown",
+      "purl": "pkg:golang/github.com/modelcontextprotocol/go-sdk@0.8.0"
+    }
+  ]
+}

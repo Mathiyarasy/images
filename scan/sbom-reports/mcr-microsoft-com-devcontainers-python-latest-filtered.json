@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/python:latest",
+    "platform": "linux/amd64",
+    "scan_date": "2026-03-03T12:00:21Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 6,
+    "verified_cve_count": 6,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2026-2004",
+      "package": "postgresql-17",
+      "detected_version": "17.7-0%2Bdeb13u1",
+      "actual_version": "17.7-0+deb13u1",
+      "fixed_version": "17.8-0+deb13u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pg_config,/usr/include,/usr/include/postgresql,/usr/include/postgresql/internal,/usr/include/postgresql/internal/c.h,/usr/include/postgresql/internal/fe-auth-sasl.h,/usr/include/postgresql/internal/libpq,/usr/include/postgresql/internal/libpq/pqcomm.h,/usr/include/postgresql/internal/libpq/protocol.h,/usr/include/postgresql/internal/libpq-int.h,/usr/include/postgresql/internal/port.h,/usr/include/postgresql/internal/postgres_fe.h,/usr/include/postgresql/internal/pqexpbuffer.h,/usr/include/postgresql/libpq,/usr/include/postgresql/libpq/libpq-fs.h,/usr/include/postgresql/libpq-events.h,/usr/include/postgresql/libpq-fe.h",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2005",
+      "package": "postgresql-17",
+      "detected_version": "17.7-0%2Bdeb13u1",
+      "actual_version": "17.7-0+deb13u1",
+      "fixed_version": "17.8-0+deb13u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pg_config,/usr/include,/usr/include/postgresql,/usr/include/postgresql/internal,/usr/include/postgresql/internal/c.h,/usr/include/postgresql/internal/fe-auth-sasl.h,/usr/include/postgresql/internal/libpq,/usr/include/postgresql/internal/libpq/pqcomm.h,/usr/include/postgresql/internal/libpq/protocol.h,/usr/include/postgresql/internal/libpq-int.h,/usr/include/postgresql/internal/port.h,/usr/include/postgresql/internal/postgres_fe.h,/usr/include/postgresql/internal/pqexpbuffer.h,/usr/include/postgresql/libpq,/usr/include/postgresql/libpq/libpq-fs.h,/usr/include/postgresql/libpq-events.h,/usr/include/postgresql/libpq-fe.h",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2006",
+      "package": "postgresql-17",
+      "detected_version": "17.7-0%2Bdeb13u1",
+      "actual_version": "17.7-0+deb13u1",
+      "fixed_version": "17.8-0+deb13u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pg_config,/usr/include,/usr/include/postgresql,/usr/include/postgresql/internal,/usr/include/postgresql/internal/c.h,/usr/include/postgresql/internal/fe-auth-sasl.h,/usr/include/postgresql/internal/libpq,/usr/include/postgresql/internal/libpq/pqcomm.h,/usr/include/postgresql/internal/libpq/protocol.h,/usr/include/postgresql/internal/libpq-int.h,/usr/include/postgresql/internal/port.h,/usr/include/postgresql/internal/postgres_fe.h,/usr/include/postgresql/internal/pqexpbuffer.h,/usr/include/postgresql/libpq,/usr/include/postgresql/libpq/libpq-fs.h,/usr/include/postgresql/libpq-events.h,/usr/include/postgresql/libpq-fe.h",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24049",
+      "package": "wheel",
+      "detected_version": "0.45.1",
+      "actual_version": "0.45.1",
+      "fixed_version": "0.46.2",
+      "severity": "HIGH",
+      "package_type": "pip",
+      "location": "/usr/local/py-utils/venvs/virtualenv/lib/python3.14/site-packages/virtualenv/seed/wheels/embed/wheel-0.45.1-py3-none-any.whl,/usr/local/py-utils/venvs/pipenv/lib/python3.14/site-packages/virtualenv/seed/wheels/embed/wheel-0.45.1-py3-none-any.whl",
+      "purl": "pkg:pypi/wheel@0.45.1",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-25646",
+      "package": "libpng1.6",
+      "detected_version": "1.6.48-1%2Bdeb13u1",
+      "actual_version": "1.6.48-1+deb13u1",
+      "fixed_version": "1.6.48-1+deb13u3",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/libpng16-config,/usr/include,/usr/include/libpng16,/usr/include/libpng16/png.h,/usr/include/libpng16/pngconf.h,/usr/include/libpng16/pnglibconf.h,/usr/include/png.h,/usr/include/pngconf.h,/usr/include/pnglibconf.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfigVersion.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets-none.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets.cmake",
+      "purl": "pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2781",
+      "package": "nss",
+      "detected_version": "2%3A3.110-1",
+      "actual_version": "2:3.110-1",
+      "fixed_version": "2:3.110-1+deb13u1",
+      "severity": "CRITICAL",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libfreebl3.chk,/usr/lib/x86_64-linux-gnu/libfreebl3.so,/usr/lib/x86_64-linux-gnu/libfreeblpriv3.chk,/usr/lib/x86_64-linux-gnu/libfreeblpriv3.so,/usr/lib/x86_64-linux-gnu/libnss3.so,/usr/lib/x86_64-linux-gnu/libnssckbi.so,/usr/lib/x86_64-linux-gnu/libnssdbm3.chk,/usr/lib/x86_64-linux-gnu/libnssdbm3.so,/usr/lib/x86_64-linux-gnu/libnssutil3.so,/usr/lib/x86_64-linux-gnu/libsmime3.so,/usr/lib/x86_64-linux-gnu/libsoftokn3.chk,/usr/lib/x86_64-linux-gnu/libsoftokn3.so,/usr/lib/x86_64-linux-gnu/libssl3.so,/usr/share,/usr/share/doc,/usr/share/doc/libnss3",
+      "purl": "pkg:deb/debian/nss@2%3A3.110-1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "postgresql-17",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pg_config,/usr/include,/usr/include/postgresql,/usr/include/postgresql/internal,/usr/include/postgresql/internal/c.h,/usr/include/postgresql/internal/fe-auth-sasl.h,/usr/include/postgresql/internal/libpq,/usr/include/postgresql/internal/libpq/pqcomm.h,/usr/include/postgresql/internal/libpq/protocol.h,/usr/include/postgresql/internal/libpq-int.h,/usr/include/postgresql/internal/port.h,/usr/include/postgresql/internal/postgres_fe.h,/usr/include/postgresql/internal/pqexpbuffer.h,/usr/include/postgresql/libpq,/usr/include/postgresql/libpq/libpq-fs.h,/usr/include/postgresql/libpq-events.h,/usr/include/postgresql/libpq-fe.h",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "postgresql-17",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pg_config,/usr/include,/usr/include/postgresql,/usr/include/postgresql/internal,/usr/include/postgresql/internal/c.h,/usr/include/postgresql/internal/fe-auth-sasl.h,/usr/include/postgresql/internal/libpq,/usr/include/postgresql/internal/libpq/pqcomm.h,/usr/include/postgresql/internal/libpq/protocol.h,/usr/include/postgresql/internal/libpq-int.h,/usr/include/postgresql/internal/port.h,/usr/include/postgresql/internal/postgres_fe.h,/usr/include/postgresql/internal/pqexpbuffer.h,/usr/include/postgresql/libpq,/usr/include/postgresql/libpq/libpq-fs.h,/usr/include/postgresql/libpq-events.h,/usr/include/postgresql/libpq-fe.h",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "postgresql-17",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pg_config,/usr/include,/usr/include/postgresql,/usr/include/postgresql/internal,/usr/include/postgresql/internal/c.h,/usr/include/postgresql/internal/fe-auth-sasl.h,/usr/include/postgresql/internal/libpq,/usr/include/postgresql/internal/libpq/pqcomm.h,/usr/include/postgresql/internal/libpq/protocol.h,/usr/include/postgresql/internal/libpq-int.h,/usr/include/postgresql/internal/port.h,/usr/include/postgresql/internal/postgres_fe.h,/usr/include/postgresql/internal/pqexpbuffer.h,/usr/include/postgresql/libpq,/usr/include/postgresql/libpq/libpq-fs.h,/usr/include/postgresql/libpq-events.h,/usr/include/postgresql/libpq-fe.h",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "wheel",
+      "type": "pip",
+      "location": "/usr/local/py-utils/venvs/virtualenv/lib/python3.14/site-packages/virtualenv/seed/wheels/embed/wheel-0.45.1-py3-none-any.whl,/usr/local/py-utils/venvs/pipenv/lib/python3.14/site-packages/virtualenv/seed/wheels/embed/wheel-0.45.1-py3-none-any.whl",
+      "purl": "pkg:pypi/wheel@0.45.1"
+    },
+    {
+      "package": "libpng1.6",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/libpng16-config,/usr/include,/usr/include/libpng16,/usr/include/libpng16/png.h,/usr/include/libpng16/pngconf.h,/usr/include/libpng16/pnglibconf.h,/usr/include/png.h,/usr/include/pngconf.h,/usr/include/pnglibconf.h,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfig.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfigVersion.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets-none.cmake,/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets.cmake",
+      "purl": "pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "nss",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libfreebl3.chk,/usr/lib/x86_64-linux-gnu/libfreebl3.so,/usr/lib/x86_64-linux-gnu/libfreeblpriv3.chk,/usr/lib/x86_64-linux-gnu/libfreeblpriv3.so,/usr/lib/x86_64-linux-gnu/libnss3.so,/usr/lib/x86_64-linux-gnu/libnssckbi.so,/usr/lib/x86_64-linux-gnu/libnssdbm3.chk,/usr/lib/x86_64-linux-gnu/libnssdbm3.so,/usr/lib/x86_64-linux-gnu/libnssutil3.so,/usr/lib/x86_64-linux-gnu/libsmime3.so,/usr/lib/x86_64-linux-gnu/libsoftokn3.chk,/usr/lib/x86_64-linux-gnu/libsoftokn3.so,/usr/lib/x86_64-linux-gnu/libssl3.so,/usr/share,/usr/share/doc,/usr/share/doc/libnss3",
+      "purl": "pkg:deb/debian/nss@2%3A3.110-1?os_distro=trixie&os_name=debian&os_version=13"
+    }
+  ]
+}

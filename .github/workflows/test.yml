@@ -1,0 +1,159 @@
+name: SBOM vulnerability scan
+
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: 'Image name under mcr.microsoft.com/devcontainers (for example: python)'
+        required: true
+        default: python
+      version:
+        description: 'Image tag/version (for example: latest or 3.14)'
+        required: true
+        default: latest
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  scan-image:
+    name: Scan image and report vulnerabilities
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run SBOM scan
+        env:
+          SCOUT_STRICT: "false"
+        run: |
+          set -euo pipefail
+          chmod +x scan/scan.sh
+          rm -f scan/sbom-reports/*.json
+          IMAGE_INPUT="${{ github.event.inputs.image }}"
+          VERSION_INPUT="${{ github.event.inputs.version }}"
+          TARGET_IMAGE="${IMAGE_INPUT}:${VERSION_INPUT}"
+
+          echo "Scanning ${TARGET_IMAGE}"
+          ./scan/scan.sh scan "${TARGET_IMAGE}"
+
+      - name: Collect vulnerability summary
+        id: collect
+        run: |
+          set -euo pipefail
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          const reportsDir = path.join(process.cwd(), 'scan', 'sbom-reports');
+          const files = fs.existsSync(reportsDir)
+            ? fs.readdirSync(reportsDir).filter((name) => name.endsWith('-filtered.json'))
+            : [];
+
+          const summaries = [];
+          let totalVerified = 0;
+
+          for (const file of files) {
+            const fullPath = path.join(reportsDir, file);
+            const json = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+            const verified = Array.isArray(json.verified_vulnerabilities)
+              ? json.verified_vulnerabilities
+              : [];
+
+            totalVerified += verified.length;
+            summaries.push({
+              file,
+              image: json?.metadata?.image || file,
+              scanDate: json?.metadata?.scan_date || '',
+              verifiedCount: verified.length,
+              vulnerabilities: verified,
+            });
+          }
+
+          const output = {
+            generatedAt: new Date().toISOString(),
+            workflowRunUrl: `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,
+            totalReports: summaries.length,
+            totalVerified,
+            summaries,
+          };
+
+          fs.writeFileSync('scan/sbom-reports/issue-summary.json', JSON.stringify(output, null, 2));
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_verified=${totalVerified > 0}\n`);
+          EOF
+
+      - name: Upload SBOM JSON reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-reports-${{ github.event.inputs.image }}-${{ github.event.inputs.version }}
+          path: scan/sbom-reports/*.json
+          if-no-files-found: error
+
+      - name: Create issue and comment per image
+        if: steps.collect.outputs.has_verified == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+
+            const summaryPath = 'scan/sbom-reports/issue-summary.json';
+            const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+
+            const title = `SBOM verified vulnerabilities detected - ${new Date().toISOString().slice(0, 10)} (run ${process.env.GITHUB_RUN_ID})`;
+            const body = [
+              'Automated SBOM scan found verified vulnerabilities.',
+              '',
+              `- Repository: ${context.repo.owner}/${context.repo.repo}`,
+              `- Workflow run: ${summary.workflowRunUrl}`,
+              `- Triggered image: ${context.payload.inputs.image}:${context.payload.inputs.version}`,
+              `- Total reports: ${summary.totalReports}`,
+              `- Total verified vulnerabilities: ${summary.totalVerified}`,
+              '',
+              'Per-image details are added as comments in this issue.',
+            ].join('\n');
+
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+            });
+
+            for (const item of summary.summaries) {
+              if (!item.verifiedCount) {
+                continue;
+              }
+
+              const header = [
+                `Image: ${item.image}`,
+                `Filtered report: ${item.file}`,
+                `Verified vulnerabilities: ${item.verifiedCount}`,
+                item.scanDate ? `Scan date: ${item.scanDate}` : null,
+              ].filter(Boolean).join('\n');
+
+              const rows = item.vulnerabilities.map((v) => {
+                const fixedVersion = v.fixed_version || 'N/A';
+                return `| ${v.cve} | ${v.package} | ${v.actual_version || v.detected_version || 'N/A'} | ${fixedVersion} | ${v.severity || 'N/A'} |`;
+              });
+
+              const comment = [
+                header,
+                '',
+                '| CVE | Package | Installed | Fixed | Severity |',
+                '| --- | --- | --- | --- | --- |',
+                ...rows,
+              ].join('\n');
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.data.number,
+                body: comment,
+              });
+            }
+      - name: No verified vulnerabilities
+        if: steps.collect.outputs.has_verified != 'true'
+        run: echo "No verified vulnerabilities found. No issue created."

@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/dotnet:latest",
+    "platform": "linux/amd64",
+    "scan_date": "2026-03-03T09:06:36Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 2,
+    "verified_cve_count": 2,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2025-37899",
+      "package": "linux",
+      "detected_version": "6.8.0-100.100",
+      "actual_version": "unknown",
+      "fixed_version": "6.8.0-101.101",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/ubuntu/linux@6.8.0-100.100?os_distro=noble&os_name=ubuntu&os_version=24.04",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-23111",
+      "package": "linux",
+      "detected_version": "6.8.0-100.100",
+      "actual_version": "unknown",
+      "fixed_version": "not fixed",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/ubuntu/linux@6.8.0-100.100?os_distro=noble&os_name=ubuntu&os_version=24.04",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "linux",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/ubuntu/linux@6.8.0-100.100?os_distro=noble&os_name=ubuntu&os_version=24.04"
+    },
+    {
+      "package": "linux",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/ubuntu/linux@6.8.0-100.100?os_distro=noble&os_name=ubuntu&os_version=24.04"
+    }
+  ]
+}

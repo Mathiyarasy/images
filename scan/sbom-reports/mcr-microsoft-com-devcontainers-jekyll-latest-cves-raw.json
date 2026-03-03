@@ -1,0 +1,2376 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2023-0286",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2023-0286: Access of Resource Using Incompatible Type ('Type Confusion')"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2023-0286?s=github&n=cryptography&t=pypi&vr=%3E%3D0.8.1%2C%3C39.0.1",
+              "help": {
+                "text": "pyca/cryptography's wheels include a statically linked copy of OpenSSL. The versions of OpenSSL included in cryptography 0.8.1-39.0.0  are vulnerable to a security issue. More details about the vulnerabilities themselves can be found in https://www.openssl.org/news/secadv/20221213.txt and https://www.openssl.org/news/secadv/20230207.txt.\n\nIf you are building cryptography source (\"sdist\") then you are responsible for upgrading your copy of OpenSSL. Only users installing from wheels built by the cryptography project (i.e., those distributed on PyPI) need to update their cryptography versions.\n",
+                "markdown": "> pyca/cryptography's wheels include a statically linked copy of OpenSSL. The versions of OpenSSL included in cryptography 0.8.1-39.0.0  are vulnerable to a security issue. More details about the vulnerabilities themselves can be found in https://www.openssl.org/news/secadv/20221213.txt and https://www.openssl.org/news/secadv/20230207.txt.\n\nIf you are building cryptography source (\"sdist\") then you are responsible for upgrading your copy of OpenSSL. Only users installing from wheels built by the cryptography project (i.e., those distributed on PyPI) need to update their cryptography versions.\n\n|                                                                                                             |\n|Package                                                                        pkg:pypi/cryptography@38.0.4  |\n|Affected range                                                                 >=0.8.1,<39.0.1               |\n|Fixed version                                                                  39.0.1                        |\n|[[CVSS Score 7.4] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:H]]                                |\n"
+              },
+              "properties": {
+                "affected_version": ">=0.8.1,<39.0.1",
+                "cvssV3": 7.4,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:H",
+                "fixed_version": "39.0.1",
+                "purls": [
+                  "pkg:pypi/cryptography@38.0.4"
+                ],
+                "security-severity": "7.4",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-26130",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2024-26130: NULL Pointer Dereference"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2024-26130?s=github&n=cryptography&t=pypi&vr=%3E%3D38.0.0%2C%3C42.0.4",
+              "help": {
+                "text": "If `pkcs12.serialize_key_and_certificates` is called with both:\n\n1. A certificate whose public key did not match the provided private key\n2. An `encryption_algorithm` with `hmac_hash` set (via `PrivateFormat.PKCS12.encryption_builder().hmac_hash(...)`\n\nThen a NULL pointer dereference would occur, crashing the Python process.\n\nThis has been resolved, and now a `ValueError` is properly raised.\n\nPatched in https://github.com/pyca/cryptography/pull/10423\n",
+                "markdown": "> If `pkcs12.serialize_key_and_certificates` is called with both:\n\n1. A certificate whose public key did not match the provided private key\n2. An `encryption_algorithm` with `hmac_hash` set (via `PrivateFormat.PKCS12.encryption_builder().hmac_hash(...)`\n\nThen a NULL pointer dereference would occur, crashing the Python process.\n\nThis has been resolved, and now a `ValueError` is properly raised.\n\nPatched in https://github.com/pyca/cryptography/pull/10423\n\n|                                                                                                             |\n|Package                                                                        pkg:pypi/cryptography@38.0.4  |\n|Affected range                                                                 >=38.0.0,<42.0.4              |\n|Fixed version                                                                  42.0.4                        |\n|[[CVSS Score 7.5] [CVSS Vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H]]                                |\n"
+              },
+              "properties": {
+                "affected_version": ">=38.0.0,<42.0.4",
+                "cvssV3": 7.5,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "42.0.4",
+                "purls": [
+                  "pkg:pypi/cryptography@38.0.4"
+                ],
+                "security-severity": "7.5",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-26007",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-26007: Insufficient Verification of Data Authenticity"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-26007?s=github&n=cryptography&t=pypi&vr=%3C%3D46.0.4",
+              "help": {
+                "text": "## Vulnerability Summary\n\nThe `public_key_from_numbers` (or `EllipticCurvePublicNumbers.public_key()`), `EllipticCurvePublicNumbers.public_key()`, `load_der_public_key()` and `load_pem_public_key()` functions do not verify that the point belongs to the expected prime-order subgroup of the curve.\n\nThis missing validation allows an attacker to provide a public key point `P` from a small-order subgroup.  This can lead to security issues in various situations, such as the most commonly used signature verification (ECDSA) and shared key negotiation (ECDH). When the victim computes the shared secret as `S = [victim_private_key]P` via ECDH,  this leaks information about `victim_private_key mod (small_subgroup_order)`. For curves with cofactor > 1, this reveals the least significant bits of the private key.  When these weak public keys are used in ECDSA , it's easy to forge signatures on the small subgroup.\n\nOnly SECT curves are impacted by this.\n\n## Credit\n\nThis vulnerability was discovered by:\n- XlabAI Team of Tencent Xuanwu Lab\n- Atuin Automated Vulnerability Discovery Engine\n",
+                "markdown": "> ## Vulnerability Summary\n\nThe `public_key_from_numbers` (or `EllipticCurvePublicNumbers.public_key()`), `EllipticCurvePublicNumbers.public_key()`, `load_der_public_key()` and `load_pem_public_key()` functions do not verify that the point belongs to the expected prime-order subgroup of the curve.\n\nThis missing validation allows an attacker to provide a public key point `P` from a small-order subgroup.  This can lead to security issues in various situations, such as the most commonly used signature verification (ECDSA) and shared key negotiation (ECDH). When the victim computes the shared secret as `S = [victim_private_key]P` via ECDH,  this leaks information about `victim_private_key mod (small_subgroup_order)`. For curves with cofactor > 1, this reveals the least significant bits of the private key.  When these weak public keys are used in ECDSA , it's easy to forge signatures on the small subgroup.\n\nOnly SECT curves are impacted by this.\n\n## Credit\n\nThis vulnerability was discovered by:\n- XlabAI Team of Tencent Xuanwu Lab\n- Atuin Automated Vulnerability Discovery Engine\n\n|                                                                                                                                                                                                                                               |\n|Package                                                                                                                                                                                                          pkg:pypi/cryptography@38.0.4  |\n|Affected range                                                                                                                                                                                                   <=46.0.4                      |\n|Fixed version                                                                                                                                                                                                    46.0.5                        |\n|[[CVSS Score 8.2] [CVSS Vector CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X]]                                |\n"
+              },
+              "properties": {
+                "affected_version": "<=38.0.4-3+deb12u1",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "not fixed",
+                "purls": [
+                  "pkg:deb/debian/python-cryptography@38.0.4-3%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12",
+                  "pkg:pypi/cryptography@38.0.4"
+                ],
+                "security-severity": "8.2",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-25646",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-25646"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-25646?s=debian&n=libpng1.6&ns=debian&t=deb&osn=debian&osv=12&vr=%3C1.6.39-2%2Bdeb12u3",
+              "help": {
+                "text": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to 1.6.55, an out-of-bounds read vulnerability exists in the png_set_quantize() API function. When the function is called with no histogram and the number of colors in the palette is more than twice the maximum supported by the user's display, certain palettes will cause the function to enter into an infinite loop that reads past the end of an internal heap-allocated buffer. The images that trigger this vulnerability are valid per the PNG specification. This vulnerability is fixed in 1.6.55.\n\n---\n- libpng1.6 1.6.55-1 (bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1127566)\nhttps://github.com/pnggroup/libpng/security/advisories/GHSA-g8hp-mq4h-rqm3\nFixed by: https://github.com/pnggroup/libpng/commit/01d03b8453eb30ade759cd45c707e5a1c7277d88 (v1.6.55)\n",
+                "markdown": "> LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to 1.6.55, an out-of-bounds read vulnerability exists in the png_set_quantize() API function. When the function is called with no histogram and the number of colors in the palette is more than twice the maximum supported by the user's display, certain palettes will cause the function to enter into an infinite loop that reads past the end of an internal heap-allocated buffer. The images that trigger this vulnerability are valid per the PNG specification. This vulnerability is fixed in 1.6.55.\n\n---\n- libpng1.6 1.6.55-1 (bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1127566)\nhttps://github.com/pnggroup/libpng/security/advisories/GHSA-g8hp-mq4h-rqm3\nFixed by: https://github.com/pnggroup/libpng/commit/01d03b8453eb30ade759cd45c707e5a1c7277d88 (v1.6.55)\n\n|                                                                                                             |\n|Package         pkg:deb/debian/libpng1.6@1.6.39-2%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  |\n|Affected range  <1.6.39-2+deb12u3                                                                            |\n|Fixed version   1.6.39-2+deb12u3                                                                             |\n"
+              },
+              "properties": {
+                "affected_version": "<1.6.39-2+deb12u3",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "1.6.39-2+deb12u3",
+                "purls": [
+                  "pkg:deb/debian/libpng1.6@1.6.39-2%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+                ],
+                "security-severity": "8.3",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-50782",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2023-50782: Observable Discrepancy"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2023-50782?s=github&n=cryptography&t=pypi&vr=%3C42.0.0",
+              "help": {
+                "text": "A flaw was found in the python-cryptography package. This issue may allow a remote attacker to decrypt captured messages in TLS servers that use RSA key exchanges, which may lead to exposure of confidential or sensitive data.\n",
+                "markdown": "> A flaw was found in the python-cryptography package. This issue may allow a remote attacker to decrypt captured messages in TLS servers that use RSA key exchanges, which may lead to exposure of confidential or sensitive data.\n\n|                                                                                                                                |\n|Package                                                                                           pkg:pypi/cryptography@38.0.4  |\n|Affected range                                                                                    <42.0.0                       |\n|Fixed version                                                                                     42.0.0                        |\n|[[CVSS Score 8.7] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N]]                                |\n"
+              },
+              "properties": {
+                "affected_version": "<42.0.0",
+                "cvssV3": 8.7,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+                "fixed_version": "42.0.0",
+                "purls": [
+                  "pkg:pypi/cryptography@38.0.4"
+                ],
+                "security-severity": "8.7",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-2004",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-2004"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-2004?s=debian&n=postgresql-15&ns=debian&t=deb&osn=debian&osv=12&vr=%3C15.16-0%2Bdeb12u1",
+              "help": {
+                "text": "Missing validation of type of input in PostgreSQL intarray extension selectivity estimator function allows an object creator to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=66ddac6982c6dc0369dc7b2d251f4d210d704a57 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b69af3dda26104b54d4e728c6946edcc79a8ac61 (REL_18_2)\n",
+                "markdown": "> Missing validation of type of input in PostgreSQL intarray extension selectivity estimator function allows an object creator to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=66ddac6982c6dc0369dc7b2d251f4d210d704a57 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b69af3dda26104b54d4e728c6946edcc79a8ac61 (REL_18_2)\n\n|                                                                                                                |\n|Package         pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  |\n|Affected range  <15.16-0+deb12u1                                                                                |\n|Fixed version   15.16-0+deb12u1                                                                                 |\n"
+              },
+              "properties": {
+                "affected_version": "<15.16-0+deb12u1",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "15.16-0+deb12u1",
+                "purls": [
+                  "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+                ],
+                "security-severity": "8.8",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-2005",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-2005"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-2005?s=debian&n=postgresql-15&ns=debian&t=deb&osn=debian&osv=12&vr=%3C15.16-0%2Bdeb12u1",
+              "help": {
+                "text": "Heap buffer overflow in PostgreSQL pgcrypto allows a ciphertext provider to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=209f387b81660e478eea147db9130af1d1c861f2 (REL_18_2)\n",
+                "markdown": "> Heap buffer overflow in PostgreSQL pgcrypto allows a ciphertext provider to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=209f387b81660e478eea147db9130af1d1c861f2 (REL_18_2)\n\n|                                                                                                                |\n|Package         pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  |\n|Affected range  <15.16-0+deb12u1                                                                                |\n|Fixed version   15.16-0+deb12u1                                                                                 |\n"
+              },
+              "properties": {
+                "affected_version": "<15.16-0+deb12u1",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "15.16-0+deb12u1",
+                "purls": [
+                  "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+                ],
+                "security-severity": "8.8",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-2006",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-2006"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-2006?s=debian&n=postgresql-15&ns=debian&t=deb&osn=debian&osv=12&vr=%3C15.16-0%2Bdeb12u1",
+              "help": {
+                "text": "Missing validation of multibyte character length in PostgreSQL text manipulation allows a database user to issue crafted queries that achieve a buffer overrun.  That suffices to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=df0852fe037246289cc00b4d36da6c1f25ff5844 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=efef05ba995fb2f553c146acb5c33828cc4f898a (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=7b5fc85bef8a3baa530ec98f89376f9d4b7de83c (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b0f5d25bc3679afaed69d367c72efd387c763d04 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b427091947e59788289e80f0ff4279cb7d32dab1 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=4543b02af3d3077b8505d533dc51bd51fa47b34a (REL_18_2)\n",
+                "markdown": "> Missing validation of multibyte character length in PostgreSQL text manipulation allows a database user to issue crafted queries that achieve a buffer overrun.  That suffices to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=df0852fe037246289cc00b4d36da6c1f25ff5844 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=efef05ba995fb2f553c146acb5c33828cc4f898a (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=7b5fc85bef8a3baa530ec98f89376f9d4b7de83c (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b0f5d25bc3679afaed69d367c72efd387c763d04 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b427091947e59788289e80f0ff4279cb7d32dab1 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=4543b02af3d3077b8505d533dc51bd51fa47b34a (REL_18_2)\n\n|                                                                                                                |\n|Package         pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  |\n|Affected range  <15.16-0+deb12u1                                                                                |\n|Fixed version   15.16-0+deb12u1                                                                                 |\n"
+              },
+              "properties": {
+                "affected_version": "<15.16-0+deb12u1",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "15.16-0+deb12u1",
+                "purls": [
+                  "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+                ],
+                "security-severity": "8.8",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            }
+          ],
+          "version": "1.20.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2023-0286",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2023-0286                                 \nSeverity         :HIGH                                          \nPackage          :pkg:pypi/cryptography@38.0.4                  \nAffected range   :>=0.8.1,<39.0.1                               \nFixed version    :39.0.1                                        \nCVSS Score       :7.4                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:H  \nEPSS Score       :0.814290                                      \nEPSS Percentile  :0.991600                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/RECORD"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/top_level.txt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/PKG-INFO"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/top_level.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-26130",
+          "ruleIndex": 1,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2024-26130                                \nSeverity         :HIGH                                          \nPackage          :pkg:pypi/cryptography@38.0.4                  \nAffected range   :>=38.0.0,<42.0.4                              \nFixed version    :42.0.4                                        \nCVSS Score       :7.5                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.003410                                      \nEPSS Percentile  :0.565020                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/RECORD"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/top_level.txt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/PKG-INFO"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/top_level.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-26007",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-26007                                                                                         \nSeverity         :HIGH                                                                                                   \nPackage          :pkg:deb/debian/python-cryptography@38.0.4-3%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  \nAffected range   :<=38.0.4-3+deb12u1                                                                                     \nFixed version    :not fixed                                                                                              \nEPSS Score       :0.000070                                                                                               \nEPSS Percentile  :0.004470                                                                                               \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/python3-cryptography/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/python3-cryptography.list"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/python3-cryptography.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/python3-cryptography.postinst"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/python3-cryptography.prerm"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/RECORD"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/WHEEL"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/top_level.txt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/PKG-INFO"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/dependency_links.txt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/not-zip-safe"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/requires.txt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/top_level.txt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/__about__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/exceptions.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/fernet.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/_oid.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/aead.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/backend.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/ciphers.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/cmac.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/decode_asn1.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/dh.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/dsa.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/ec.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/ed25519.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/ed448.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/hashes.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/hmac.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/poly1305.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/rsa.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/utils.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/x25519.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/x448.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/backends/openssl/x509.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/_openssl.abi3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/_openssl.pyi"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/_rust.abi3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/_rust/__init__.pyi"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/_rust/asn1.pyi"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/_rust/ocsp.pyi"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/_rust/x509.pyi"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/openssl/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/openssl/_conditional.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/bindings/openssl/binding.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/_asymmetric.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/_cipheralgorithm.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/_serialization.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/dh.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/dsa.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/ec.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/ed25519.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/ed448.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/padding.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/rsa.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/types.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/utils.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/x25519.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/asymmetric/x448.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/ciphers/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/ciphers/aead.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/ciphers/algorithms.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/ciphers/base.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/ciphers/modes.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/cmac.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/constant_time.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/hashes.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/hmac.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/kdf/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/kdf/concatkdf.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/kdf/hkdf.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/kdf/kbkdf.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/kdf/pbkdf2.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/kdf/scrypt.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/kdf/x963kdf.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/keywrap.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/padding.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/poly1305.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/serialization/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/serialization/base.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/serialization/pkcs12.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/serialization/pkcs7.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/serialization/ssh.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/twofactor/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/twofactor/hotp.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/twofactor/totp.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/py.typed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/utils.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/x509/__init__.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/x509/base.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/x509/certificate_transparency.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/x509/extensions.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/x509/general_name.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/x509/name.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/x509/ocsp.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography/x509/oid.py"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/python3-cryptography/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/python3-cryptography/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/python3-cryptography/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/python3/dist/python3-cryptography"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-26007",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-26007                                                                                                                                                                  \nSeverity         :HIGH                                                                                                                                                                            \nPackage          :pkg:pypi/cryptography@38.0.4                                                                                                                                                    \nAffected range   :<=46.0.4                                                                                                                                                                        \nFixed version    :46.0.5                                                                                                                                                                          \nCVSS Score       :8.2                                                                                                                                                                             \nCVSS Vector      :CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X  \nEPSS Score       :0.000070                                                                                                                                                                        \nEPSS Percentile  :0.004470                                                                                                                                                                        \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/RECORD"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/top_level.txt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/PKG-INFO"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/top_level.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-25646",
+          "ruleIndex": 3,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-25646                                                                               \nSeverity         :HIGH                                                                                         \nPackage          :pkg:deb/debian/libpng1.6@1.6.39-2%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  \nAffected range   :<1.6.39-2+deb12u3                                                                            \nFixed version    :1.6.39-2+deb12u3                                                                             \nEPSS Score       :0.000630                                                                                     \nEPSS Percentile  :0.193990                                                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpng-dev:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpng16-16:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/libpng16-config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/png.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/pngconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/pnglibconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng16.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng16.so.16.39.0"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpng16.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc-base/libpng16-16.libpng16"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/example.c"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/pngtest.c"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/pngtest.png"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16/ANNOUNCE"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16/README.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16/TODO"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16/libpng-manual.txt.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/libpng16-config.1.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man3/libpng.3.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man3/libpngpf.3.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man5/png.5.gz"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-50782",
+          "ruleIndex": 4,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2023-50782                                                   \nSeverity         :HIGH                                                             \nPackage          :pkg:pypi/cryptography@38.0.4                                     \nAffected range   :<42.0.0                                                          \nFixed version    :42.0.0                                                           \nCVSS Score       :8.7                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N  \nEPSS Score       :0.011470                                                         \nEPSS Percentile  :0.782860                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/RECORD"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography-38.0.4.dist-info/top_level.txt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/PKG-INFO"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/python3/dist-packages/cryptography.egg-info/top_level.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-2004",
+          "ruleIndex": 5,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-2004                                                                                   \nSeverity         :HIGH                                                                                            \nPackage          :pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  \nAffected range   :<15.16-0+deb12u1                                                                                \nFixed version    :15.16-0+deb12u1                                                                                 \nEPSS Score       :0.001150                                                                                        \nEPSS Percentile  :0.302670                                                                                        \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.list"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq5:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/pg_config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/c.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/fe-auth-sasl.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq-int.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/pqcomm.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/port.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/postgres_fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/pqexpbuffer.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-events.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq/libpq-fs.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_manual.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_os.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/postgres_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.so.5.15"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpq.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/cs/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/de/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/el/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/es/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/fr/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/it/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ja/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ka/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ko/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ru/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/sv/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/uk/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_CN/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/pg_config.1.gz"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-2005",
+          "ruleIndex": 6,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-2005                                                                                   \nSeverity         :HIGH                                                                                            \nPackage          :pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  \nAffected range   :<15.16-0+deb12u1                                                                                \nFixed version    :15.16-0+deb12u1                                                                                 \nEPSS Score       :0.000660                                                                                        \nEPSS Percentile  :0.203010                                                                                        \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.list"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq5:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/pg_config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/c.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/fe-auth-sasl.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq-int.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/pqcomm.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/port.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/postgres_fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/pqexpbuffer.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-events.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq/libpq-fs.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_manual.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_os.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/postgres_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.so.5.15"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpq.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/cs/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/de/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/el/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/es/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/fr/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/it/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ja/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ka/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ko/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ru/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/sv/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/uk/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_CN/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/pg_config.1.gz"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-2006",
+          "ruleIndex": 7,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-2006                                                                                   \nSeverity         :HIGH                                                                                            \nPackage          :pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12  \nAffected range   :<15.16-0+deb12u1                                                                                \nFixed version    :15.16-0+deb12u1                                                                                 \nEPSS Score       :0.000750                                                                                        \nEPSS Percentile  :0.225880                                                                                        \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.list"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq5:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/pg_config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/c.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/fe-auth-sasl.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq-int.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/pqcomm.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/port.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/postgres_fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/pqexpbuffer.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-events.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq/libpq-fs.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_manual.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_os.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/postgres_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.so.5.15"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpq.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/cs/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/de/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/el/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/es/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/fr/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/it/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ja/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ka/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ko/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ru/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/sv/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/uk/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_CN/LC_MESSAGES/libpq5-15.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/pg_config.1.gz"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

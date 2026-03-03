@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/rust:latest",
+    "platform": "linux/amd64",
+    "scan_date": "2026-03-03T09:52:02Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 4,
+    "verified_cve_count": 4,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2026-2004",
+      "package": "postgresql-17",
+      "detected_version": "17.7-0%2Bdeb13u1",
+      "actual_version": "unknown",
+      "fixed_version": "17.8-0+deb13u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2005",
+      "package": "postgresql-17",
+      "detected_version": "17.7-0%2Bdeb13u1",
+      "actual_version": "unknown",
+      "fixed_version": "17.8-0+deb13u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2006",
+      "package": "postgresql-17",
+      "detected_version": "17.7-0%2Bdeb13u1",
+      "actual_version": "unknown",
+      "fixed_version": "17.8-0+deb13u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-25646",
+      "package": "libpng1.6",
+      "detected_version": "1.6.48-1%2Bdeb13u1",
+      "actual_version": "unknown",
+      "fixed_version": "1.6.48-1+deb13u3",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "postgresql-17",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "postgresql-17",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "postgresql-17",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "libpng1.6",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    }
+  ]
+}

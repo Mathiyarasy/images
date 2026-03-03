@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/miniconda:latest",
+    "platform": "linux/amd64",
+    "scan_date": "2026-03-03T09:39:23Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 5,
+    "verified_cve_count": 5,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2026-21441",
+      "package": "urllib3",
+      "detected_version": "2.6.1",
+      "actual_version": "2.6.1",
+      "fixed_version": "2.6.3",
+      "severity": "HIGH",
+      "package_type": "pip",
+      "location": "/opt/conda/lib/python3.13/site-packages",
+      "purl": "pkg:pypi/urllib3@2.6.1",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-24049",
+      "package": "wheel",
+      "detected_version": "0.45.1",
+      "actual_version": "0.45.1",
+      "fixed_version": "0.46.2",
+      "severity": "HIGH",
+      "package_type": "pip",
+      "location": "/opt/conda/lib/python3.13/site-packages",
+      "purl": "pkg:pypi/wheel@0.45.1",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-25646",
+      "package": "libpng1.6",
+      "detected_version": "1.6.48-1%2Bdeb13u1",
+      "actual_version": "unknown",
+      "fixed_version": "1.6.48-1+deb13u3",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-26007",
+      "package": "cryptography",
+      "detected_version": "46.0.3",
+      "actual_version": "46.0.3",
+      "fixed_version": "46.0.5",
+      "severity": "HIGH",
+      "package_type": "pip",
+      "location": "/opt/conda/lib/python3.13/site-packages",
+      "purl": "pkg:pypi/cryptography@46.0.3",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2781",
+      "package": "nss",
+      "detected_version": "2%3A3.110-1",
+      "actual_version": "unknown",
+      "fixed_version": "2:3.110-1+deb13u1",
+      "severity": "CRITICAL",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/nss@2%3A3.110-1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "urllib3",
+      "type": "pip",
+      "location": "/opt/conda/lib/python3.13/site-packages",
+      "purl": "pkg:pypi/urllib3@2.6.1"
+    },
+    {
+      "package": "wheel",
+      "type": "pip",
+      "location": "/opt/conda/lib/python3.13/site-packages",
+      "purl": "pkg:pypi/wheel@0.45.1"
+    },
+    {
+      "package": "libpng1.6",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "cryptography",
+      "type": "pip",
+      "location": "/opt/conda/lib/python3.13/site-packages",
+      "purl": "pkg:pypi/cryptography@46.0.3"
+    },
+    {
+      "package": "nss",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/nss@2%3A3.110-1?os_distro=trixie&os_name=debian&os_version=13"
+    }
+  ]
+}

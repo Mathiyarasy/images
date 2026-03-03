@@ -2,7 +2,7 @@
   "metadata": {
     "image": "mcr.microsoft.com/devcontainers/base:debian",
     "platform": "linux/amd64",
-    "scan_date": "2026-02-05T03:06:40Z",
+    "scan_date": "2026-03-02T12:35:28Z",
     "severity_filter": "critical,high",
     "sbom_based_filtering": true
   },

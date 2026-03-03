@@ -19,6 +19,10 @@ OUTPUT_DIR="/workspaces/images/scan/sbom-reports"
 ALLOWLIST_FILE="/workspaces/images/scan/sbom-allowlist.json"
 PLATFORM="${PLATFORM:-linux/amd64}"
 SEVERITY_FILTER="${SEVERITY_FILTER:-critical,high}"
+SCOUT_TIMEOUT="${SCOUT_TIMEOUT:-300}"
+SCOUT_TMP_ROOT="${SCOUT_TMP_ROOT:-/var/tmp/docker-scout-scan}"
+SCOUT_STRICT="${SCOUT_STRICT:-false}"
+SCOUT_TMP_DIR=""
 
 # Colors for output
 RED='\033[0;31m'
@@ -56,6 +60,27 @@ EOF
     fi
 }
 
+setup_scout_workspace() {
+    SCOUT_TMP_DIR="${SCOUT_TMP_ROOT}/run-$$"
+    mkdir -p "$SCOUT_TMP_DIR"
+    export TMPDIR="$SCOUT_TMP_DIR"
+}
+
+cleanup_scout_workspace() {
+    if [ -n "$SCOUT_TMP_DIR" ] && [ -d "$SCOUT_TMP_DIR" ]; then
+        rm -rf "$SCOUT_TMP_DIR" 2>/dev/null || true
+    fi
+}
+
+get_scout_ref() {
+    local image="$1"
+    if [[ "$image" == registry://* || "$image" == local://* || "$image" == image://* || "$image" == archive://* || "$image" == oci-dir://* || "$image" == fs://* ]]; then
+        echo "$image"
+    else
+        echo "registry://$image"
+    fi
+}
+
 # Check prerequisites
 check_prerequisites() {
     echo "======================================"
@@ -80,6 +105,8 @@ check_prerequisites() {
     fi
     
     echo -e "${GREEN}✓ Prerequisites verified${NC}"
+    setup_scout_workspace
+    trap cleanup_scout_workspace EXIT
     echo ""
 }
 
@@ -88,6 +115,8 @@ generate_sbom() {
     local image="$1"
     local output_file="$2"
     local sbom_success=false
+    local scout_image
+    scout_image=$(get_scout_ref "$image")
     
     echo -e "${BLUE}Generating SBOM for: $image${NC}"
     
@@ -95,11 +124,13 @@ generate_sbom() {
     if docker scout version &>/dev/null; then
         echo -e "${BLUE}Trying Docker Scout...${NC}"
         local temp_output=$(mktemp)
+        local temp_error=$(mktemp)
+        local scout_exit=0
         
         # Use stdout instead of --output file (more reliable)
-        if timeout 90 docker scout sbom "$image" \
+        if timeout "$SCOUT_TIMEOUT" docker scout sbom "$scout_image" \
             --platform "$PLATFORM" \
-            --format json 2>/dev/null > "$temp_output"; then
+            --format json 2>"$temp_error" > "$temp_output"; then
             
             # Verify output has actual content
             if [ -f "$temp_output" ] && [ -s "$temp_output" ]; then
@@ -109,14 +140,33 @@ generate_sbom() {
                     sbom_success=true
                 fi
             fi
+        else
+            scout_exit=$?
+        fi
+        if [ "$sbom_success" = false ]; then
+            if [ "$scout_exit" -eq 124 ]; then
+                echo -e "${RED}Docker Scout SBOM failed: timed out after ${SCOUT_TIMEOUT}s.${NC}"
+            elif grep -qi "no space left on device" "$temp_error" 2>/dev/null; then
+                echo -e "${RED}Docker Scout SBOM failed: no space left on device for temporary files (TMPDIR=$TMPDIR).${NC}"
+            elif grep -qi "timed out\|timeout" "$temp_error" 2>/dev/null; then
+                echo -e "${RED}Docker Scout SBOM failed: timed out after ${SCOUT_TIMEOUT}s.${NC}"
+            else
+                echo -e "${YELLOW}Docker Scout SBOM failed. Last error output:${NC}"
+                tail -n 8 "$temp_error" | sed 's/^/  /'
+            fi
         fi
         rm -f "$temp_output" 2>/dev/null
+        rm -f "$temp_error" 2>/dev/null
     fi
     
     # Final fallback - create placeholder
     if [ "$sbom_success" = false ]; then
         echo -e "${YELLOW}⚠ Docker Scout SBOM failed, creating placeholder${NC}"
         echo '{"artifacts":[],"source":{"type":"placeholder"}}' > "$output_file"
+        if [ "$SCOUT_STRICT" = "true" ]; then
+            echo -e "${RED}Strict mode enabled: failing scan due to SBOM generation failure.${NC}"
+            return 1
+        fi
     fi
     
     return 0
@@ -296,6 +346,8 @@ get_cves_with_details() {
     local image="$1"
     local output_file="$2"
     local cve_success=false
+    local scout_image
+    scout_image=$(get_scout_ref "$image")
     
     echo -e "${BLUE}Scanning for CVEs...${NC}"
     
@@ -303,12 +355,14 @@ get_cves_with_details() {
     if docker scout version &>/dev/null; then
         echo -e "${BLUE}Trying Docker Scout CVE scan...${NC}"
         local temp_output=$(mktemp)
+        local temp_error=$(mktemp)
+        local scout_exit=0
         
         # Use stdout instead of --output file (more reliable)
-        if timeout 90 docker scout cves "$image" \
+        if timeout "$SCOUT_TIMEOUT" docker scout cves "$scout_image" \
             --platform "$PLATFORM" \
             --only-severity "$SEVERITY_FILTER" \
-            --format sarif 2>/dev/null > "$temp_output"; then
+            --format sarif 2>"$temp_error" > "$temp_output"; then
             
             # Verify output has actual CVE results (not just log messages)
             if [ -f "$temp_output" ] && [ -s "$temp_output" ]; then
@@ -318,15 +372,36 @@ get_cves_with_details() {
                     cve_success=true
                 fi
             fi
+        else
+            scout_exit=$?
+        fi
+        if [ "$cve_success" = false ]; then
+            if [ "$scout_exit" -eq 124 ]; then
+                echo -e "${RED}Docker Scout CVE scan failed: timed out after ${SCOUT_TIMEOUT}s.${NC}"
+            elif grep -qi "no space left on device" "$temp_error" 2>/dev/null; then
+                echo -e "${RED}Docker Scout CVE scan failed: no space left on device for temporary files (TMPDIR=$TMPDIR).${NC}"
+            elif grep -qi "timed out\|timeout" "$temp_error" 2>/dev/null; then
+                echo -e "${RED}Docker Scout CVE scan failed: timed out after ${SCOUT_TIMEOUT}s.${NC}"
+            else
+                echo -e "${YELLOW}Docker Scout CVE scan failed. Last error output:${NC}"
+                tail -n 8 "$temp_error" | sed 's/^/  /'
+            fi
         fi
         rm -f "$temp_output" 2>/dev/null
+        rm -f "$temp_error" 2>/dev/null
     fi
     
     # Final fallback - create empty placeholder
     if [ "$cve_success" = false ]; then
         echo -e "${YELLOW}⚠ CVE scan failed, creating empty placeholder${NC}"
         echo '{"runs":[{"results":[],"tool":{"driver":{"rules":[]}}}]}' > "$output_file"
+        if [ "$SCOUT_STRICT" = "true" ]; then
+            echo -e "${RED}Strict mode enabled: failing scan due to CVE scan failure.${NC}"
+            return 1
+        fi
     fi
+
+    return 0
 }
 
 # Parse vulnerability scan results (Docker Scout SARIF format)
@@ -372,10 +447,14 @@ filter_vulnerabilities() {
     fi
     
     # Generate SBOM
-    generate_sbom "$image" "$sbom_file"
+    if ! generate_sbom "$image" "$sbom_file"; then
+        return 1
+    fi
     
     # Get CVEs
-    get_cves_with_details "$image" "$cves_file"
+    if ! get_cves_with_details "$image" "$cves_file"; then
+        return 1
+    fi
     
     # Extract packages from SBOM
     local sbom_packages=$(extract_packages_with_locations "$sbom_file")
@@ -577,6 +656,7 @@ Options:
   -r, --registry REGISTRY   Container registry (default: $REGISTRY)
   -p, --platform PLATFORM   Target platform (default: $PLATFORM)
   -s, --severity SEVERITY   Severity filter (default: $SEVERITY_FILTER)
+    --strict                  Fail with non-zero exit if Scout SBOM/CVE scan fails
   -o, --output DIR          Output directory (default: $OUTPUT_DIR)
   -h, --help                Show this help message
 
@@ -610,6 +690,10 @@ main() {
                 OUTPUT_DIR="$2"
                 mkdir -p "$OUTPUT_DIR"
                 shift 2
+                ;;
+            --strict)
+                SCOUT_STRICT="true"
+                shift
                 ;;
             -h|--help)
                 usage

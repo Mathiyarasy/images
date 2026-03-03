@@ -1,0 +1,90 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2008-0888",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2008-0888"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2008-0888?s=alpine&n=unzip&ns=alpine&t=apk&osn=alpine&osv=3.23&vr=%3C%3D6.0-r16",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                             |\n|Package         pkg:apk/alpine/unzip@6.0-r16?os_name=alpine&os_version=3.23  |\n|Affected range  <=6.0-r16                                                    |\n|Fixed version   not fixed                                                    |\n"
+              },
+              "properties": {
+                "affected_version": "<=6.0-r16",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "not fixed",
+                "purls": [
+                  "pkg:apk/alpine/unzip@6.0-r16?os_name=alpine&os_version=3.23"
+                ],
+                "security-severity": "9.3",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            }
+          ],
+          "version": "1.20.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2008-0888",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2008-0888                                                \nSeverity         :HIGH                                                         \nPackage          :pkg:apk/alpine/unzip@6.0-r16?os_name=alpine&os_version=3.23  \nAffected range   :<=6.0-r16                                                    \nFixed version    :not fixed                                                    \nEPSS Score       :0.190400                                                     \nEPSS Percentile  :0.952350                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/funzip"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/unzip"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/unzipsfx"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/zipgrep"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

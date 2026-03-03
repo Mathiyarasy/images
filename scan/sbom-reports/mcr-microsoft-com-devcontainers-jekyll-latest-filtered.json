@@ -1,0 +1,166 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/jekyll:latest",
+    "platform": "linux/amd64",
+    "scan_date": "2026-03-03T09:01:40Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 8,
+    "verified_cve_count": 8,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2023-0286",
+      "package": "cryptography",
+      "detected_version": "38.0.4",
+      "actual_version": "unknown",
+      "fixed_version": "39.0.1",
+      "severity": "HIGH",
+      "package_type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/cryptography@38.0.4",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2023-50782",
+      "package": "cryptography",
+      "detected_version": "38.0.4",
+      "actual_version": "unknown",
+      "fixed_version": "42.0.0",
+      "severity": "HIGH",
+      "package_type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/cryptography@38.0.4",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2024-26130",
+      "package": "cryptography",
+      "detected_version": "38.0.4",
+      "actual_version": "unknown",
+      "fixed_version": "42.0.4",
+      "severity": "HIGH",
+      "package_type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/cryptography@38.0.4",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2004",
+      "package": "postgresql-15",
+      "detected_version": "15.15-0%2Bdeb12u1",
+      "actual_version": "unknown",
+      "fixed_version": "15.16-0+deb12u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2005",
+      "package": "postgresql-15",
+      "detected_version": "15.15-0%2Bdeb12u1",
+      "actual_version": "unknown",
+      "fixed_version": "15.16-0+deb12u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-2006",
+      "package": "postgresql-15",
+      "detected_version": "15.15-0%2Bdeb12u1",
+      "actual_version": "unknown",
+      "fixed_version": "15.16-0+deb12u1",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-25646",
+      "package": "libpng1.6",
+      "detected_version": "1.6.39-2%2Bdeb12u1",
+      "actual_version": "unknown",
+      "fixed_version": "1.6.39-2+deb12u3",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/libpng1.6@1.6.39-2%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-26007",
+      "package": "python-cryptography",
+      "detected_version": "38.0.4-3%2Bdeb12u1",
+      "actual_version": "unknown",
+      "fixed_version": "not fixed",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/python-cryptography@38.0.4-3%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "cryptography",
+      "type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/cryptography@38.0.4"
+    },
+    {
+      "package": "cryptography",
+      "type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/cryptography@38.0.4"
+    },
+    {
+      "package": "cryptography",
+      "type": "pip",
+      "location": "unknown",
+      "purl": "pkg:pypi/cryptography@38.0.4"
+    },
+    {
+      "package": "postgresql-15",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+    },
+    {
+      "package": "postgresql-15",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+    },
+    {
+      "package": "postgresql-15",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/postgresql-15@15.15-0%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+    },
+    {
+      "package": "libpng1.6",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/libpng1.6@1.6.39-2%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+    },
+    {
+      "package": "python-cryptography",
+      "type": "deb",
+      "location": "unknown",
+      "purl": "pkg:deb/debian/python-cryptography@38.0.4-3%2Bdeb12u1?os_distro=bookworm&os_name=debian&os_version=12"
+    }
+  ]
+}

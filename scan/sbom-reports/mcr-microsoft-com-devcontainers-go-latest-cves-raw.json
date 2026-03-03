@@ -1,0 +1,286 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2026-27896",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-27896: Improper Handling of Case Sensitivity"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-27896?s=github&n=go-sdk&ns=github.com%2Fmodelcontextprotocol&t=golang&vr=%3C1.3.1",
+              "help": {
+                "text": "The Go MCP SDK used Go's standard encoding/json.Unmarshal for JSON-RPC and MCP protocol message parsing. Go's standard library performs case-insensitive matching of JSON keys to struct field tags — a field tagged json:\"method\" would also match \"Method\", \"METHOD\", etc. Additionally, Go's standard library folds the Unicode characters ſ (U+017F) and K (U+212A) to their ASCII equivalents s and k, meaning fields like \"paramſ\" would match \"params\". This violated the JSON-RPC 2.0 specification, which defines exact field names.\n\n#### Impact:\n\nA malicious MCP peer may have been able to send protocol messages with non-standard field casing (e.g., \"Method\" instead of \"method\") that the SDK would silently accept. This had the potential for:\n  - **Bypassing intermediary inspection:** Proxies or policy layers that matched on exact field names may have failed to detect or filter these messages.\n  - **Cross-implementation inconsistency:** Other MCP SDKs (TypeScript, Python) use case-sensitive parsing and would reject the same messages, creating potential security-boundary confusion.\n\n####  Fix:\n\nGo's standard JSON unmarshaling was replaced with a case-sensitive decoder (github.com/segmentio/encoding) in commit 7b8d81c. Users are advised to update to v1.3.1 to resolve this issue.\n\n#### Credits:\nMCP Go SDK thanks Francesco Lacerenza (Doyensec) for reporting this issue.\n",
+                "markdown": "> The Go MCP SDK used Go's standard encoding/json.Unmarshal for JSON-RPC and MCP protocol message parsing. Go's standard library performs case-insensitive matching of JSON keys to struct field tags — a field tagged json:\"method\" would also match \"Method\", \"METHOD\", etc. Additionally, Go's standard library folds the Unicode characters ſ (U+017F) and K (U+212A) to their ASCII equivalents s and k, meaning fields like \"paramſ\" would match \"params\". This violated the JSON-RPC 2.0 specification, which defines exact field names.\n\n#### Impact:\n\nA malicious MCP peer may have been able to send protocol messages with non-standard field casing (e.g., \"Method\" instead of \"method\") that the SDK would silently accept. This had the potential for:\n  - **Bypassing intermediary inspection:** Proxies or policy layers that matched on exact field names may have failed to detect or filter these messages.\n  - **Cross-implementation inconsistency:** Other MCP SDKs (TypeScript, Python) use case-sensitive parsing and would reject the same messages, creating potential security-boundary confusion.\n\n####  Fix:\n\nGo's standard JSON unmarshaling was replaced with a case-sensitive decoder (github.com/segmentio/encoding) in commit 7b8d81c. Users are advised to update to v1.3.1 to resolve this issue.\n\n#### Credits:\nMCP Go SDK thanks Francesco Lacerenza (Doyensec) for reporting this issue.\n\n|                                                                                                                                                           |\n|Package                                                                                           pkg:golang/github.com/modelcontextprotocol/go-sdk@0.8.0  |\n|Affected range                                                                                    <1.3.1                                                   |\n|Fixed version                                                                                     1.3.1                                                    |\n|[[CVSS Score 7.0] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:H/SA:N]]                                                           |\n"
+              },
+              "properties": {
+                "affected_version": "<1.3.1",
+                "cvssV3": 7,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:H/SA:N",
+                "fixed_version": "1.3.1",
+                "purls": [
+                  "pkg:golang/github.com/modelcontextprotocol/go-sdk@0.8.0"
+                ],
+                "security-severity": "7.0",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2025-61726",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2025-61726"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2025-61726?s=golang&n=stdlib&t=golang&vr=%3E%3D1.25.0%2C%3C1.25.6",
+              "help": {
+                "text": "The net/url package does not set a limit on the number of query parameters in a query.\n\nWhile the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.\n",
+                "markdown": "> The net/url package does not set a limit on the number of query parameters in a query.\n\nWhile the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.\n\n|                                          |\n|Package         pkg:golang/stdlib@1.25.5  |\n|Affected range  >=1.25.0,<1.25.6          |\n|Fixed version   1.25.6                    |\n"
+              },
+              "properties": {
+                "affected_version": ">=1.25.0,<1.25.6",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "1.25.6",
+                "purls": [
+                  "pkg:golang/stdlib@1.25.5"
+                ],
+                "security-severity": "7.5",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2025-68121",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2025-68121"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2025-68121?s=golang&n=stdlib&t=golang&vr=%3E%3D1.25.0-0%2C%3C1.25.7",
+              "help": {
+                "text": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.\n",
+                "markdown": "> During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.\n\n|                                          |\n|Package         pkg:golang/stdlib@1.25.5  |\n|Affected range  >=1.25.0-0,<1.25.7        |\n|Fixed version   1.25.7                    |\n"
+              },
+              "properties": {
+                "affected_version": ">=1.25.0-0,<1.25.7",
+                "cvssV3_severity": "CRITICAL",
+                "fixed_version": "1.25.7",
+                "purls": [
+                  "pkg:golang/stdlib@1.25.5",
+                  "pkg:golang/stdlib@1.25.6"
+                ],
+                "security-severity": "10.0",
+                "tags": [
+                  "CRITICAL"
+                ]
+              }
+            }
+          ],
+          "version": "1.20.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-27896",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-27896                                                   \nSeverity         :HIGH                                                             \nPackage          :pkg:golang/github.com/modelcontextprotocol/go-sdk@0.8.0          \nAffected range   :<1.3.1                                                           \nFixed version    :1.3.1                                                            \nCVSS Score       :7.0                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:H/SA:N  \nEPSS Score       :0.000480                                                         \nEPSS Percentile  :0.148680                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/gopls"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-61726",
+          "ruleIndex": 1,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2025-61726            \nSeverity         :HIGH                      \nPackage          :pkg:golang/stdlib@1.25.5  \nAffected range   :>=1.25.0,<1.25.6          \nFixed version    :1.25.6                    \nEPSS Score       :0.000290                  \nEPSS Percentile  :0.078340                  \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/golangci-lint"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-68121",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2025-68121            \nSeverity         :CRITICAL                  \nPackage          :pkg:golang/stdlib@1.25.6  \nAffected range   :>=1.25.0-0,<1.25.7        \nFixed version    :1.25.7                    \nEPSS Score       :0.000160                  \nEPSS Percentile  :0.034570                  \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/dlv"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/golint"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/gomodifytags"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/goplay"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/gopls"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/gotests"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/impl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/revive"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/staticcheck"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/bin/go"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/bin/gofmt"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/pkg/tool/linux_amd64/asm"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/pkg/tool/linux_amd64/cgo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/pkg/tool/linux_amd64/compile"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/pkg/tool/linux_amd64/cover"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/pkg/tool/linux_amd64/link"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/pkg/tool/linux_amd64/preprofile"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/go/pkg/tool/linux_amd64/vet"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-68121",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2025-68121            \nSeverity         :CRITICAL                  \nPackage          :pkg:golang/stdlib@1.25.5  \nAffected range   :>=1.25.0-0,<1.25.7        \nFixed version    :1.25.7                    \nEPSS Score       :0.000160                  \nEPSS Percentile  :0.034570                  \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/go/bin/golangci-lint"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

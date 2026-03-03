@@ -1,0 +1,1511 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2026-25646",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-25646"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-25646?s=debian&n=libpng1.6&ns=debian&t=deb&osn=debian&osv=13&vr=%3C1.6.48-1%2Bdeb13u3",
+              "help": {
+                "text": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to 1.6.55, an out-of-bounds read vulnerability exists in the png_set_quantize() API function. When the function is called with no histogram and the number of colors in the palette is more than twice the maximum supported by the user's display, certain palettes will cause the function to enter into an infinite loop that reads past the end of an internal heap-allocated buffer. The images that trigger this vulnerability are valid per the PNG specification. This vulnerability is fixed in 1.6.55.\n\n---\n- libpng1.6 1.6.55-1 (bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1127566)\nhttps://github.com/pnggroup/libpng/security/advisories/GHSA-g8hp-mq4h-rqm3\nFixed by: https://github.com/pnggroup/libpng/commit/01d03b8453eb30ade759cd45c707e5a1c7277d88 (v1.6.55)\n",
+                "markdown": "> LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to 1.6.55, an out-of-bounds read vulnerability exists in the png_set_quantize() API function. When the function is called with no histogram and the number of colors in the palette is more than twice the maximum supported by the user's display, certain palettes will cause the function to enter into an infinite loop that reads past the end of an internal heap-allocated buffer. The images that trigger this vulnerability are valid per the PNG specification. This vulnerability is fixed in 1.6.55.\n\n---\n- libpng1.6 1.6.55-1 (bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1127566)\nhttps://github.com/pnggroup/libpng/security/advisories/GHSA-g8hp-mq4h-rqm3\nFixed by: https://github.com/pnggroup/libpng/commit/01d03b8453eb30ade759cd45c707e5a1c7277d88 (v1.6.55)\n\n|                                                                                                           |\n|Package         pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  |\n|Affected range  <1.6.48-1+deb13u3                                                                          |\n|Fixed version   1.6.48-1+deb13u3                                                                           |\n"
+              },
+              "properties": {
+                "affected_version": "<1.6.48-1+deb13u3",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "1.6.48-1+deb13u3",
+                "purls": [
+                  "pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+                ],
+                "security-severity": "8.3",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-2004",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-2004"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-2004?s=debian&n=postgresql-17&ns=debian&t=deb&osn=debian&osv=13&vr=%3C17.8-0%2Bdeb13u1",
+              "help": {
+                "text": "Missing validation of type of input in PostgreSQL intarray extension selectivity estimator function allows an object creator to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=66ddac6982c6dc0369dc7b2d251f4d210d704a57 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b69af3dda26104b54d4e728c6946edcc79a8ac61 (REL_18_2)\n",
+                "markdown": "> Missing validation of type of input in PostgreSQL intarray extension selectivity estimator function allows an object creator to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=66ddac6982c6dc0369dc7b2d251f4d210d704a57 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b69af3dda26104b54d4e728c6946edcc79a8ac61 (REL_18_2)\n\n|                                                                                                             |\n|Package         pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  |\n|Affected range  <17.8-0+deb13u1                                                                              |\n|Fixed version   17.8-0+deb13u1                                                                               |\n"
+              },
+              "properties": {
+                "affected_version": "<17.8-0+deb13u1",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "17.8-0+deb13u1",
+                "purls": [
+                  "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+                ],
+                "security-severity": "8.8",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-2005",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-2005"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-2005?s=debian&n=postgresql-17&ns=debian&t=deb&osn=debian&osv=13&vr=%3C17.8-0%2Bdeb13u1",
+              "help": {
+                "text": "Heap buffer overflow in PostgreSQL pgcrypto allows a ciphertext provider to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=209f387b81660e478eea147db9130af1d1c861f2 (REL_18_2)\n",
+                "markdown": "> Heap buffer overflow in PostgreSQL pgcrypto allows a ciphertext provider to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=209f387b81660e478eea147db9130af1d1c861f2 (REL_18_2)\n\n|                                                                                                             |\n|Package         pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  |\n|Affected range  <17.8-0+deb13u1                                                                              |\n|Fixed version   17.8-0+deb13u1                                                                               |\n"
+              },
+              "properties": {
+                "affected_version": "<17.8-0+deb13u1",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "17.8-0+deb13u1",
+                "purls": [
+                  "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+                ],
+                "security-severity": "8.8",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-2006",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-2006"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-2006?s=debian&n=postgresql-17&ns=debian&t=deb&osn=debian&osv=13&vr=%3C17.8-0%2Bdeb13u1",
+              "help": {
+                "text": "Missing validation of multibyte character length in PostgreSQL text manipulation allows a database user to issue crafted queries that achieve a buffer overrun.  That suffices to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=df0852fe037246289cc00b4d36da6c1f25ff5844 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=efef05ba995fb2f553c146acb5c33828cc4f898a (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=7b5fc85bef8a3baa530ec98f89376f9d4b7de83c (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b0f5d25bc3679afaed69d367c72efd387c763d04 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b427091947e59788289e80f0ff4279cb7d32dab1 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=4543b02af3d3077b8505d533dc51bd51fa47b34a (REL_18_2)\n",
+                "markdown": "> Missing validation of multibyte character length in PostgreSQL text manipulation allows a database user to issue crafted queries that achieve a buffer overrun.  That suffices to execute arbitrary code as the operating system user running the database.  Versions before PostgreSQL 18.2, 17.8, 16.12, 15.16, and 14.21 are affected.\n\n---\n- postgresql-18 18.2-1\n- postgresql-17 <removed>\n- postgresql-15 <removed>\n- postgresql-13 <removed>\nhttps://www.postgresql.org/about/news/postgresql-182-178-1612-1516-and-1421-released-3235/\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=df0852fe037246289cc00b4d36da6c1f25ff5844 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=efef05ba995fb2f553c146acb5c33828cc4f898a (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=7b5fc85bef8a3baa530ec98f89376f9d4b7de83c (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b0f5d25bc3679afaed69d367c72efd387c763d04 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=b427091947e59788289e80f0ff4279cb7d32dab1 (REL_18_2)\nFixed by: https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=4543b02af3d3077b8505d533dc51bd51fa47b34a (REL_18_2)\n\n|                                                                                                             |\n|Package         pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  |\n|Affected range  <17.8-0+deb13u1                                                                              |\n|Fixed version   17.8-0+deb13u1                                                                               |\n"
+              },
+              "properties": {
+                "affected_version": "<17.8-0+deb13u1",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "17.8-0+deb13u1",
+                "purls": [
+                  "pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+                ],
+                "security-severity": "8.8",
+                "tags": [
+                  "HIGH"
+                ]
+              }
+            }
+          ],
+          "version": "1.20.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-25646",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-25646                                                                             \nSeverity         :HIGH                                                                                       \nPackage          :pkg:deb/debian/libpng1.6@1.6.48-1%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  \nAffected range   :<1.6.48-1+deb13u3                                                                          \nFixed version    :1.6.48-1+deb13u3                                                                           \nEPSS Score       :0.000630                                                                                   \nEPSS Percentile  :0.193990                                                                                   \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpng-dev:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpng16-16t64:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/libpng16-config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/png.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/pngconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/libpng16/pnglibconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/png.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/pngconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/pnglibconf.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfig.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGConfigVersion.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets-none.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/cmake/PNG/PNGTargets.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng/libpng16-none.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng/libpng16.cmake"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng16.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpng16.so.16.48.0"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpng16.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc-base/libpng16-16t64.libpng16"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/example.c"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/pngtest.c"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng-dev/examples/pngtest.png"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/ANNOUNCE"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/README.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/TODO"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpng16-16t64/libpng-manual.txt.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/lintian/overrides/libpng16-16t64"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/libpng16-config.1.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man3/libpng.3.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man3/libpngpf.3.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man5/png.5.gz"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-2004",
+          "ruleIndex": 1,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-2004                                                                                \nSeverity         :HIGH                                                                                         \nPackage          :pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  \nAffected range   :<17.8-0+deb13u1                                                                              \nFixed version    :17.8-0+deb13u1                                                                               \nEPSS Score       :0.001150                                                                                     \nEPSS Percentile  :0.302670                                                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.list"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq5:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/pg_config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/c.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/fe-auth-sasl.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq-int.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/pqcomm.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/protocol.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/port.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/postgres_fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/pqexpbuffer.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-events.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq/libpq-fs.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_manual.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_os.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/postgres_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.so.5.17"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpq.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/cs/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/de/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/el/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/es/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/fr/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/he/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/it/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ja/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ka/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ko/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/pl/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/pt_BR/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ru/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/sv/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/tr/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/uk/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_CN/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_TW/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/pg_config.1.gz"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-2005",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-2005                                                                                \nSeverity         :HIGH                                                                                         \nPackage          :pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  \nAffected range   :<17.8-0+deb13u1                                                                              \nFixed version    :17.8-0+deb13u1                                                                               \nEPSS Score       :0.000660                                                                                     \nEPSS Percentile  :0.203010                                                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.list"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq5:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/pg_config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/c.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/fe-auth-sasl.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq-int.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/pqcomm.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/protocol.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/port.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/postgres_fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/pqexpbuffer.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-events.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq/libpq-fs.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_manual.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_os.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/postgres_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.so.5.17"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpq.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/cs/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/de/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/el/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/es/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/fr/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/he/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/it/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ja/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ka/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ko/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/pl/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/pt_BR/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ru/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/sv/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/tr/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/uk/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_CN/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_TW/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/pg_config.1.gz"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-2006",
+          "ruleIndex": 3,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-2006                                                                                \nSeverity         :HIGH                                                                                         \nPackage          :pkg:deb/debian/postgresql-17@17.7-0%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13  \nAffected range   :<17.8-0+deb13u1                                                                              \nFixed version    :17.8-0+deb13u1                                                                               \nEPSS Score       :0.000750                                                                                     \nEPSS Percentile  :0.225880                                                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.list"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq-dev.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/info/libpq5:amd64.md5sums"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/var/lib/dpkg/status"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/pg_config"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/c.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/fe-auth-sasl.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq-int.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/pqcomm.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/libpq/protocol.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/port.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/postgres_fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/internal/pqexpbuffer.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-events.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq-fe.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/libpq/libpq-fs.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_manual.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/pg_config_os.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/include/postgresql/postgres_ext.h"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.a"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/libpq.so.5.17"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/x86_64-linux-gnu/pkgconfig/libpq.pc"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq-dev/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.Debian.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/changelog.gz"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/doc/libpq5/copyright"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/cs/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/de/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/el/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/es/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/fr/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/he/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/it/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ja/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ka/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ko/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/pl/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/pt_BR/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/ru/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/sv/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/tr/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/uk/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_CN/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/locale/zh_TW/LC_MESSAGES/libpq5-17.mo"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/share/man/man1/pg_config.1.gz"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

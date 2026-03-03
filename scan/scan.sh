@@ -15,8 +15,10 @@ set -e
 
 # Configuration
 REGISTRY="${REGISTRY:-mcr.microsoft.com/devcontainers}"
-OUTPUT_DIR="/workspaces/images/scan/sbom-reports"
-ALLOWLIST_FILE="/workspaces/images/scan/sbom-allowlist.json"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+OUTPUT_DIR="${OUTPUT_DIR:-$REPO_ROOT/scan/sbom-reports}"
+ALLOWLIST_FILE="${ALLOWLIST_FILE:-$REPO_ROOT/scan/sbom-allowlist.json}"
 PLATFORM="${PLATFORM:-linux/amd64}"
 SEVERITY_FILTER="${SEVERITY_FILTER:-critical,high}"
 SCOUT_TIMEOUT="${SCOUT_TIMEOUT:-300}"

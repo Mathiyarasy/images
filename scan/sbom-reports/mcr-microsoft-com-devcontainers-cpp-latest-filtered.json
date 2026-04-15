@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "image": "mcr.microsoft.com/devcontainers/cpp:latest",
+    "platform": "linux/amd64",
+    "scan_date": "2026-04-15T15:30:20Z",
+    "severity_filter": "critical,high",
+    "sbom_based_filtering": true
+  },
+  "summary": {
+    "original_cve_count": 11,
+    "verified_cve_count": 11,
+    "false_positive_count": 0,
+    "allowlisted_count": 0,
+    "reduction_percentage": 0
+  },
+  "verified_vulnerabilities": [
+    {
+      "cve": "CVE-2025-15281",
+      "package": "glibc",
+      "detected_version": "2.41-12%2Bdeb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "2.41-12+deb13u2",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/glibc@2.41-12%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0861",
+      "package": "glibc",
+      "detected_version": "2.41-12%2Bdeb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "2.41-12+deb13u2",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/glibc@2.41-12%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-0915",
+      "package": "glibc",
+      "detected_version": "2.41-12%2Bdeb13u1",
+      "actual_version": "2.41-12+deb13u1",
+      "fixed_version": "2.41-12+deb13u2",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/glibc@2.41-12%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-27135",
+      "package": "nghttp2",
+      "detected_version": "1.64.0-1.1",
+      "actual_version": "1.64.0-1.1",
+      "fixed_version": "not fixed",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libnghttp2.so.14.28.3,/usr/share,/usr/share/doc,/usr/share/doc/libnghttp2-14,/usr/share/doc/libnghttp2-14/AUTHORS,/usr/share/doc/libnghttp2-14/README.rst.gz,/usr/share/doc/libnghttp2-14/changelog.Debian.gz,/usr/share/doc/libnghttp2-14/copyright,/usr/lib/x86_64-linux-gnu/libnghttp2.so.14",
+      "purl": "pkg:deb/debian/nghttp2@1.64.0-1.1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-28388",
+      "package": "openssl",
+      "detected_version": "3.5.4-1~deb13u2",
+      "actual_version": "3.5.4-1~deb13u2",
+      "fixed_version": "3.5.5-1~deb13u2",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/ssl,/etc/ssl/certs,/etc/ssl/openssl.cnf,/etc/ssl/private,/usr,/usr/bin,/usr/bin/c_rehash,/usr/bin/openssl,/usr/lib,/usr/lib/ssl,/usr/lib/ssl/misc,/usr/lib/ssl/misc/CA.pl,/usr/lib/ssl/misc/tsget.pl,/usr/share,/usr/share/doc,/usr/share/doc/openssl,/usr/share/doc/openssl/HOWTO,/usr/share/doc/openssl/HOWTO/certificates.txt.gz",
+      "purl": "pkg:deb/debian/openssl@3.5.4-1~deb13u2?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-28389",
+      "package": "openssl",
+      "detected_version": "3.5.4-1~deb13u2",
+      "actual_version": "3.5.4-1~deb13u2",
+      "fixed_version": "3.5.5-1~deb13u2",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/ssl,/etc/ssl/certs,/etc/ssl/openssl.cnf,/etc/ssl/private,/usr,/usr/bin,/usr/bin/c_rehash,/usr/bin/openssl,/usr/lib,/usr/lib/ssl,/usr/lib/ssl/misc,/usr/lib/ssl/misc/CA.pl,/usr/lib/ssl/misc/tsget.pl,/usr/share,/usr/share/doc,/usr/share/doc/openssl,/usr/share/doc/openssl/HOWTO,/usr/share/doc/openssl/HOWTO/certificates.txt.gz",
+      "purl": "pkg:deb/debian/openssl@3.5.4-1~deb13u2?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-28390",
+      "package": "openssl",
+      "detected_version": "3.5.4-1~deb13u2",
+      "actual_version": "3.5.4-1~deb13u2",
+      "fixed_version": "3.5.5-1~deb13u2",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/ssl,/etc/ssl/certs,/etc/ssl/openssl.cnf,/etc/ssl/private,/usr,/usr/bin,/usr/bin/c_rehash,/usr/bin/openssl,/usr/lib,/usr/lib/ssl,/usr/lib/ssl/misc,/usr/lib/ssl/misc/CA.pl,/usr/lib/ssl/misc/tsget.pl,/usr/share,/usr/share/doc,/usr/share/doc/openssl,/usr/share/doc/openssl/HOWTO,/usr/share/doc/openssl/HOWTO/certificates.txt.gz",
+      "purl": "pkg:deb/debian/openssl@3.5.4-1~deb13u2?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-32316",
+      "package": "jq",
+      "detected_version": "1.7.1-6%2Bdeb13u1",
+      "actual_version": "1.7.1-6+deb13u1",
+      "fixed_version": "not fixed",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/jq,/usr/share,/usr/share/doc,/usr/share/doc/jq,/usr/share/doc/jq/AUTHORS.gz,/usr/share/doc/jq/NEWS.md.gz,/usr/share/doc/jq/README.md,/usr/share/doc/jq/changelog.Debian.gz,/usr/share/doc/jq/changelog.gz,/usr/share/doc/jq/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/jq.1.gz",
+      "purl": "pkg:deb/debian/jq@1.7.1-6%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-34982",
+      "package": "vim",
+      "detected_version": "2%3A9.1.1230-2",
+      "actual_version": "2:9.1.1230-2",
+      "fixed_version": "not fixed",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/etc,/etc/vim,/etc/vim/vimrc,/usr,/usr/bin,/usr/bin/helpztags,/usr/lib,/usr/lib/mime,/usr/lib/mime/packages,/usr/lib/mime/packages/vim-common,/usr/share,/usr/share/applications,/usr/share/applications/vim.desktop,/usr/share/doc,/usr/share/doc/vim-common,/usr/share/doc/vim-common/README.Debian,/usr/share/doc/vim-common/changelog.Debian.gz,/usr/share/doc/vim-common/changelog.gz,/usr/share/doc/vim-common/copyright",
+      "purl": "pkg:deb/debian/vim@2%3A9.1.1230-2?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-40164",
+      "package": "jq",
+      "detected_version": "1.7.1-6%2Bdeb13u1",
+      "actual_version": "1.7.1-6+deb13u1",
+      "fixed_version": "not fixed",
+      "severity": "HIGH",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/jq,/usr/share,/usr/share/doc,/usr/share/doc/jq,/usr/share/doc/jq/AUTHORS.gz,/usr/share/doc/jq/NEWS.md.gz,/usr/share/doc/jq/README.md,/usr/share/doc/jq/changelog.Debian.gz,/usr/share/doc/jq/changelog.gz,/usr/share/doc/jq/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/jq.1.gz",
+      "purl": "pkg:deb/debian/jq@1.7.1-6%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    },
+    {
+      "cve": "CVE-2026-6100",
+      "package": "python3.13",
+      "detected_version": "3.13.5-2",
+      "actual_version": "3.13.5-2",
+      "fixed_version": "not fixed",
+      "severity": "CRITICAL",
+      "package_type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pydoc3.13,/usr/bin/pygettext3.13,/usr/lib,/usr/lib/python3,/usr/lib/python3/dist-packages,/usr/lib/python3.13,/usr/lib/python3.13/lib-dynload,/usr/share,/usr/share/applications,/usr/share/applications/python3.13.desktop,/usr/share/doc,/usr/share/doc/python3.13,/usr/share/doc/python3.13/ACKS.gz,/usr/share/doc/python3.13/NEWS.gz,/usr/share/doc/python3.13/README.Debian,/usr/share/doc/python3.13/README.rst.gz,/usr/share/doc/python3.13/README.venv",
+      "purl": "pkg:deb/debian/python3.13@3.13.5-2?os_distro=trixie&os_name=debian&os_version=13",
+      "false_positive": false
+    }
+  ],
+  "false_positives": [],
+  "allowlisted": [],
+  "package_locations": [
+    {
+      "package": "glibc",
+      "type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/glibc@2.41-12%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "glibc",
+      "type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/glibc@2.41-12%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "glibc",
+      "type": "deb",
+      "location": "/.,/etc,/etc/bindresvport.blacklist,/etc/default,/etc/default/nss,/etc/gai.conf,/etc/ld.so.conf,/etc/ld.so.conf.d,/etc/ld.so.conf.d/libc.conf,/usr,/usr/bin,/usr/bin/getconf,/usr/bin/getent,/usr/bin/iconv,/usr/bin/ldd,/usr/bin/locale,/usr/bin/localedef,/usr/bin/pldd,/usr/bin/tzselect,/usr/bin/zdump",
+      "purl": "pkg:deb/debian/glibc@2.41-12%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "nghttp2",
+      "type": "deb",
+      "location": "/.,/usr,/usr/lib,/usr/lib/x86_64-linux-gnu,/usr/lib/x86_64-linux-gnu/libnghttp2.so.14.28.3,/usr/share,/usr/share/doc,/usr/share/doc/libnghttp2-14,/usr/share/doc/libnghttp2-14/AUTHORS,/usr/share/doc/libnghttp2-14/README.rst.gz,/usr/share/doc/libnghttp2-14/changelog.Debian.gz,/usr/share/doc/libnghttp2-14/copyright,/usr/lib/x86_64-linux-gnu/libnghttp2.so.14",
+      "purl": "pkg:deb/debian/nghttp2@1.64.0-1.1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "openssl",
+      "type": "deb",
+      "location": "/.,/etc,/etc/ssl,/etc/ssl/certs,/etc/ssl/openssl.cnf,/etc/ssl/private,/usr,/usr/bin,/usr/bin/c_rehash,/usr/bin/openssl,/usr/lib,/usr/lib/ssl,/usr/lib/ssl/misc,/usr/lib/ssl/misc/CA.pl,/usr/lib/ssl/misc/tsget.pl,/usr/share,/usr/share/doc,/usr/share/doc/openssl,/usr/share/doc/openssl/HOWTO,/usr/share/doc/openssl/HOWTO/certificates.txt.gz",
+      "purl": "pkg:deb/debian/openssl@3.5.4-1~deb13u2?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "openssl",
+      "type": "deb",
+      "location": "/.,/etc,/etc/ssl,/etc/ssl/certs,/etc/ssl/openssl.cnf,/etc/ssl/private,/usr,/usr/bin,/usr/bin/c_rehash,/usr/bin/openssl,/usr/lib,/usr/lib/ssl,/usr/lib/ssl/misc,/usr/lib/ssl/misc/CA.pl,/usr/lib/ssl/misc/tsget.pl,/usr/share,/usr/share/doc,/usr/share/doc/openssl,/usr/share/doc/openssl/HOWTO,/usr/share/doc/openssl/HOWTO/certificates.txt.gz",
+      "purl": "pkg:deb/debian/openssl@3.5.4-1~deb13u2?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "openssl",
+      "type": "deb",
+      "location": "/.,/etc,/etc/ssl,/etc/ssl/certs,/etc/ssl/openssl.cnf,/etc/ssl/private,/usr,/usr/bin,/usr/bin/c_rehash,/usr/bin/openssl,/usr/lib,/usr/lib/ssl,/usr/lib/ssl/misc,/usr/lib/ssl/misc/CA.pl,/usr/lib/ssl/misc/tsget.pl,/usr/share,/usr/share/doc,/usr/share/doc/openssl,/usr/share/doc/openssl/HOWTO,/usr/share/doc/openssl/HOWTO/certificates.txt.gz",
+      "purl": "pkg:deb/debian/openssl@3.5.4-1~deb13u2?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "jq",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/jq,/usr/share,/usr/share/doc,/usr/share/doc/jq,/usr/share/doc/jq/AUTHORS.gz,/usr/share/doc/jq/NEWS.md.gz,/usr/share/doc/jq/README.md,/usr/share/doc/jq/changelog.Debian.gz,/usr/share/doc/jq/changelog.gz,/usr/share/doc/jq/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/jq.1.gz",
+      "purl": "pkg:deb/debian/jq@1.7.1-6%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "vim",
+      "type": "deb",
+      "location": "/.,/etc,/etc/vim,/etc/vim/vimrc,/usr,/usr/bin,/usr/bin/helpztags,/usr/lib,/usr/lib/mime,/usr/lib/mime/packages,/usr/lib/mime/packages/vim-common,/usr/share,/usr/share/applications,/usr/share/applications/vim.desktop,/usr/share/doc,/usr/share/doc/vim-common,/usr/share/doc/vim-common/README.Debian,/usr/share/doc/vim-common/changelog.Debian.gz,/usr/share/doc/vim-common/changelog.gz,/usr/share/doc/vim-common/copyright",
+      "purl": "pkg:deb/debian/vim@2%3A9.1.1230-2?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "jq",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/jq,/usr/share,/usr/share/doc,/usr/share/doc/jq,/usr/share/doc/jq/AUTHORS.gz,/usr/share/doc/jq/NEWS.md.gz,/usr/share/doc/jq/README.md,/usr/share/doc/jq/changelog.Debian.gz,/usr/share/doc/jq/changelog.gz,/usr/share/doc/jq/copyright,/usr/share/man,/usr/share/man/man1,/usr/share/man/man1/jq.1.gz",
+      "purl": "pkg:deb/debian/jq@1.7.1-6%2Bdeb13u1?os_distro=trixie&os_name=debian&os_version=13"
+    },
+    {
+      "package": "python3.13",
+      "type": "deb",
+      "location": "/.,/usr,/usr/bin,/usr/bin/pydoc3.13,/usr/bin/pygettext3.13,/usr/lib,/usr/lib/python3,/usr/lib/python3/dist-packages,/usr/lib/python3.13,/usr/lib/python3.13/lib-dynload,/usr/share,/usr/share/applications,/usr/share/applications/python3.13.desktop,/usr/share/doc,/usr/share/doc/python3.13,/usr/share/doc/python3.13/ACKS.gz,/usr/share/doc/python3.13/NEWS.gz,/usr/share/doc/python3.13/README.Debian,/usr/share/doc/python3.13/README.rst.gz,/usr/share/doc/python3.13/README.venv",
+      "purl": "pkg:deb/debian/python3.13@3.13.5-2?os_distro=trixie&os_name=debian&os_version=13"
+    }
+  ]
+}
